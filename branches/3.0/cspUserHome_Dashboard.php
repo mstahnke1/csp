@@ -33,20 +33,7 @@ $companyName = 'HomeFree';
 				<div class="cbb">
 					<?php require_once('includes/dashboard/dash_DbBackups.php'); ?>
 					<?php require_once('includes/dashboard/dash_Tasks.php'); ?>
-					<div>
-						<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0" width="49%">
-							<tr>
-								<td class="cspBodyHeading">Open Tickets</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="cspMOHighlight">Ticket # 3987 Opened 11/12/2010</div>
-									<div class="cspMOHighlight">Ticket # 3487 Opened 11/17/2010</div>
-									<div class="cspMOHighlight">Ticket # 3287 Opened 10/17/2010</div>
-								</td>
-							</tr>
-						</table>
-					</div>
+					<?php require_once('includes/dashboard/dash_Tickets.php'); ?>
 					<div>
 						<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0" width="49%">
 							<tr>
