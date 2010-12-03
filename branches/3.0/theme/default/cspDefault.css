@@ -96,14 +96,30 @@ div.cspContent
 	font:12px arial;
 }
 
-div.cspDashRow
-{
-	display:inline;
+div.dashLeftCol {
+	//border:1px solid gray;
+	float:left;
+	width:49%;
+}
+
+div.dashRightCol {
+	//border:1px solid gray;
+	float:right;
+	width:49%;
+}
+
+div.cspDashModule {
+	//display:inline-block;
+	//width:49%;
+	//vertical-align:top;
 }
 
 table.cspDashRow
 {
 	margin-bottom:10px;
+	//margin-left:5px;
+	width:100%;
+	//vertical-align:top;
 }
 
 div.cspMOHighlight:hover
