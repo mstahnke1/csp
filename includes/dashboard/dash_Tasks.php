@@ -33,21 +33,21 @@ $result10 = mysql_query($query10);
 $row10 = mysql_fetch_array($result10);
 ?>
 
-<div>
-	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0" width="49%">
+<div class="cspDashModule">
+	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<td class="cspBodyHeading">Open Tasks</td>
 		</tr>
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:65%;"><strong><u>Subject</u></strong></span><span style="display:inline-block; width:35%;"><strong><u>Due Date</u></strong></span>
+					<span style="display:inline-block; width:77%;"><strong><u>Subject</u></strong></span><span style="display:inline-block; width:23%;"><strong><u>Due Date</u></strong></span>
 				</div>
 				<?php
 				while($row3 = mysql_fetch_array($result3)) {
 					?>
 					<div class="cspMOHighlight">
-						<span style="display:inline-block; width:65%;"><?php echo $row3['Subject']; ?></span><span style="display:inline-block; width:35%; vertical-align:top;"><?php echo $row3['Duedate']; ?></span>
+						<span style="display:inline-block; width:77%;"><?php echo $row3['Subject']; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo date("Y-m-d", strtotime($row3['Duedate'])); ?></span>
 					</div>
 					<?php
 				}

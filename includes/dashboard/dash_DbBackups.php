@@ -21,15 +21,15 @@ $qryDashDb2 = "SELECT CustomerNumber FROM tblCustSystemInfo
 $rsltDashDb2 = mysql_query($qryDashDb2) or die(mysql_error());
 ?>
 
-<div>
-	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0" width="49%" align="right">
+<div class="cspDashModule">
+	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<td class="cspBodyHeading">Databases Needing Backup</td>
 		</tr>
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:65%;"><strong><u>Facility Name</u></strong></span><span style="display:inline-block; width:35%;"><strong><u>Last Backup</u></strong></span>
+					<span style="display:inline-block; width:77%;"><strong><u>Facility Name</u></strong></span><span style="display:inline-block; width:23%;"><strong><u>Last Backup</u></strong></span>
 				</div>
 				<?php
 				while($rowDashDb2 = mysql_fetch_array($rsltDashDb2)) {
@@ -38,7 +38,7 @@ $rsltDashDb2 = mysql_query($qryDashDb2) or die(mysql_error());
 					$row13 = mysql_fetch_array($result13);
 					?>
 					<div class="cspMOHighlight">
-						<span style="display:inline-block; width:65%;"><?php echo $row13['FacilityName']; ?></span><span style="display:inline-block; width:35%;">No Database on File</span>
+						<span style="display:inline-block; width:77%;"><?php echo $row13['FacilityName']; ?></span><span style="display:inline-block; width:23%;"><em>No Backup</em></span>
 					</div>
 					<?php
 				}
@@ -48,7 +48,7 @@ $rsltDashDb2 = mysql_query($qryDashDb2) or die(mysql_error());
 					$row13 = mysql_fetch_array($result13);
 					?>
 					<div class="cspMOHighlight">
-						<span style="display:inline-block; width:65%;"><?php echo $row13['FacilityName']; ?></span><span style="display:inline-block; width:35%; vertical-align:top;"><?php echo $rowDashDb1['MaxTimestamp']; ?></span>
+						<span style="display:inline-block; width:77%;"><?php echo $row13['FacilityName']; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo date("Y-m-d", strtotime($rowDashDb1['MaxTimestamp'])); ?></span>
 					</div>
 					<?php
 				}

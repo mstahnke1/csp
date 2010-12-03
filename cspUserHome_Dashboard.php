@@ -24,59 +24,34 @@ $companyName = 'HomeFree';
 				<?php require_once('cspMenuBar.php'); ?>
 			</div>
 			<div class="cspRightPanel">
-				
+				&nbsp;
 			</div>
 			<div id="cspContent" class="cspContent" align="left">
 				<div class="cspNavBar">
 					<div class="cspNavBarItem">Home</div>
 				</div>
 				<div class="cbb">
-					<?php require_once('includes/dashboard/dash_DbBackups.php'); ?>
-					<?php require_once('includes/dashboard/dash_Tasks.php'); ?>
-					<?php require_once('includes/dashboard/dash_Tickets.php'); ?>
-					<div>
-						<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0" width="49%">
-							<tr>
-								<td class="cspBodyHeading">Recently Closed Tickets</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="cspMOHighlight">Ticket # 3987 Opened 11/12/2010</div>
-									<div class="cspMOHighlight">Ticket # 3487 Opened 11/17/2010</div>
-									<div class="cspMOHighlight">Ticket # 3287 Opened 10/17/2010</div>
-								</td>
-							</tr>
-						</table>
+					<div class="dashLeftCol">
+						<?php require_once('includes/dashboard/dash_Tasks.php'); ?>
+						<?php require_once('includes/dashboard/dash_Tickets.php'); ?>
+						<div class="cspDashModule">
+							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td class="cspBodyHeading">Recent Support Calls</td>
+								</tr>
+							</table>
+						</div>
 					</div>
-					<div>
-						<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0" width="49%">
-							<tr>
-								<td class="cspBodyHeading">Scheduled Follow-Ups</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="cspMOHighlight">Facility Name	Last Backup</div>
-									<div class="cspMOHighlight">Commonwealth AL - Kilmarnock	No Database on File</div>
-									<div class="cspMOHighlight">Covenant Shores at Mercer Island	No Database on File</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div>
-						<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0" width="49%">
-							<tr>
-								<td class="cspBodyHeading">Customer Call Ranking</td>
-							</tr>
-							<tr>
-								<td>
-									<div>Past Week | Past Month</div>
-									<div>Ticket # 3987 Opened 11/12/2010</div>
-									<div>Ticket # 3487 Opened 11/17/2010</div>
-									<div>Ticket # 3287 Opened 10/17/2010</div>
-								</td>
-							</tr>
-						</table>
-					</div>
+					<div class="dashRightCol">
+						<?php require_once('includes/dashboard/dash_DbBackups.php'); ?>
+						<div class="cspDashModule">
+							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td class="cspBodyHeading">Call Volume Statistics</td>
+								</tr>
+							</table>
+						</div>
+					</div>	
 				</div>
 			</div>
 			<div class="cspFooter">
