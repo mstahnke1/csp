@@ -27,7 +27,24 @@
 					<div class="cspNavBarItem">Support</div>
 				</div>
 				<div class="cbb">
-					Support Home
+					<div class="dashLeftCol">
+						<div class="cspDashModule">
+							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td class="cspBodyHeading">Recent Support Calls</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="dashRightCol">
+						<div class="cspDashModule">
+							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td class="cspBodyHeading">Call Volume Statistics</td>
+								</tr>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="cspFooter">

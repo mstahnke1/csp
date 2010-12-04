@@ -32,25 +32,11 @@ $companyName = 'HomeFree';
 				</div>
 				<div class="cbb">
 					<div class="dashLeftCol">
-						<?php require_once('includes/dashboard/dash_Tasks.php'); ?>
-						<?php require_once('includes/dashboard/dash_Tickets.php'); ?>
-						<div class="cspDashModule">
-							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
-								<tr>
-									<td class="cspBodyHeading">Recent Support Calls</td>
-								</tr>
-							</table>
-						</div>
+						<?php require_once('includes/dashboard/homeDash_Tasks.php'); ?>
+						<?php require_once('includes/dashboard/homeDash_Tickets.php'); ?>
 					</div>
 					<div class="dashRightCol">
-						<?php require_once('includes/dashboard/dash_DbBackups.php'); ?>
-						<div class="cspDashModule">
-							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
-								<tr>
-									<td class="cspBodyHeading">Call Volume Statistics</td>
-								</tr>
-							</table>
-						</div>
+						<?php require_once('includes/dashboard/homeDash_DbBackups.php'); ?>
 					</div>	
 				</div>
 			</div>
