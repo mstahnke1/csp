@@ -4,8 +4,8 @@ include 'includes/config.inc.php';
 include 'includes/db_connect.inc.php';
 $userID = '1';
 $qryDashTickets1 = "SELECT DISTINCT tblTickets.id AS ticketID, tblTickets.CustomerNumber AS custNum, tblTickets.DateOpened AS dateOpened, tblFacilities.FacilityName AS facilityName  
-										FROM tblTicketMessages 
-										LEFT JOIN tblTickets ON tblTickets.ID = tblTicketMessages.TicketID 
+										FROM tblTickets 
+										LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 										LEFT JOIN tblFacilities ON tblFacilities.CustomerNumber = tblTickets.CustomerNumber 
 										WHERE (tblTickets.OpenedBy = '$userID' OR tblTicketMessages.EnteredBy = '$userID') 
 										AND tblTickets.Status NOT IN(-1, 1)";
