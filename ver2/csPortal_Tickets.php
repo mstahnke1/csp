@@ -55,7 +55,7 @@ else
 	}
 
 	include 'includes/functions.inc.php';
-	require_once "Mail.php";
+//	require_once "Mail.php";
 	
 	if((isset($_GET['action'])) && ($_GET['action'] == "removeDevice"))
 	{

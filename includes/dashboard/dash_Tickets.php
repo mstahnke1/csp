@@ -3,10 +3,12 @@
 include 'includes/config.inc.php';
 include 'includes/db_connect.inc.php';
 $userID = '1';
-$qryDashTickets1 = "SELECT tblTickets.id AS ticketID, tblTickets.CustomerNumber AS custNum, tblTickets.DateOpened AS dateOpened, tblFacilities.FacilityName AS facilityName  
-										FROM tbltickets 
-										LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
-										WHERE tblTickets.OpenedBy = '$userID' && tblTickets.Status NOT IN(-1, 1)";
+$qryDashTickets1 = "SELECT DISTINCT tblTickets.id AS ticketID, tblTickets.CustomerNumber AS custNum, tblTickets.DateOpened AS dateOpened, tblFacilities.FacilityName AS facilityName  
+										FROM tblTicketMessages 
+										LEFT JOIN tblTickets ON tblTickets.ID = tblTicketMessages.TicketID 
+										LEFT JOIN tblFacilities ON tblFacilities.CustomerNumber = tblTickets.CustomerNumber 
+										WHERE (tblTickets.OpenedBy = '$userID' OR tblTicketMessages.EnteredBy = '$userID') 
+										AND tblTickets.Status NOT IN(-1, 1)";
 $rstDashTickets1 = mysql_query($qryDashTickets1) or die(mysql_error());
 ?>
 
@@ -24,7 +26,7 @@ $rstDashTickets1 = mysql_query($qryDashTickets1) or die(mysql_error());
 				while($rowDashTickets1 = mysql_fetch_array($rstDashTickets1)) {
 					?>
 					<div class="cspMOHighlight">
-						<span style="display:inline-block; width:77%;">Ticket # <?php echo $rowDashTickets1['ticketID'] . " (" . $rowDashTickets1['facilityName'] . ")"; ?></span><span style="display:inline-block; width:23%;"><?php echo date("Y-m-d", strtotime($rowDashTickets1['dateOpened'])); ?></span>
+						<span style="display:inline-block; width:77%;">Ticket # <?php echo $rowDashTickets1['ticketID'] . " (" . $rowDashTickets1['facilityName'] . ")"; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo date("Y-m-d", strtotime($rowDashTickets1['dateOpened'])); ?></span>
 					</div>
 					<?php
 				}
