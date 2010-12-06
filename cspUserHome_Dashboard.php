@@ -28,7 +28,14 @@ $companyName = 'HomeFree';
 			</div>
 			<div id="cspContent" class="cspContent" align="left">
 				<div class="cspNavBar">
-					<div class="cspNavBarItem">Home</div>
+					<ul id="navbar">
+						<li><a href="#">Home</a><ul>
+							<li><a href="#">Task Managment</a></li>
+							<li><a href="#">HomeFree Calendar</a></li>
+							<li><a href="#">Employee List</a></li></ul>
+						</li>
+						<!-- ... and so on ... -->
+					</ul>
 				</div>
 				<div class="cbb">
 					<div class="dashLeftCol">
