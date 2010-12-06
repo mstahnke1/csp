@@ -1,8 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
+<?php
+$companyName = 'HomeFree';
+?>
+
 <head>
-	<title>Company Name | CSP - Support</title>
+	<title><?php echo $companyName; ?> | CSP - Support</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="theme/default/cspDefault.css" />
 	<script type="text/javascript" src="js/cb.js"></script>
@@ -24,26 +28,20 @@
 			</div>
 			<div id="cspContent" class="cspContent" align="left">
 				<div class="cspNavBar">
-					<div class="cspNavBarItem">Support</div>
+					<ul id="navbar">
+						<li><a href="#">Support</a><ul>
+							<li><a href="#">Lookup Facility</a></li>
+							<li><a href="#">Add Facility</a></li>
+							<li><a href="#">Shipment Tracking</a></li></ul>
+						</li>
+					</ul>
 				</div>
 				<div class="cbb">
 					<div class="dashLeftCol">
-						<div class="cspDashModule">
-							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
-								<tr>
-									<td class="cspBodyHeading">Recent Support Calls</td>
-								</tr>
-							</table>
-						</div>
+						<?php require_once('includes/dashboard/supportDash_CommonIssues.php'); ?>
 					</div>
 					<div class="dashRightCol">
-						<div class="cspDashModule">
-							<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
-								<tr>
-									<td class="cspBodyHeading">Call Volume Statistics</td>
-								</tr>
-							</table>
-						</div>
+						<?php require_once('includes/dashboard/supportDash_CallVolumeStats.php'); ?>
 					</div>
 				</div>
 			</div>

@@ -71,6 +71,7 @@ div.box-option
 
 div.cspNavBar
 {
+	/*
 	height:16px;
 	//border-top:1px solid #E0E0E0;
 	margin-left:5px;
@@ -78,14 +79,54 @@ div.cspNavBar
 	font:small-caps bold 12px arial;
 	margin-top:10px;
 	vertical-align:top;
+	*/
 }
 
+#navbar {
+	margin-left: 5px;
+	padding: 0;
+	height: 1em; }
+#navbar li {
+	list-style: none;
+	float: left; }
+#navbar li a {
+	display: block;
+	padding: 3px 8px;
+	//background-color: #5e8ce9;
+	background:url('images/NavBarArrow.gif') no-repeat 0% 49%;
+	padding-left:18px;
+	color: #000000;
+	font:small-caps bold 12px arial;
+	text-decoration: none; }
+#navbar li ul {
+	display: none; 
+	//width: 10em; /* Width to help Opera out */
+	background-color: #69f;}
+#navbar li:hover ul {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	margin: 0;
+	padding: 0; }
+#navbar li:hover li {
+	float: none; }
+#navbar li:hover li a {
+	//background-color: #69f;
+	background-color: #00CC66;
+	border-bottom: 1px solid #fff;
+	color: #000; }
+#navbar li li a:hover {
+	background-color: #00FF66;
+	//background-color: #8db3ff; }
+
+/*
 div.cspNavBarItem
 {
 	background:url('images/NavBarArrow.gif') no-repeat 0% 0%;
 	padding-left:18px;
 	display:inline
 }
+*/
 
 div.cspContent
 {
@@ -152,7 +193,7 @@ div.menuBox
 
 div.menuBox:hover
 {
-	border:2px solid green;
+	border:2px solid #00CC66;
 	text-decoration:none;
 }
 
