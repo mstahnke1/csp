@@ -32,6 +32,7 @@ $companyName = 'HomeFree';
 						<li><a href="#">Home</a><ul>
 							<li><a href="#">Task Managment</a></li>
 							<li><a href="#">HomeFree Calendar</a></li>
+							<li><a href="#">Portal Notifications</a></li>
 							<li><a href="#">Employee List</a></li></ul>
 						</li>
 						<!-- ... and so on ... -->
