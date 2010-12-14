@@ -12,11 +12,11 @@ $companyName = 'HomeFree';
 	<link rel="stylesheet" type="text/css" href="tinyboxstyle.css" />
 	<script type="text/javascript" src="js/cb.js"></script>
 	<script type="text/javascript" src="js/loadPage.js"></script>
-	<script type="text/javascript" src="js/tinybox.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body>
+<body onLoad="lookupFacilityName.facilityName.focus()">
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
@@ -38,22 +38,43 @@ $companyName = 'HomeFree';
 							<li><a href="#">Shipment Tracking</a></li>
 							<li><a href="#">Call Reports</a></li></ul>
 						</li>
+						<li><a href="#">Customer</a><ul>
+							<li><a href="#">New Call</a></li></ul>
+						</li>
 					</ul>
 				</div>
 				<div class="cbb">
-					<div class="dashLeftCol">
-						<?php require_once('includes/dashboard/supportDash_CommonIssues.php'); ?>
-					</div>
-					<div class="dashRightCol">
-						<?php require_once('includes/dashboard/supportDash_CallVolumeStats.php'); ?>
-					</div>
+					<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td colspan="2" class="cspBodyHeading">Facility Lookup</td>
+						</tr>
+						<tr>
+							<form id="lookupFacilityName" name="lookupFacilityName">
+								<td style="text-align: right;">Facility Name:</td>
+								<td>
+									<input type="text" name="srchString" />
+									<input type="hidden" name="srchType" value="facilityName" />
+									<input type="button" value="Search" onclick="sbmFacilityLookup(this.form);" />
+								</td>
+							</form>
+						</tr>
+						<tr>
+							<form name="lookupCustNum">
+								<td style="text-align: right;">Customer Number:</td>
+								<td>
+									<input type="text" name="custNum" />
+									<input type="button" value="Search" />
+								</td>
+							</form>
+						</tr>
+					</table>
+					<div id="resultsDiv">a</div>
 				</div>
 			</div>
 			<div class="cspFooter">
 				<?php require_once('cspFooter.php'); ?>
 			</div>
 		</div>
-		<div id="ajaxDiv" namd="ajaxDiv"></div>
 	</center>
 </body>
 
