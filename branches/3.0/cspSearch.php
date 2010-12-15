@@ -16,7 +16,7 @@ $companyName = 'HomeFree';
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body onLoad="lookupFacilityName.facilityName.focus()">
+<body onLoad="lookupFacilityName.facilityName.focus();">
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
@@ -31,44 +31,28 @@ $companyName = 'HomeFree';
 			<div id="cspContent" class="cspContent" align="left">
 				<div class="cspNavBar">
 					<ul id="navbar">
-						<li><a href="#">Support</a><ul>
-							<li><a href="#">Lookup Ticket</a></li>
-							<li><a href="JavaScript:void(0);" onclick="window.location='cspFacilityLookup.php'">Lookup Facility</a></li>
+						<li><a href="cspUserSupport_Home.php">Support</a><ul>
+							<li><a href="JavaScript:void(0);" onclick="window.location='cspSearch.php?type=Ticket'">Lookup Ticket</a></li>
+							<li><a href="JavaScript:void(0);" onclick="window.location='cspSearch.php?type=Facility'">Lookup Facility</a></li>
 							<li><a href="#">Add Facility</a></li>
 							<li><a href="#">Shipment Tracking</a></li>
 							<li><a href="#">Call Reports</a></li></ul>
 						</li>
-						<li><a href="#">Customer</a><ul>
-							<li><a href="#">New Call</a></li></ul>
-						</li>
 					</ul>
 				</div>
 				<div class="cbb">
-					<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
-						<tr>
-							<td colspan="2" class="cspBodyHeading">Facility Lookup</td>
-						</tr>
-						<tr>
-							<form id="lookupFacilityName" name="lookupFacilityName">
-								<td style="text-align: right;">Facility Name:</td>
-								<td>
-									<input type="text" name="srchString" />
-									<input type="hidden" name="srchType" value="facilityName" />
-									<input type="button" value="Search" onclick="sbmFacilityLookup(this.form);" />
-								</td>
-							</form>
-						</tr>
-						<tr>
-							<form name="lookupCustNum">
-								<td style="text-align: right;">Customer Number:</td>
-								<td>
-									<input type="text" name="custNum" />
-									<input type="button" value="Search" />
-								</td>
-							</form>
-						</tr>
-					</table>
-					<div id="resultsDiv">a</div>
+					<div class="dashLeftCol">
+						<?php
+						if(isset($_GET['type']) && $_GET['type'] == "Facility") {
+							require_once('includes/support/cspSearch_Facility.php');
+						} elseif(isset($_GET['type']) && $_GET['type'] == "Ticket") {
+							require_once('includes/support/cspSearch_Tickets.php');
+						}
+						?>
+					</div>
+					<div class="dashRightCol">
+						<div id="resultsDiv"></div>
+					</div>
 				</div>
 			</div>
 			<div class="cspFooter">

@@ -31,9 +31,9 @@ $companyName = 'HomeFree';
 			<div id="cspContent" class="cspContent" align="left">
 				<div class="cspNavBar">
 					<ul id="navbar">
-						<li><a href="#">Support</a><ul>
-							<li><a href="#">Lookup Ticket</a></li>
-							<li><a href="JavaScript:void(0);" onclick="window.location='cspFacilityLookup.php'">Lookup Facility</a></li>
+						<li><a href="cspUserSupport_Home.php">Support</a><ul>
+							<li><a href="JavaScript:void(0);" onclick="window.location='cspSearch.php?type=Ticket'">Lookup Ticket</a></li>
+							<li><a href="JavaScript:void(0);" onclick="window.location='cspSearch.php?type=Facility'">Lookup Facility</a></li>
 							<li><a href="#">Add Facility</a></li>
 							<li><a href="#">Shipment Tracking</a></li>
 							<li><a href="#">Call Reports</a></li></ul>
