@@ -1,13 +1,46 @@
 <?php
 include 'includes/config.inc.php';
 include 'includes/db_connect.inc.php';
-if(isset($_POST['srchString']) && $_POST['srchString'] == 'facilityName') {
+if(isset($_POST['srchString']) && $_POST['srchType'] == 'facilityName') {
 	$srchString = $_POST['srchString'];
-	$qryCustSearch1 = "SELECT CustomerNumber, FacilityName, FacilityNameOther 
+	$qryCustSearch = "SELECT CustomerNumber, FacilityName, FacilityNameOther 
 										FROM tblFacilities 
-										WHERE FacilityName LIKE '%$srchString%' OR FacilityNameOther LIKE '%$srchString%' 
-										AND Active = -1";
-	$rstCustSearch1 = mysql_query($qryCustSearch1) or die(mysql_error());
+										WHERE (FacilityName LIKE '%$srchString%' OR FacilityNameOther LIKE '%$srchString%') 
+										AND Active = -1 
+										ORDER BY FacilityName";
+	$rstCustSearch = mysql_query($qryCustSearch) or die(mysql_error());
+	$numCustSearch = mysql_num_rows($rstCustSearch);
+} elseif(isset($_POST['srchString']) && $_POST['srchType'] == 'custNum') {
+	$srchString = $_POST['srchString'];
+	$qryCustSearch = "SELECT CustomerNumber, FacilityName, FacilityNameOther 
+										FROM tblFacilities 
+										WHERE CustomerNumber = '$srchString'  
+										AND Active = -1 
+										ORDER BY FacilityName";
+	$rstCustSearch = mysql_query($qryCustSearch) or die(mysql_error());
+	$numCustSearch = mysql_num_rows($rstCustSearch);
 }
 ?>
-Search Submitted
+
+<div class="cspDashModule">
+	<fieldset>
+	<legend>Search Results</legend>
+		<?php
+		if($numCustSearch > 0) {
+			while($rowCustSearch = mysql_fetch_array($rstCustSearch)) {
+				?>
+				<div class="cspMOHighlight"><?php echo $rowCustSearch['FacilityName']; ?></div>
+				<?php
+			}
+		} else {
+			?>
+			<div>Search returned no matches</div>
+			<?php
+		}
+		?>
+	</fieldset>
+</div>
+
+<?php
+include 'includes/db_close.inc.php';
+?>

@@ -1,4 +1,4 @@
-function sbmFacilityLookup(frmStr){
+function sbmPortalSearch(frmStr){
 	var ajaxRequest;  // The variable that makes Ajax possible!
 	
 	try{
@@ -26,8 +26,8 @@ function sbmFacilityLookup(frmStr){
 		}
 	}
 	
-	var srchString = document.forms['lookupFacilityName'].srchString.value;
-	var srchType = document.forms['lookupFacilityName'].srchType.value;
+	var srchString = document.forms[frmStr].srchString.value;
+	var srchType = document.forms[frmStr].srchType.value;
 	var queryString = "srchType=" + srchType + "&srchString=" + srchString;
 	
 	ajaxRequest.open("POST", "cspSearchResults.php", true);
