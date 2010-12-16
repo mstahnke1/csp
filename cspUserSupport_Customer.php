@@ -38,14 +38,18 @@ $companyName = 'HomeFree';
 							<li><a href="#">Shipment Tracking</a></li>
 							<li><a href="#">Call Reports</a></li></ul>
 						</li>
+						<li><a href="cspUserSupport_Home.php">Customer</a><ul>
+							<li><a href="JavaScript:void(0);" onclick="window.location='cspSearch.php?type=Ticket'">Lookup Ticket</a></li>
+							<li><a href="#">New Ticket</a></li></ul>
+						</li>
 					</ul>
 				</div>
 				<div class="cbb">
 					<div class="dashLeftCol">
-						<?php require_once('includes/dashboard/supportDash_CommonIssues.php'); ?>
+						<?php require_once('includes/support/cspCustomer_Info.php'); ?>
 					</div>
 					<div class="dashRightCol">
-						<?php require_once('includes/dashboard/supportDash_CallVolumeStats.php'); ?>
+						<?php require_once('includes/support/cspCustomer_Contacts.php'); ?>
 					</div>
 				</div>
 			</div>
