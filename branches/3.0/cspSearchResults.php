@@ -26,10 +26,10 @@ if(isset($_POST['srchString']) && $_POST['srchType'] == 'facilityName') {
 	<fieldset>
 	<legend>Search Results</legend>
 		<?php
-		if($numCustSearch > 0) {
+		if($numCustSearch > 0 && isset($_POST['srchType'])) {
 			while($rowCustSearch = mysql_fetch_array($rstCustSearch)) {
 				?>
-				<div class="cspMOHighlight"><?php echo $rowCustSearch['FacilityName']; ?></div>
+				<a href="cspUserSupport_Customer.php?custID=<?php echo $rowCustSearch['CustomerNumber']; ?>"><div class="cspMOHighlight"><?php echo $rowCustSearch['FacilityName']; ?></div></a>
 				<?php
 			}
 		} else {
