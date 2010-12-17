@@ -49,14 +49,22 @@ $companyName = 'HomeFree';
 							}
 							?>
 						</li>
+						<li><a href="#">Ticket</a><ul>
+							<li><a href="#">New Call</a></li>
+							<li><a href="#" >Close Ticket</a></li>
+							<li><a href="#">Reopen Ticket</a></li></ul>
+						</li>
 					</ul>
 				</div>
 				<div class="cbb">
 					<div class="dashLeftCol">
-						<?php require_once('includes/support/cspCustomer_Info.php'); ?>
+						<?php require_once('includes/support/cspTicket_CustomerDetails.php'); ?>
 					</div>
 					<div class="dashRightCol">
-						<?php require_once('includes/support/cspCustomer_Contacts.php'); ?>
+						<?php require_once('includes/support/cspTicket_TicketDetails.php'); ?>
+					</div>
+					<div class="dashFullCol">
+						<?php require_once('includes/support/cspTicket_CallHistoryThread.php'); ?>
 					</div>
 				</div>
 			</div>
