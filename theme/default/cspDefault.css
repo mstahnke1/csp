@@ -91,7 +91,7 @@ div.cspNavBar
 	float: left; }
 #navbar li a {
 	display: block;
-	padding: 3px 8px;
+	padding: 3px 2px;
 	//background-color: #5e8ce9;
 	background:url('images/NavBarArrow.gif') no-repeat 0% 49%;
 	padding-left:18px;
@@ -185,6 +185,12 @@ td.cspBodyHeading
 	border-top: 1px solid #488AC7;
 	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
 	BACKGROUND-COLOR: #BDEDFF;
+}
+
+td.cspTicketHeading
+{
+	border-bottom: 1px solid #999999;
+	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
 }
 
 div.cspFooter
