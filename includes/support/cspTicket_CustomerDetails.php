@@ -1,7 +1,7 @@
 <div class="cspDashModule">	
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td class="cspTicketHeading">Problem Details</td>
+			<td class="cspTicketHeading">Problem Details<span style="float:right;"><a href="#"><img src="theme/default/images/edit.jpg" width="37" height="14" /></a></span></td>
 		</tr>
 		<tr>
 			<td>
