@@ -64,7 +64,7 @@ $companyName = 'HomeFree';
 						<?php require_once('includes/support/cspTicket_TicketDetails.php'); ?>
 					</div>
 					<div class="dashFullCol">
-						<?php require_once('includes/support/cspTicket_CallHistoryThread.php'); ?>
+						<?php require_once('includes/support/cspTicket_HistoryThread.php'); ?>
 					</div>
 				</div>
 			</div>
