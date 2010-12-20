@@ -34,3 +34,9 @@ function sbmPortalSearch(frmStr){
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 	ajaxRequest.send(queryString); 
 }
+
+function showDiv(str) { 
+	if (document.getElementById) {
+		document.getElementById(str).style.display = 'block'; 
+	}
+} 

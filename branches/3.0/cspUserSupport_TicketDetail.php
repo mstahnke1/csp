@@ -3,6 +3,7 @@
 
 <?php
 $companyName = 'HomeFree';
+$ticketID = '3014';
 ?>
 
 <head>
@@ -12,6 +13,7 @@ $companyName = 'HomeFree';
 	<link rel="stylesheet" type="text/css" href="tinyboxstyle.css" />
 	<script type="text/javascript" src="js/cb.js"></script>
 	<script type="text/javascript" src="js/loadPage.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/tinybox.js"></script>
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
@@ -44,13 +46,15 @@ $companyName = 'HomeFree';
 							if(isset($_GET['custID'])) {
 								$custID = $_GET['custID'];
 								?>
-								<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewTicket.php?custID=<?php echo $custID; ?>',1,0,0,1,0);">New Ticket</a></li></ul>
+								<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewTicket.php?custID=<?php echo $custID; ?>',1,0,0,1,0);">New Ticket</a></li>
 								<?php
 							}
 							?>
+							<li><a href="#">Monitor</a></li></ul>
 						</li>
 						<li><a href="#">Ticket</a><ul>
 							<li><a href="#">New Call</a></li>
+							<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_AddTicketComment.php?ticketID=<?php echo $ticketID; ?>',1,0,0,1,0);">New Comment</a></li>
 							<li><a href="#" >Close Ticket</a></li>
 							<li><a href="#">Reopen Ticket</a></li></ul>
 						</li>
@@ -64,6 +68,7 @@ $companyName = 'HomeFree';
 						<?php require_once('includes/support/cspTicket_TicketDetails.php'); ?>
 					</div>
 					<div class="dashFullCol">
+						<?php require_once('includes/support/cspTicket_ActiveCallThread.php'); ?>
 						<?php require_once('includes/support/cspTicket_HistoryThread.php'); ?>
 					</div>
 				</div>
