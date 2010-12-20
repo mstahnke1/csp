@@ -6,7 +6,7 @@
 		<tr>
 			<td>
 				<div>
-					<span style="width:15%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Technician</u></span>
+					<span style="width:15%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Agent</u></span>
 					<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Timestamp</u></span>
 					<span style="display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Update</u></span>
 				</div>
@@ -24,7 +24,8 @@
 					<span style="width:15%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;">Mike Stahnke</span>
 					<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;">12/16/2010 12:13pm</span>
 					<span style="display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;">Comment Added</span>
-					<span style="display:inline-block; vertical-align:center; padding:1px 1px 1px 1px;"><img src="theme/default/images/moreInfo.jpg" width="12px" height="12px" /></span>
+					<span style="display:inline-block; vertical-align:center; padding:1px 1px 1px 1px;"><a href="JavaScript:void(0);" onclick="showDiv('cspTicketComment');"><img src="theme/default/images/moreInfo.jpg" width="13px" height="13px" border="0" /></a></span>
+					<div id="cspTicketComment" class="cspTicketComment">I told her that unfortunately the reports doesn't have that capability available. I mentioned about going into the equipment list and printing a screen shot as an alternate.</div>
 				</div>
 				<div class="cspMOHighlight">
 					<span style="width:15%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;">Mike Stahnke</span>

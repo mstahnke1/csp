@@ -44,10 +44,11 @@ $companyName = 'HomeFree';
 							if(isset($_GET['custID'])) {
 								$custID = $_GET['custID'];
 								?>
-								<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewTicket.php?custID=<?php echo $custID; ?>',1,0,0,1,0);">New Ticket</a></li></ul>
+								<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewTicket.php?custID=<?php echo $custID; ?>',1,0,0,1,0);">New Ticket</a></li>
 								<?php
 							}
 							?>
+							<li><a href="#">Monitor</a></li></ul>
 						</li>
 					</ul>
 				</div>

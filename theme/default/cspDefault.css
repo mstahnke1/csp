@@ -91,9 +91,9 @@ div.cspNavBar
 	float: left; }
 #navbar li a {
 	display: block;
-	padding: 3px 2px;
+	padding: 3px 3px;
 	//background-color: #5e8ce9;
-	background:url('images/NavBarArrow.gif') no-repeat 0% 49%;
+	background:url('images/NavBarArrow.gif') no-repeat 0% 50%;
 	padding-left:18px;
 	color: #000000;
 	font:small-caps bold 12px arial;
@@ -149,10 +149,22 @@ div.dashRightCol {
 	width:49%;
 }
 
+div.dashFullCol {
+	width:100%;
+	float:left;
+}
+
 div.cspDashModule {
 	//display:inline-block;
 	//width:49%;
 	//vertical-align:top;
+}
+
+div.cspTicketComment {
+	display:none;
+	border: 1px solid #999999;
+	border-top: none;
+	padding: 4px;
 }
 
 fieldset {
