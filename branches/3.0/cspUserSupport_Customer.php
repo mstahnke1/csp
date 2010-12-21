@@ -38,7 +38,7 @@ $companyName = 'HomeFree';
 							<li><a href="#">Shipment Tracking</a></li>
 							<li><a href="#">Call Reports</a></li></ul>
 						</li>
-						<li><a href="cspUserSupport_Home.php">Customer</a><ul>
+						<li><a href="cspUserSupport_Customer.php?custID=<?php echo $_GET['custID']; ?>">Customer</a><ul>
 							<li><a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Search.php?type=Ticket'">Lookup Ticket</a></li>
 							<?php
 							if(isset($_GET['custID'])) {

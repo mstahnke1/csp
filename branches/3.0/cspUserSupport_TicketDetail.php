@@ -3,7 +3,36 @@
 
 <?php
 $companyName = 'HomeFree';
-$ticketID = '3014';
+$ticketID = $_GET['ticketID'];
+include_once 'includes/config.inc.php';
+include 'includes/functions.inc.php';
+include 'includes/db_connect.inc.php';
+if(isset($_GET['ticketID'])) {
+	$qryTicketDetail1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName 
+											FROM tblTickets 
+											LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
+											WHERE tblTickets.ID = '$ticketID'";
+	$rstTicketDetail1 = mysql_query($qryTicketDetail1) or die(mysql_error());
+	$rowTicketDetail1 = mysql_fetch_array($rstTicketDetail1);
+	$custID = $rowTicketDetail1['CustomerNumber'];
+	if($rowTicketDetail1['Status']==0) {
+		$Status = 'Open';
+	} elseif($rowTicketDetail1['Status']==1) {
+		$Status = 'Canceled';
+	}elseif($rowTicketDetail1['Status']==2) {
+		$Status = 'Escalated';
+	}else{
+		$Status = 'Closed';
+	}
+	$openedBy = $rowTicketDetail1['OpenedBy'];
+	$qryTicketDetail2 = "SELECT employees.f_name AS firstName, employees.l_name AS lastName 
+											FROM employees WHERE id = '$openedBy'";
+	$rstTicketDetail2 = mysql_query($qryTicketDetail2) or die(mysql_error());
+	$rowTicketDetail2 = mysql_fetch_array($rstTicketDetail2);
+	if($rowTicketDetail2) {
+		$openedBy = $rowTicketDetail2['firstName'] . " " . $rowTicketDetail2['lastName'];
+	}
+}
 ?>
 
 <head>
@@ -18,7 +47,7 @@ $ticketID = '3014';
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body>
+<body">
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
@@ -40,7 +69,7 @@ $ticketID = '3014';
 							<li><a href="#">Shipment Tracking</a></li>
 							<li><a href="#">Call Reports</a></li></ul>
 						</li>
-						<li><a href="cspUserSupport_Home.php">Customer</a><ul>
+						<li><a href="cspUserSupport_Customer.php?custID=<?php echo $custID; ?>">Customer</a><ul>
 							<li><a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Search.php?type=Ticket'">Lookup Ticket</a></li>
 							<?php
 							if(isset($_GET['custID'])) {
