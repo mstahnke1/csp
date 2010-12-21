@@ -12,6 +12,11 @@ if(isset($_GET['ticketID'])) {
 
 if(isset($_POST['saveAgentComment'])) {
 	$ticketID = $_POST['ticketID'];
+	$agentComment = $_POST['agentComment'];
+	$date = date('Y-m-d H:i:s');
+	$qryAddComment = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType) 
+										VALUES('$ticketID', '$agentComment', '1', '$date', 0)";
+	mysql_query($qryAddComment) or die(mysql_error());
 	die(header("Location: cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
 }
 
