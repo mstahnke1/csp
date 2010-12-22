@@ -12,6 +12,7 @@ $qryDashCallVol1 = "SELECT COUNT(tblTickets.id) as ticketCount, tblTickets.id AS
 										LEFT JOIN tblFacilities ON tblFacilities.CustomerNumber = tblTickets.CustomerNumber 
 										WHERE ((tblTickets.DateOpened >= '$dateFrom' AND tblTickets.DateOpened <= '$dateTo') OR (tblTicketMessages.Date >= '$dateFrom' AND tblTicketMessages.Date <= '$dateTo'))  
 										AND tblTickets.Status NOT IN(1) 
+										AND tblTicketMessages.msgType = 2 
 										GROUP BY custNum 
 										ORDER BY ticketCount DESC 
 										LIMIT 15";

@@ -4,6 +4,7 @@
 <?php
 $companyName = 'HomeFree';
 $ticketID = $_GET['ticketID'];
+$agentID = "1";
 include_once 'includes/config.inc.php';
 include 'includes/functions.inc.php';
 include 'includes/db_connect.inc.php';
@@ -32,6 +33,9 @@ if(isset($_GET['ticketID'])) {
 	if($rowTicketDetail2) {
 		$openedBy = $rowTicketDetail2['firstName'] . " " . $rowTicketDetail2['lastName'];
 	}
+	$qryTicketDetail3 = "SELECT id FROM activeCallList WHERE agent = '$agentID'";
+	$rstTicketDetail3 = mysql_query($qryTicketDetail3);
+	$numTicketDetail3 = mysql_num_rows($rstTicketDetail3);
 }
 ?>
 
@@ -72,8 +76,7 @@ if(isset($_GET['ticketID'])) {
 						<li><a href="cspUserSupport_Customer.php?custID=<?php echo $custID; ?>">Customer</a><ul>
 							<li><a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Search.php?type=Ticket'">Lookup Ticket</a></li>
 							<?php
-							if(isset($_GET['custID'])) {
-								$custID = $_GET['custID'];
+							if(isset($custID)) {
 								?>
 								<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewTicket.php?custID=<?php echo $custID; ?>',1,0,0,1,0);">New Ticket</a></li>
 								<?php
@@ -82,10 +85,28 @@ if(isset($_GET['ticketID'])) {
 							<li><a href="#">Monitor</a></li></ul>
 						</li>
 						<li><a href="#">Ticket</a><ul>
-							<li><a href="#">New Call</a></li>
-							<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_AddTicketComment.php?ticketID=<?php echo $ticketID; ?>',1,0,0,1,0);">New Comment</a></li>
-							<li><a href="#" >Close Ticket</a></li>
-							<li><a href="#">Reopen Ticket</a></li></ul>
+							<?php
+							if($Status == "Open" || $Status == "Escalated") {
+								?>
+								<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewCall.php?ticketID=<?php echo $ticketID; ?>',1,0,0,1,0);">New Call</a></li>
+								<?php
+								if($numTicketDetail3 > 0) {
+									?>
+									<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_AddTicketComment.php?ticketID=<?php echo $ticketID; ?>',1,0,0,1,0);">New Comment</a></li>
+									<?php
+								}
+								?>
+								<li><a href="#">Escalate Ticket</a></li>
+								<li><a href="JavaScript:void(0);" onclick="window.location='cspTicketManagement.php?action=closeTicket&ticketID=<?php echo $ticketID; ?>'" >Close Ticket</a></li>
+								<?php
+							}
+							if($Status == "Closed") {
+								?>
+								<li><a href="JavaScript:void(0);" onclick="window.location='cspTicketManagement.php?action=reopenTicket&ticketID=<?php echo $ticketID; ?>'">Reopen Ticket</a></li>
+								<?php
+							}
+							?>
+							</ul>
 						</li>
 					</ul>
 				</div>
@@ -108,5 +129,7 @@ if(isset($_GET['ticketID'])) {
 		</div>
 	</center>
 </body>
-
+<?php
+include 'includes/db_close.inc.php';
+?>
 </html>

@@ -1,7 +1,15 @@
 <div class="cspDashModule">	
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td class="cspTicketHeading">Problem Details<span style="float:right;"><a href="#"><img src="theme/default/images/edit.jpg" width="37" height="14" border="0" /></a></span></td>
+			<td class="cspTicketHeading">Problem Details
+				<?php
+				if(!($Status == "Closed" || $Status == "Canceled")) {
+					?>
+					<span style="float:right;"><a href="JavaScript:void(0);" onClick="javascript:TINY.box.show('cspUserSupport_NewTicket.php?action=editDetails&ticketID=<?php echo $ticketID; ?>',1,0,0,1,0);"><img src="theme/default/images/edit.jpg" width="37" height="14" border="0" title="Edit Problem Details" /></a></span>
+					<?php
+				}
+				?>
+			</td>
 		</tr>
 		<tr>
 			<td>

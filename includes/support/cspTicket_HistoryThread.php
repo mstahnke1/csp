@@ -20,23 +20,34 @@ $rstTicketHistory1 = mysql_query($qryTicketHistory1) or die(mysql_error());
 				<?php
 				while($rowTicketHistory1 = mysql_fetch_array($rstTicketHistory1)) {
 					$agentName = $rowTicketHistory1['firstName'] . " " . $rowTicketHistory1['lastName'];
+					if($rowTicketHistory1['msgType'] == 0) {
+						$updateType = "Comment Added";
+					} elseif($rowTicketHistory1['msgType'] == 1) {
+						$updateType = "Ticket Opened";
+					} elseif($rowTicketHistory1['msgType'] == 2) {
+						$updateType = "Call Started";
+					} elseif($rowTicketHistory1['msgType'] == 3) {
+						$updateType = "Call Ended";
+					} elseif($rowTicketHistory1['msgType'] == 4) {
+						$updateType = "Ticket Closed";
+					} elseif($rowTicketHistory1['msgType'] == 5) {
+						$updateType = "Ticket Reopened";
+					} elseif($rowTicketHistory1['msgType'] == 6) {
+						$updateType = "Problem Details Updated";
+					}
 					?>
 					<div class="cspMOHighlight">
 						<span style="width:15%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $agentName; ?></span>
 						<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowTicketHistory1['Date']; ?></span>
+						<span style="display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $updateType; ?></span>
 						<?php
-						if($rowTicketHistory1['msgType'] == 0) {
+						if($rowTicketHistory1['msgType'] == 0 || $rowTicketHistory1['msgType'] == 2) {
 							?>
-							<span style="display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;">Comment Added</span>
-							<span style="display:inline-block; vertical-align:center; padding:1px 1px 1px 1px;"><a href="JavaScript:void(0);" onclick="showDiv('cspTicketComment_<?php echo $rowTicketHistory1['ID']; ?>');"><img src="theme/default/images/moreInfo.jpg" width="13px" height="13px" border="0" /></a></span>
-							<div id="cspTicketComment_<?php echo $rowTicketHistory1['ID']; ?>" class="cspTicketComment"><?php echo $rowTicketHistory1['Message']; ?></div>
-							<?php
-						} else {
-							?>
-							<span style="display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowTicketHistory1['Message']; ?></span>
+							<span style="display:inline-block; vertical-align:center; padding:1px 1px 1px 1px;"><a href="JavaScript:void(0);" onclick="showDiv('cspTicketComment_<?php echo $rowTicketHistory1['ID']; ?>');"><img src="theme/default/images/moreInfo.jpg" width="13px" height="13px" border="0" title="View Additional Information" /></a></span>
 							<?php
 						}
 						?>
+						<div id="cspTicketComment_<?php echo $rowTicketHistory1['ID']; ?>" class="cspTicketComment"><?php echo $rowTicketHistory1['Message']; ?></div>
 					</div>
 					<?php
 				}

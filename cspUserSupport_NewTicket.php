@@ -7,11 +7,16 @@ include_once 'includes/config.inc.php';
 include 'includes/functions.inc.php';
 include 'includes/db_connect.inc.php';
 $companyName = 'HomeFree';
+$reportedBy = "";
+$contactNumber = "";
+$probDesc = "";
+$agentID = "1";
 if(isset($_GET['custID'])) {
 	$custID = $_GET['custID'];
 	$qryNewTicket1 = "SELECT FacilityName FROM tblFacilities WHERE CustomerNumber = '$custID'";
 	$rstNewTicket1 = mysql_query($qryNewTicket1) or die(mysql_error());
 	$rowNewTicket1 = mysql_fetch_array($rstNewTicket1);
+	$facilityName = $rowNewTicket1['FacilityName'];
 }
 
 if(isset($_POST['saveNewTicket'])) {
@@ -19,18 +24,17 @@ if(isset($_POST['saveNewTicket'])) {
 	$reportedBy = nl2br(stripslashes(fix_apos("'", "''", $_POST['reportedBy'])));
 	$contactNumber = $_POST['contactNumber'];
 	$probDesc = nl2br(stripslashes(fix_apos("'", "''",$_POST['probDesc'])));
-	$openedBy = '1';
 	$dateOpened = date('Y-m-d H:i:s');
 	$qryNewTicket2 = "INSERT INTO tblTickets (CustomerNumber, Contact, ContactPhone, Summary, OpenedBy, DateOpened) 
-									 VALUES ('$custID', '$reportedBy', '$contactNumber', '$probDesc', '$openedBy', '$dateOpened')";
+									 VALUES ('$custID', '$reportedBy', '$contactNumber', '$probDesc', '$agentID', '$dateOpened')";
 	$rstNewTicket2 = mysql_query($qryNewTicket2);
 	if($rstNewTicket2) {
-		$qryNewTicket3 = "SELECT MAX(ID) AS newTicketID FROM tblTickets WHERE CustomerNumber = '$custID' AND OpenedBy = '$openedBy'";
+		$qryNewTicket3 = "SELECT MAX(ID) AS newTicketID FROM tblTickets WHERE CustomerNumber = '$custID' AND OpenedBy = '$agentID'";
 		$rstNewTicket3 = mysql_query($qryNewTicket3) or die(mysql_error());
 		$rowNewTicket3 = mysql_fetch_array($rstNewTicket3);
 		$newTicketID = $rowNewTicket3['newTicketID'];
 		$qryNewTicket4 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
-										 VALUES('$newTicketID', 'Ticket Created', '1', '$dateOpened', 1)";
+										 VALUES('$newTicketID', 'Ticket Created', '$agentID', '$dateOpened', 1)";
 		$rstNewTicket4 = mysql_query($qryNewTicket4);
 		if($rstNewTicket4) {
 			die(header("Location: cspUserSupport_TicketDetail.php?ticketID=" . $newTicketID));
@@ -40,6 +44,43 @@ if(isset($_POST['saveNewTicket'])) {
 	} else {
 		die(mysql_error());
 	}
+}
+
+if(isset($_POST['saveUpdatesTicket'])) {
+	$ticketID = $_POST['ticketID'];
+	$reportedBy = nl2br(stripslashes(fix_apos("'", "''", $_POST['reportedBy'])));
+	$contactNumber = $_POST['contactNumber'];
+	$probDesc = nl2br(stripslashes(fix_apos("'", "''",$_POST['probDesc'])));
+	$date = date('Y-m-d H:i:s');
+	$qryNewTicket2 = "UPDATE tblTickets SET Contact = '$reportedBy', ContactPhone = '$contactNumber', Summary = '$probDesc'  
+									 WHERE ID = '$ticketID' LIMIT 1";
+	$rstNewTicket2 = mysql_query($qryNewTicket2);
+	if($rstNewTicket2) {
+		$qryNewTicket4 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
+										 VALUES('$ticketID', 'Problem Details Updated', '$agentID', '$date', 6)";
+		$rstNewTicket4 = mysql_query($qryNewTicket4);
+		if($rstNewTicket4) {
+			die(header("Location: cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
+		} else {
+			die(mysql_error());
+		}
+	} else {
+		die(mysql_error());
+	}
+}
+
+if(isset($_GET['action']) && $_GET['action'] == "editDetails") {
+	$ticketID = $_GET['ticketID'];
+	$qryEditTicket1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName 
+										FROM tblTickets 
+										LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
+										WHERE tblTickets.ID = '$ticketID'";
+	$rstEditTicket1 = mysql_query($qryEditTicket1) or die(mysql_error());
+	$rowEditTicket1 = mysql_fetch_array($rstEditTicket1);
+	$reportedBy = $rowEditTicket1['Contact'];
+	$contactNumber = $rowEditTicket1['ContactPhone'];
+	$probDesc = strip_tags($rowEditTicket1['Summary']);
+	$facilityName = $rowEditTicket1['facilityName'];
 }
 
 ?>
@@ -63,13 +104,24 @@ if(isset($_POST['saveNewTicket'])) {
 					<td>
 						<form name="newTicket" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<div>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Facility:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $rowNewTicket1['FacilityName']; ?></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Reported By:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="reportedBy" /></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Contact Number:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="contactNumber" maxlength="10" size="10" /></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Problem Description:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><textarea name="probDesc" rows="4" cols="41"></textarea></span>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Facility:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $facilityName; ?></span>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Reported By:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="reportedBy" value="<?php echo $reportedBy; ?>" /></span>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Contact Number:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" maxlength="10" size="10" /></span>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Problem Description:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><textarea name="probDesc" rows="4" cols="41"><?php echo $probDesc; ?></textarea></span>
 							</div>
 							<div style="clear:both; float:right; margin-right:1px;">
-								<span><input type="hidden" name="custID" value="<?php echo $custID; ?>" /><input type="submit" name="saveNewTicket" value="Save" /></span><span><input type="button" name="cancel" value="Cancel" onClick="javascript:TINY.box.hide();" /></span>
+								<?php 
+								if(isset($_GET['ticketID'])) { 
+									?>
+									<span><input type="hidden" name="ticketID" value="<?php echo $ticketID; ?>" /><input type="submit" name="saveUpdatesTicket" value="Save" /></span>
+									<?php 
+								} else {
+									?>
+									<span><input type="hidden" name="custID" value="<?php echo $custID; ?>" /><input type="submit" name="saveNewTicket" value="Save" /></span>
+									<?php
+								}
+								?>
+								<span><input type="button" name="cancel" value="Cancel" onClick="javascript:TINY.box.hide();" /></span>
 							</div>
 						</form>
 					</td>
