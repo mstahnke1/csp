@@ -59,6 +59,9 @@ $companyName = 'HomeFree';
 					<div class="dashRightCol">
 						<?php require_once('includes/support/cspCustomer_Contacts.php'); ?>
 					</div>
+					<div class="dashFullCol">
+						<?php require_once('includes/support/cspCustomer_RecentSupportCalls.php'); ?>
+					</div>
 				</div>
 			</div>
 			<div class="cspFooter">
