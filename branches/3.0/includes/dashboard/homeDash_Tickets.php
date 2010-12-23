@@ -26,7 +26,9 @@ $rstDashTickets1 = mysql_query($qryDashTickets1) or die(mysql_error());
 				while($rowDashTickets1 = mysql_fetch_array($rstDashTickets1)) {
 					?>
 					<div class="cspMOHighlight">
-						<span style="display:inline-block; width:77%;">Ticket # <?php echo $rowDashTickets1['ticketID'] . " (" . $rowDashTickets1['facilityName'] . ")"; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo date("Y-m-d", strtotime($rowDashTickets1['dateOpened'])); ?></span>
+						<a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_TicketDetail.php?ticketID=<?php echo $rowDashTickets1['ticketID']; ?>'">
+							<span style="display:inline-block; width:77%;">Ticket # <?php echo $rowDashTickets1['ticketID'] . " (" . $rowDashTickets1['facilityName'] . ")"; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo date("Y-m-d", strtotime($rowDashTickets1['dateOpened'])); ?></span>
+						</a>
 					</div>
 					<?php
 				}
