@@ -22,7 +22,7 @@ if(isset($_POST['saveNewCall'])) {
 	$ticketID = $_POST['ticketID'];
 	$agentID = "1";
 	$reportedBy = nl2br(stripslashes(fix_apos("'", "''", $_POST['reportedBy'])));
-	$contactNumber = $_POST['contactNumber'];
+	$contactNumber = formatPhone($_POST['contactNumber']);
 	$date = date('Y-m-d H:i:s');
 	$qryNewCall2 = "INSERT INTO activeCallList (agent, ticket, contact, contactNum) 
 									 VALUES ('$agentID', '$ticketID', '$reportedBy', '$contactNumber')";
