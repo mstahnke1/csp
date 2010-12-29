@@ -20,7 +20,7 @@ $rstDashTickets1 = mysql_query($qryDashTickets1) or die(mysql_error());
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:77%;"><strong><u>Ticket Details</u></strong></span><span style="display:inline-block; width:23%;"><strong><u>Date Opened</u></strong></span>
+					<span style="display:inline-block; width:77%;"><u>Ticket Details</u></strong></span><span style="display:inline-block; width:23%;"><u>Date Opened</u></strong></span>
 				</div>
 				<?php
 				while($rowDashTickets1 = mysql_fetch_array($rstDashTickets1)) {

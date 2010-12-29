@@ -31,7 +31,7 @@ $numDashCallVol1 = mysql_num_rows($rstDashCallVol1);
 				if($numDashCallVol1 > 0) {
 					?>
 					<div>
-						<span style="display:inline-block; width:77%;"><strong><u>Facility (Calls)</u></strong></span><span style="display:inline-block; width:23%;"><strong><u>Last Call</u></strong></span>
+						<span style="display:inline-block; width:77%;"><u>Facility (Calls)</u></span><span style="display:inline-block; width:23%;"><u>Last Call</u></span>
 					</div>
 					<?php
 					while($rowDashCallVol1 = mysql_fetch_array($rstDashCallVol1)) {
@@ -42,7 +42,9 @@ $numDashCallVol1 = mysql_num_rows($rstDashCallVol1);
 						}
 						?>
 						<div class="cspMOHighlight">
-							<span style="display:inline-block; width:77%;"><?php echo $rowDashCallVol1['facilityName'] . " (" . $rowDashCallVol1['ticketCount'] . ")"; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo $lastCall; ?></span>
+							<a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Customer.php?custID=<?php echo $rowDashCallVol1['custNum']; ?>'">
+								<span style="display:inline-block; width:77%;"><?php echo $rowDashCallVol1['facilityName'] . " (" . $rowDashCallVol1['ticketCount'] . ")"; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo $lastCall; ?></span>
+							</a>
 						</div>
 						<?php
 					}

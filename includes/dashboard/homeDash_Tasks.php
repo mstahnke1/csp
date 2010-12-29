@@ -41,7 +41,7 @@ $row10 = mysql_fetch_array($result10);
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:77%;"><strong><u>Subject</u></strong></span><span style="display:inline-block; width:23%;"><strong><u>Date Due</u></strong></span>
+					<span style="display:inline-block; width:77%;"><u>Subject</u></strong></span><span style="display:inline-block; width:23%;"><u>Date Due</u></strong></span>
 				</div>
 				<?php
 				while($row3 = mysql_fetch_array($result3)) {
