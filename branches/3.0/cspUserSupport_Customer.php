@@ -3,6 +3,9 @@
 
 <?php
 $companyName = 'HomeFree';
+if(isset($_GET['custID'])) {
+	$custID = $_GET['custID'];
+}
 ?>
 
 <head>
@@ -31,25 +34,8 @@ $companyName = 'HomeFree';
 			<div id="cspContent" class="cspContent" align="left">
 				<div class="cspNavBar">
 					<ul id="navbar">
-						<li><a href="cspUserSupport_Home.php">Support</a><ul>
-							<li><a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Search.php?type=Ticket'">Lookup Ticket</a></li>
-							<li><a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Search.php?type=Facility'">Lookup Facility</a></li>
-							<li><a href="#">Add Facility</a></li>
-							<li><a href="#">Shipment Tracking</a></li>
-							<li><a href="#">Call Reports</a></li></ul>
-						</li>
-						<li><a href="cspUserSupport_Customer.php?custID=<?php echo $_GET['custID']; ?>">Customer</a><ul>
-							<li><a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Search.php?type=Ticket'">Lookup Ticket</a></li>
-							<?php
-							if(isset($_GET['custID'])) {
-								$custID = $_GET['custID'];
-								?>
-								<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewTicket.php?custID=<?php echo $custID; ?>',1,0,0,1,0);">New Ticket</a></li>
-								<?php
-							}
-							?>
-							<li><a href="#">Monitor</a></li></ul>
-						</li>
+						<?php require_once('includes/nav_Support.php'); ?>
+						<?php require_once('includes/nav_Customer.php'); ?>
 					</ul>
 				</div>
 				<div class="cbb">
