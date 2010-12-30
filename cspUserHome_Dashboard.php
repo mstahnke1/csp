@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <?php
-$companyName = 'HomeFree';
+require_once('includes/cspSessionMgmt.php');
 ?>
 
 <head>

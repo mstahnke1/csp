@@ -1,7 +1,7 @@
 <!-- START Recent Support Call Stats Dashboard Module -->
 <?php
-include 'includes/config.inc.php';
-include 'includes/db_connect.inc.php';
+include('includes/config.inc.php');
+include('includes/db_connect.inc.php');
 
 $custID = $_GET['custID'];
 $qryRecentCalls1 = "SELECT tblTickets.*, GREATEST(MAX(tblTicketMessages.Date), tblTickets.DateOpened) AS lastUpdate, tblTicketMessages.Date, employees.f_name AS firstName, employees.l_name AS lastName 

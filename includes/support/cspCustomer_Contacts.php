@@ -1,8 +1,8 @@
 <!-- START Customer Contacts Dashboard Module -->
 <?php
-include_once 'includes/config.inc.php';
-include 'includes/db_connect.inc.php';
-include_once 'includes/functions.inc.php';
+include('includes/config.inc.php');
+include('includes/db_connect.inc.php');
+include_once('includes/functions.inc.php');
 if(isset($_GET['custID'])) {
 	$custID = $_GET['custID'];
 	$qryCustContacts1 = "SELECT * FROM clients WHERE custRef = '$custID' AND active = 0";
