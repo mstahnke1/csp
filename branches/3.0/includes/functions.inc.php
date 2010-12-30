@@ -1,7 +1,6 @@
 <?php
 
-function formatPhone($phone = '', $convert = false, $trim = true)
-{
+function formatPhone($phone = '', $convert = false, $trim = true) {
 	// If we have not entered a phone number just return empty
 	if (empty($phone)) {
 		return '';
@@ -98,23 +97,19 @@ function findexts($filename)
 	$exts = $exts[$n];
 	return $exts;
 } 
-/*
-function ldap_authenticate( $p_user_id, $p_password ){
-  if ($p_password == "")
-    return false;
-  
-  if($ldap['type'] == "ActiveDirectory") {
-  	$ldap_root_dn = $ldap['dn'];
-  	$ldap_host = $ldap['host'];
-  	$ldap_port = $ldap['port'];
-  	$ldap_bind_dn = $ldap['bind_dn'];
-  	$ds = ldap_connect($ldap_host, $ldap_port) or die('Could Not Connect to Server');
-  	$authenticated = false;
-  	if(@ldap_bind($ds,$p_user_id.$ldap_bind_dn,$p_password))
-  	  $authenticated = true;
 
-  	return $authenticated;
+function cspSettingValue($settingID) {
+	include_once('includes/config.inc.php');
+	include_once('includes/db_connect.inc.php');
+	$qrySettings = "SELECT ID, settingValue FROM portalSettings";
+	$resSettings = mysql_query($qrySettings);
+	while($rowSettings = mysql_fetch_assoc($resSettings)) {
+		if($rowSettings['ID'] == $settingID) {
+			$returnValue = $rowSettings['settingValue'];
+			break;
+		}
 	}
+	include_once('includes/db_close.inc.php');
+	return($returnValue);
 }
-*/
 ?>

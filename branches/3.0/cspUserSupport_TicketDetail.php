@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <?php
-$companyName = 'HomeFree';
+require_once('includes/cspSessionMgmt.php');
+
 $ticketID = $_GET['ticketID'];
 $agentID = "1";
-include_once 'includes/config.inc.php';
-include 'includes/functions.inc.php';
-include 'includes/db_connect.inc.php';
+include('includes/config.inc.php');
+include('includes/db_connect.inc.php');
+include_once('includes/functions.inc.php');
 if(isset($_GET['ticketID'])) {
 	$qryTicketDetail1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName 
 											FROM tblTickets 

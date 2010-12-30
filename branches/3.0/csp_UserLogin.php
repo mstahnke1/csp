@@ -2,9 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <?php
-$companyName = 'HomeFree';
 //session_set_cookie_params(0 , '/', '.dmatek.com');
 session_start();
+include 'includes/functions.inc.php';
+$companyName = cspSettingValue('12');
 
 if(isset($_GET['url'])) {
 	$url = $_GET['url'];
@@ -12,6 +13,21 @@ if(isset($_GET['url'])) {
 
 if(isset($_POST['url'])) {
 	$url = $_POST['url'];
+}
+
+// Check if logout action has been sent
+if((isset($_SESSION['uid'])) && (isset($_GET['action'])) && ($_GET['action']=="logout")) {
+	// If logout action set then insert user, browser info, date and time user logging out
+	$user = $_SESSION['username'];
+	$agent = $_SERVER['HTTP_USER_AGENT'];
+	include 'includes/config.inc.php';
+	include 'includes/db_connect.inc.php';
+	$qryLogout = "INSERT INTO activity_logs (user, statement, agent, date, time) VALUES ('$user', 'User Logout', '$agent', CURDATE(), CURTIME())";
+  mysql_query($qryLogout) or die(mysql_error());
+  include 'includes/db_close.inc.php';
+  // remove all session information
+	session_destroy();
+	die(header("Location: csp_UserLogin.php?msgID=2"));
 }
 
 // Check for active session
@@ -22,8 +38,15 @@ if(!isset($_SESSION['uid'])) {
 		// LDAP variables
 		$ldap['user'] = $_POST['user'];
 		$ldap['pass'] = $_POST['pass'];
+		$ldap['host'] = cspSettingValue('7');
+		$ldap['port'] = cspSettingValue('8');
+		$ldap['bind_dn'] = cspSettingValue('10');
+		$ldap['attributes'] = cspSettingValue('11');
 		$ldap['base'] = '';
-
+		
+		include 'includes/config.inc.php';
+		include 'includes/db_connect.inc.php';
+		
 		// if connection to ldap server is successful
 		$ldap['conn'] = ldap_connect($ldap['host'],$ldap['port']);
 		if($ldap['conn']) {
@@ -61,7 +84,7 @@ if(!isset($_SESSION['uid'])) {
 				}
 				
 				if($ldap['info']) {
-    			// Add the user’s display name and email address to the session
+    			// Add the userÂ’s display name and email address to the session
     			$f_name = $ldap['info'][0]['givenname'][0];
     			$l_name = $ldap['info'][0]['sn'][0];
     			$email = $ldap['info'][0]['mail'][0];
@@ -139,7 +162,7 @@ if(!isset($_SESSION['uid'])) {
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body>
+<body onLoad="focus();cspLoginForm.user.focus();">
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
@@ -153,11 +176,27 @@ if(!isset($_SESSION['uid'])) {
 			</div>
 			<div class="cspContent" align="left">
 				<div class="cbb">
-					<p>
-						HomeFree Customer Service Excellence!<br />
-						Powered by the new<br />
-						Customer Service Portal Version 3.0!
-					</p>
+					<div class="dashLeftCol">
+						<h3>Agent Login</h3>
+						<form name="cspLoginForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<table>
+								<tr>
+									<td align="right">User name:</td>
+									<td align="left"><input name="user" type="text" /></td>
+								</tr>
+								<tr>
+									<td align="right">Password:</td>
+									<td align="left"><input name="pass" type="password" /></td>
+								</tr>
+								<tr>
+									<td colspan="2"><input name="Login" type="submit" value="Login"></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<div class="dashRightCol">
+						<img style="float:left;" src="theme/default/images/customer-centred-team.jpg" />
+					</div>
 				</div>
 			</div>
 			<div class="cspFooter">
