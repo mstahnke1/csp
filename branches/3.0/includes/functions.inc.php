@@ -96,7 +96,7 @@ function findexts($filename)
 	$n = count($exts)-1;
 	$exts = $exts[$n];
 	return $exts;
-} 
+}
 
 function cspSettingValue($settingID) {
 	include_once('includes/config.inc.php');
@@ -109,7 +109,6 @@ function cspSettingValue($settingID) {
 			break;
 		}
 	}
-	include_once('includes/db_close.inc.php');
 	return($returnValue);
 }
 ?>

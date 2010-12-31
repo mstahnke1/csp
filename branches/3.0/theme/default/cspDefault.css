@@ -167,6 +167,12 @@ div.cspTicketComment {
 	padding: 4px;
 }
 
+div.cspSysMsg {
+	background:url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
+	font:100% arial bold;
+	padding-left: 24px;
+}
+
 fieldset {
 	border: 1px solid green;
 }

@@ -1,16 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
 <!-- START New Ticket Module -->
 <?php
-include_once 'includes/config.inc.php';
-include 'includes/functions.inc.php';
-include 'includes/db_connect.inc.php';
-$companyName = 'HomeFree';
+require_once('includes/cspSessionMgmt.php');
+include('includes/config.inc.php');
+include_once('includes/functions.inc.php');
+include('includes/db_connect.inc.php');
+$companyName = cspSettingValue('12');
 $reportedBy = "";
 $contactNumber = "";
 $probDesc = "";
-$agentID = "1";
+$agentID = $_SESSION['uid'];
+
 if(isset($_GET['custID'])) {
 	$custID = $_GET['custID'];
 	$qryNewTicket1 = "SELECT FacilityName FROM tblFacilities WHERE CustomerNumber = '$custID'";
@@ -84,6 +83,8 @@ if(isset($_GET['action']) && $_GET['action'] == "editDetails") {
 }
 
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title><?php echo $companyName; ?> | CSP - Support</title>
