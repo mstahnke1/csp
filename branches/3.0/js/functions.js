@@ -41,3 +41,39 @@ function showDiv(str) {
 	}
 } 
 
+function conExpImg(catCode, newState) {
+	switch(newState) {
+		
+	}
+	
+	if (newState == "expand") {
+		alert("Expanding");
+		var linkElement = document.getElementById("link"+catCode);
+		var imgElement = document.getElementById("img"+catCode);
+  	imgElement.src="theme/default/images/iconContract.png";
+  	linkElement.onclick=conExpImg(catCode, 'contract')
+  } else if(newState == "contract") {
+  	alert("Contracting");
+  	var divElement = document.getElementById("div"+catCode);
+  	var imgElement = document.getElementById("img"+catCode);
+  	divElement.parentNode.removeChild(element);
+  	imgElement.src="theme/default/images/iconExpand.png";
+  }
+}
+
+function getChildCatList(catCode) {
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	ajaxRequest.onreadystatechange=function() {
+  	if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+  		document.getElementById("div"+catCode).innerHTML += ajaxRequest.responseText;
+  	}
+  }
+	
+	ajaxRequest.open("GET","scripts/getCategoryList.php?catCode="+catCode,true);
+	ajaxRequest.send();
+}

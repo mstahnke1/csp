@@ -5,7 +5,7 @@ $numActiveCall = mysql_num_rows($rstActiveCall1);
 
 if($numActiveCall > 0) {
 ?>
-<div class="cspDashModule">	
+<div class="cspDashModule">
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<td class="cspTicketHeading">Active Call List</td>
