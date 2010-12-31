@@ -1,10 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
 <?php
 //session_set_cookie_params(0 , '/', '.dmatek.com');
 session_start();
-include 'includes/functions.inc.php';
+include('includes/config.inc.php');
+include('includes/db_connect.inc.php');
+include('includes/functions.inc.php');
 $companyName = cspSettingValue('12');
 
 if(isset($_GET['url'])) {
@@ -15,13 +14,15 @@ if(isset($_POST['url'])) {
 	$url = $_POST['url'];
 }
 
+if(isset($_GET['msgID'])) {
+	$sysMsg = $portalMsg[$_GET['msgID']][$lang];
+}
+
 // Check if logout action has been sent
 if((isset($_SESSION['uid'])) && (isset($_GET['action'])) && ($_GET['action']=="logout")) {
 	// If logout action set then insert user, browser info, date and time user logging out
 	$user = $_SESSION['username'];
 	$agent = $_SERVER['HTTP_USER_AGENT'];
-	include 'includes/config.inc.php';
-	include 'includes/db_connect.inc.php';
 	$qryLogout = "INSERT INTO activity_logs (user, statement, agent, date, time) VALUES ('$user', 'User Logout', '$agent', CURDATE(), CURTIME())";
   mysql_query($qryLogout) or die(mysql_error());
   include 'includes/db_close.inc.php';
@@ -41,11 +42,8 @@ if(!isset($_SESSION['uid'])) {
 		$ldap['host'] = cspSettingValue('7');
 		$ldap['port'] = cspSettingValue('8');
 		$ldap['bind_dn'] = cspSettingValue('10');
-		$ldap['attributes'] = cspSettingValue('11');
+		$ldap['attributes'] = explode(", ", cspSettingValue('11'));
 		$ldap['base'] = '';
-		
-		include 'includes/config.inc.php';
-		include 'includes/db_connect.inc.php';
 		
 		// if connection to ldap server is successful
 		$ldap['conn'] = ldap_connect($ldap['host'],$ldap['port']);
@@ -74,7 +72,7 @@ if(!isset($_SESSION['uid'])) {
     			// retrieve all the entries from the search result
     			$ldap['info'] = ldap_get_entries( $ldap['conn'], $ldap['result'] );
 				} else {
-					$user = $_SESSION['username'];
+					$user = $_POST['user'];
 					$agent = $_SERVER['HTTP_USER_AGENT'];
 					$statement = 'Login Error: ' . ldap_error($ldap['conn']);
 					$queryLog = "INSERT INTO activity_logs (user, statement, action, agent, date, time) VALUES ('$user', '$statement', '1', '$agent', CURDATE(), CURTIME())";
@@ -153,7 +151,9 @@ if(!isset($_SESSION['uid'])) {
 	die(header("Location: cspUserHome_Dashboard.php"));
 }
 ?>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
 <head>
 	<title><?php echo $companyName; ?> | CSP - User Login</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
@@ -176,6 +176,9 @@ if(!isset($_SESSION['uid'])) {
 			</div>
 			<div class="cspContent" align="left">
 				<div class="cbb">
+					<div class="cspSysMsg">
+						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+					</div>
 					<div class="dashLeftCol">
 						<h3>Agent Login</h3>
 						<form name="cspLoginForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">

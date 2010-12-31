@@ -1,15 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
 <!-- START New Call Module -->
 <?php
-include_once 'includes/config.inc.php';
-include 'includes/functions.inc.php';
-include 'includes/db_connect.inc.php';
-$companyName = 'HomeFree';
+require_once('includes/cspSessionMgmt.php');
+include('includes/config.inc.php');
+include_once('includes/functions.inc.php');
+include('includes/db_connect.inc.php');
+$companyName = cspSettingValue('12');
+$agentID = $_SESSION['uid'];
+
 if(isset($_GET['ticketID'])) {
 	$ticketID = $_GET['ticketID'];
-	$agentID = "1";
 	$qryNewCall1 = "SELECT tblTickets.Contact, tblTickets.ContactPhone, tblFacilities.FacilityName AS facilityName 
 									FROM tblTickets 
 									LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
@@ -20,7 +19,6 @@ if(isset($_GET['ticketID'])) {
 
 if(isset($_POST['saveNewCall'])) {
 	$ticketID = $_POST['ticketID'];
-	$agentID = "1";
 	$reportedBy = nl2br(stripslashes(fix_apos("'", "''", $_POST['reportedBy'])));
 	$contactNumber = formatPhone($_POST['contactNumber']);
 	$date = date('Y-m-d H:i:s');
@@ -46,7 +44,9 @@ if(isset($_POST['saveNewCall'])) {
 }
 
 ?>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
 <head>
 	<title><?php echo $companyName; ?> | CSP - Support</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />

@@ -1,12 +1,13 @@
-Hi
 <?php
-include_once 'includes/config.inc.php';
-include 'includes/db_connect.inc.php';
+require_once('includes/cspSessionMgmt.php');
+include('includes/config.inc.php');
+include('includes/db_connect.inc.php');
+
+$agentID = $_SESSION['uid'];
 
 if(isset($_GET['action']) && $_GET['action'] == "endCall") {
 	$callID = $_GET['callID'];
 	$ticketID = $_GET['ticketID'];
-	$agentID = "1";
 	$date = date('Y-m-d H:i:s');
 	$qryEndCall1 = "DELETE FROM activeCallList WHERE id = '$callID'";
 	if(mysql_query($qryEndCall1)) {
@@ -25,7 +26,6 @@ if(isset($_GET['action']) && $_GET['action'] == "endCall") {
 
 if(isset($_GET['action']) && $_GET['action'] == "closeTicket") {
 	$ticketID = $_GET['ticketID'];
-	$agentID = "1";
 	$date = date('Y-m-d H:i:s');
 	$qryCloseTicket1 = "UPDATE tblTickets SET Status = -1 WHERE ID = '$ticketID' LIMIT 1";
 	if(mysql_query($qryCloseTicket1)) {
@@ -43,7 +43,6 @@ if(isset($_GET['action']) && $_GET['action'] == "closeTicket") {
 
 if(isset($_GET['action']) && $_GET['action'] == "reopenTicket") {
 	$ticketID = $_GET['ticketID'];
-	$agentID = "1";
 	$date = date('Y-m-d H:i:s');
 	$qryCloseTicket1 = "UPDATE tblTickets SET Status = 0 WHERE ID = '$ticketID' LIMIT 1";
 	if(mysql_query($qryCloseTicket1)) {
