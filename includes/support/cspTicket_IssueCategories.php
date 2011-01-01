@@ -22,7 +22,7 @@ $resCat1 = mysql_query($qryCat1);
 							if($numSubCat2 > 0) {
 								?>
 								<span>
-									<a id="<?php echo "link".$rowCat1['code']; ?>" href="Javascript:void(0);" onclick="conExpImg('<?php echo $rowCat1['code']; ?>', 'expand');getChildCatList('<?php echo $rowCat1['code']; ?>');"><img id="<?php echo "img" . $rowCat1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" title="Expand" /></a>
+									<a id="<?php echo "link".$rowCat1['code']; ?>" href="Javascript:void(0);" onclick="conExpImg('<?php echo $rowCat1['code']; ?>', 'expand');"><img id="<?php echo "img" . $rowCat1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" /></a>
 								</span>
 								<span><?php echo $rowCat1['description']; ?></span>
 								<?php
