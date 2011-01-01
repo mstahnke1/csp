@@ -82,6 +82,15 @@ div.cspNavBar
 	*/
 }
 
+/*
+div.cspNavBarItem
+{
+	background:url('images/NavBarArrow.gif') no-repeat 0% 0%;
+	padding-left:18px;
+	display:inline
+}
+*/
+
 #navbar {
 	margin-left: 5px;
 	padding: 0;
@@ -118,15 +127,6 @@ div.cspNavBar
 #navbar li li a:hover {
 	background-color: #00FF66;
 	//background-color: #8db3ff; }
-
-/*
-div.cspNavBarItem
-{
-	background:url('images/NavBarArrow.gif') no-repeat 0% 0%;
-	padding-left:18px;
-	display:inline
-}
-*/
 
 div.cspContent
 {
@@ -168,9 +168,10 @@ div.cspTicketComment {
 }
 
 div.cspSysMsg {
-	background:url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
+	background:#C6DEFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
 	font:100% arial bold;
 	padding-left: 24px;
+	margin-bottom: 10px;
 }
 
 fieldset {
@@ -271,7 +272,10 @@ a:active {
 
 a:hover {
 	COLOR: #000000; FONT-SIZE: 12px; FONT-WEIGHT:bold; TEXT-DECORATION: none;
-	//background:url('images/leftSideLinkArrow.gif') no-repeat 0% 0%;
+}
+
+a.leftArrow:hover {
+	background:url('images/leftSideLinkArrow.gif') no-repeat 0px 0px;
 }
 
 /* Default CSS

@@ -17,15 +17,13 @@ if(isset($_GET['catCode']) && $_GET['newState'] == "expand") {
 			if($numSubCatList > 0) {
 				?>
 				<span>
-					<a id="<?php echo "link".$rowGetCatList1['code']; ?>" href="Javascript:void(0);" onclick="conExpImg('<?php echo $rowGetCatList1['code']; ?>', 'expand');"><img id="<?php echo "img" . $rowGetCatList1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" /></a>
+					<a id="<?php echo "link".$rowGetCatList1['code']; ?>" href="Javascript:void(0);" onclick="getChildCatList('<?php echo $rowGetCatList1['code']; ?>', 'expand');"><img id="<?php echo "img" . $rowGetCatList1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" /></a>
 				</span>
 				<span><?php echo $rowGetCatList1['description']; ?></span>
 				<?php
 			} else {
 				?>
-				<span style="padding-left: 12px">
-					<a href="#"><span><?php echo $rowGetCatList1['description']; ?></span></a>
-				</span>
+				<span><a href="Javascript:void(0);" class="leftArrow" onclick="window.location='categoryListMgmt.php?catCode=<?php echo $rowCat1['code']; ?>&ticketID=<?php echo $ticketID; ?>'"><span style="padding-left:12px"><?php echo $rowGetCatList1['description']; ?></span></span></a>
 				<?php
 			}
 			?>
@@ -43,11 +41,33 @@ if(isset($_GET['catCode']) && $_GET['newState'] == "expand") {
 	?>
 	<div id="<?php echo "div" . $rowGetCatList1['code']; ?>">
 		<span>
-			<a id="<?php echo "link".$rowGetCatList1['code']; ?>" href="Javascript:void(0);" onclick="conExpImg('<?php echo $rowGetCatList1['code']; ?>', 'expand');"><img id="<?php echo "img" . $rowGetCatList1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" /></a>
+			<a id="<?php echo "link".$rowGetCatList1['code']; ?>" href="Javascript:void(0);" onclick="getChildCatList('<?php echo $rowGetCatList1['code']; ?>', 'expand');"><img id="<?php echo "img" . $rowGetCatList1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" /></a>
 		</span>
 		<span><?php echo $rowGetCatList1['description']; ?></span>
 	</div>
 	<?php
 	include('../includes/db_close.inc.php');
 }
+
+if(isset($_GET['ticketID'])) {
+	$catCode = $_GET['catCode'];
+	$ticketID = $_GET['ticketID'];
+	$agent = $_SESSION['uid'];
+	$date = date('Y-m-d H:i:s');
+	$qryCatUpdate1 = "UPDATE tblTickets SET categoryCode = '$catCode' WHERE ID = $ticketID LIMIT 1";
+	$resCatUpdate1 = mysql_query($qryCatUpdate1);
+	if($resCatUpdate1) {
+		$qryCatUpdate2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
+											VALUES ('$ticketID', 'Issue Category Updated', '$agent', '$date', '7'";
+		$resCatUpdate2 = mysql_query($qryCatUpdate2);
+		if($resCatUpdate2) {
+			die(header("Location: cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
+		} else {
+			die(mysql_error());
+		}
+	} else {
+		die(mysql_error());
+	}
+}
+		
 ?>

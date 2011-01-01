@@ -29,7 +29,9 @@ if(isset($_POST['srchString']) && $_POST['srchType'] == 'facilityName') {
 		if($numCustSearch > 0 && isset($_POST['srchType'])) {
 			while($rowCustSearch = mysql_fetch_array($rstCustSearch)) {
 				?>
-				<a href="cspUserSupport_Customer.php?custID=<?php echo $rowCustSearch['CustomerNumber']; ?>"><div class="cspMOHighlight"><?php echo $rowCustSearch['FacilityName']; ?></div></a>
+				<div>
+					<span><a href="cspUserSupport_Customer.php?custID=<?php echo $rowCustSearch['CustomerNumber']; ?>" class="leftArrow"><span style="padding-left: 12px"><?php echo $rowCustSearch['FacilityName']; ?></a></span></span>
+				</div>
 				<?php
 			}
 		} else {

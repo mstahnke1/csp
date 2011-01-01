@@ -2,10 +2,15 @@
 require_once('includes/cspSessionMgmt.php');
 
 $ticketID = $_GET['ticketID'];
-$agentID = "1";
+$agentID = $_SESSION['uid'];
 include('includes/config.inc.php');
 include('includes/db_connect.inc.php');
 include_once('includes/functions.inc.php');
+
+if(isset($_GET['msgID'])) {
+	$sysMsg = $portalMsg[$_GET['msgID']][$lang];
+}
+
 if(isset($_GET['ticketID'])) {
 	$qryTicketDetail1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName 
 											FROM tblTickets 
@@ -31,9 +36,6 @@ if(isset($_GET['ticketID'])) {
 	if($rowTicketDetail2) {
 		$openedBy = $rowTicketDetail2['firstName'] . " " . $rowTicketDetail2['lastName'];
 	}
-	$qryTicketDetail3 = "SELECT id FROM activeCallList WHERE agent = '$agentID'";
-	$rstTicketDetail3 = mysql_query($qryTicketDetail3);
-	$numTicketDetail3 = mysql_num_rows($rstTicketDetail3);
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -72,6 +74,9 @@ if(isset($_GET['ticketID'])) {
 					</ul>
 				</div>
 				<div class="cbb">
+					<div class="cspSysMsg">
+						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+					</div>
 					<div class="dashLeftCol">
 						<?php require_once('includes/support/cspTicket_CustomerDetails.php'); ?>
 					</div>
@@ -81,13 +86,11 @@ if(isset($_GET['ticketID'])) {
 					<div class="dashFullCol">
 						<?php require_once('includes/support/cspTicket_ActiveCallThread.php'); ?>
 					</div>
-					<div class="dashLeftCol">
-						<?php require_once('includes/support/cspTicket_IssueCategories.php'); ?>
-					</div>
 					<div class="dashRightCol">
 						<?php require_once('includes/support/cspTicket_FileManager.php'); ?>
 					</div>
 					<div class="dashFullCol">
+						<?php require_once('includes/support/cspTicket_IssueCategories.php'); ?>
 						<?php require_once('includes/support/cspTicket_HistoryThread.php'); ?>
 					</div>
 				</div>
