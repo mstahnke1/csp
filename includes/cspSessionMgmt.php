@@ -2,7 +2,11 @@
 //session_set_cookie_params(0 , '/', '.dmatek.com');
 session_start();
 
-include_once('includes/functions.inc.php');
+if(file_exists('includes/functions.inc.php')) {
+	include_once('includes/functions.inc.php');
+} elseif(file_exists('../includes/functions.inc.php')) {
+	include_once('../includes/functions.inc.php');
+}
 
 $companyName = cspSettingValue('12');
 

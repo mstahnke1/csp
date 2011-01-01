@@ -50,30 +50,23 @@ function getChildCatList(catCode, newState) {
 	
 	ajaxRequest.onreadystatechange=function() {
   	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
-  		if(newState == 'contract') {
-  			document.getElementById("div"+catCode).innerHTML = ajaxRequest.responseText;
-  		} else {
+  		if(newState == 'expand') {
+  			var linkElement = document.getElementById("link"+catCode);
+				var imgElement = document.getElementById("img"+catCode);
+		  	imgElement.src="theme/default/images/iconContract.png";
+		  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','contract');");
   			document.getElementById("div"+catCode).innerHTML += ajaxRequest.responseText;
+  		} else if(newState == 'contract') {
+  			var linkElement = document.getElementById("link"+catCode);
+				var imgElement = document.getElementById("img"+catCode);
+		  	imgElement.src="theme/default/images/iconExpand.png";
+		  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','expand');");
+  			document.getElementById("div"+catCode).innerHTML = ajaxRequest.responseText;
   		}
   	}
   }
 	
-	ajaxRequest.open("GET","scripts/getCategoryList.php?catCode="+catCode+"&newState="+newState,true);
+	ajaxRequest.open("GET","scripts/categoryListMgmt.php?catCode="+catCode+"&newState="+newState,true);
 	ajaxRequest.send();
 }
 
-function conExpImg(catCode, newState) {
-	if (newState == "expand") {
-		var linkElement = document.getElementById("link"+catCode);
-		var imgElement = document.getElementById("img"+catCode);
-  	imgElement.src="theme/default/images/iconContract.png";
-  	linkElement.setAttribute("onclick", "conExpImg('"+catCode+"','contract');");
-  	getChildCatList(catCode, newState);
-  } else if (newState == "contract") {
-  	var linkElement = document.getElementById("link"+catCode);
-		var imgElement = document.getElementById("img"+catCode);
-  	imgElement.src="theme/default/images/iconExpand.png";
-  	linkElement.setAttribute("onclick", "conExpImg('"+catCode+"','expand');");
-  	getChildCatList(catCode, newState);
-  }
-}
