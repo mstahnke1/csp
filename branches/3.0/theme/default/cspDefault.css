@@ -271,6 +271,7 @@ a:active {
 
 a:hover {
 	COLOR: #000000; FONT-SIZE: 12px; FONT-WEIGHT:bold; TEXT-DECORATION: none;
+	//background:url('images/leftSideLinkArrow.gif') no-repeat 0% 0%;
 }
 
 /* Default CSS
