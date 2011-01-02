@@ -57,11 +57,12 @@ if(isset($_GET['catCode']) && $_GET['catAction'] == "expand") {
 	$ticketID = $_GET['ticketID'];
 	$agent = $_SESSION['uid'];
 	$date = date('Y-m-d H:i:s');
+	$message = "Issue category updated to " . $catCode;
 	$qryCatUpdate1 = "UPDATE tblTickets SET categoryCode = '$catCode' WHERE ID = $ticketID LIMIT 1";
 	$resCatUpdate1 = mysql_query($qryCatUpdate1);
 	if($resCatUpdate1) {
 		$qryCatUpdate2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
-											VALUES ('$ticketID', 'Issue Category Updated', '$agent', '$date', 7)";
+											VALUES ('$ticketID', '$message', '$agent', '$date', 7)";
 		$resCatUpdate2 = mysql_query($qryCatUpdate2);
 		if($resCatUpdate2) {
 			include('../includes/db_close.inc.php');

@@ -84,10 +84,11 @@ if(isset($_GET['ticketID'])) {
 						<?php require_once('includes/support/cspTicket_TicketDetails.php'); ?>
 					</div>
 					<div class="dashFullCol">
+						<?php require_once('includes/support/cspTicket_RMAInfo.php'); ?>
 						<?php require_once('includes/support/cspTicket_ActiveCallThread.php'); ?>
 					</div>
 					<div class="dashRightCol">
-						<?php require_once('includes/support/cspTicket_FileManager.php'); ?>
+						<?php //require_once('includes/support/cspTicket_FileManager.php'); ?>
 					</div>
 					<div class="dashFullCol">
 						<?php
