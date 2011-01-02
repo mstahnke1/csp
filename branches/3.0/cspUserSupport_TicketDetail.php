@@ -20,13 +20,13 @@ if(isset($_GET['ticketID'])) {
 	$rowTicketDetail1 = mysql_fetch_array($rstTicketDetail1);
 	$custID = $rowTicketDetail1['CustomerNumber'];
 	if($rowTicketDetail1['Status']==0) {
-		$Status = 'Open';
+		$Status = "Open";
 	} elseif($rowTicketDetail1['Status']==1) {
-		$Status = 'Canceled';
+		$Status = "Canceled";
 	}elseif($rowTicketDetail1['Status']==2) {
-		$Status = 'Escalated';
+		$Status = "Escalated";
 	}else{
-		$Status = 'Closed';
+		$Status = "Closed";
 	}
 	$openedBy = $rowTicketDetail1['OpenedBy'];
 	$qryTicketDetail2 = "SELECT employees.f_name AS firstName, employees.l_name AS lastName 
@@ -90,7 +90,11 @@ if(isset($_GET['ticketID'])) {
 						<?php require_once('includes/support/cspTicket_FileManager.php'); ?>
 					</div>
 					<div class="dashFullCol">
-						<?php require_once('includes/support/cspTicket_IssueCategories.php'); ?>
+						<?php
+						if($Status != "Closed" && $Status != "Canceled") {
+							require_once('includes/support/cspTicket_IssueCategories.php');
+						}
+						?>
 						<?php require_once('includes/support/cspTicket_HistoryThread.php'); ?>
 					</div>
 				</div>

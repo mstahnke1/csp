@@ -32,7 +32,7 @@ $numCat3 = mysql_num_rows($rstCat3);
 							} else {
 								?>
 								<span>
-									<a href="Javascript:void(0);" onclick="window.location='categoryListMgmt.php?catCode=<?php echo $rowCat1['code']; ?>&ticketID=<?php echo $ticketID; ?>'"><span><?php echo $rowCat1['description']; ?></span></a>
+									<a href="Javascript:void(0);" onclick="window.location='scripts/categoryListMgmt.php?catCode=<?php echo $rowCat1['code']; ?>&ticketID=<?php echo $ticketID; ?>'"><span><?php echo $rowCat1['description']; ?></span></a>
 								</span>
 								<?php
 							}
