@@ -99,8 +99,13 @@ function findexts($filename)
 }
 
 function cspSettingValue($settingID) {
-	include_once('includes/config.inc.php');
-	include_once('includes/db_connect.inc.php');
+	if(file_exists('includes/config.inc.php')) {
+		include_once('includes/config.inc.php');
+		include_once('includes/db_connect.inc.php');
+	} elseif(file_exists('../includes/config.inc.php')) {
+		include_once('../includes/config.inc.php');
+		include_once('../includes/db_connect.inc.php');
+	}
 	$qrySettings = "SELECT ID, settingValue FROM portalSettings";
 	$resSettings = mysql_query($qrySettings);
 	while($rowSettings = mysql_fetch_assoc($resSettings)) {

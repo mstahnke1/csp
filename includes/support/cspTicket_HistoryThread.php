@@ -34,6 +34,8 @@ $rstTicketHistory1 = mysql_query($qryTicketHistory1) or die(mysql_error());
 						$updateType = "Ticket Reopened";
 					} elseif($rowTicketHistory1['msgType'] == 6) {
 						$updateType = "Problem Details Updated";
+					} elseif($rowTicketHistory1['msgType'] == 7) {
+						$updateType = "Issue Category Updated";
 					}
 					?>
 					<div class="cspMOHighlight">
