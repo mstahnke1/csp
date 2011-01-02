@@ -43,7 +43,7 @@ if(isset($_GET['catCode']) && $_GET['catAction'] == "expand") {
 	?>
 	<div id="<?php echo "div" . $rowGetCatList1['code']; ?>">
 		<span>
-			<a id="<?php echo "link".$rowGetCatList1['code']; ?>" href="Javascript:void(0);" onclick="getChildCatList('<?php echo $rowGetCatList1['code']; ?>', 'expand');"><img id="<?php echo "img" . $rowGetCatList1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" /></a>
+			<a id="<?php echo "link".$rowGetCatList1['code']; ?>" href="Javascript:void(0);" onclick="getChildCatList('<?php echo $rowGetCatList1['code']; ?>', 'expand', '<?php echo $ticketID; ?>');"><img id="<?php echo "img" . $rowGetCatList1['code']; ?>" src="theme/default/images/iconExpand.png" border="0" /></a>
 		</span>
 		<span><?php echo $rowGetCatList1['description']; ?></span>
 	</div>

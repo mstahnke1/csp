@@ -58,22 +58,26 @@ function getChildCatList(catCode, catAction, ticketID) {
 	
 	ajaxRequest.onreadystatechange=function() {
   	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
-  		if(catAction == 'expand') {
-  			var linkElement = document.getElementById("link"+catCode);
-				var imgElement = document.getElementById("img"+catCode);
-		  	imgElement.src="theme/default/images/iconContract.png";
-		  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','contract');");
-  			document.getElementById("div"+catCode).innerHTML += ajaxRequest.responseText;
-  		} else if(catAction == 'contract') {
-  			var linkElement = document.getElementById("link"+catCode);
-				var imgElement = document.getElementById("img"+catCode);
-		  	imgElement.src="theme/default/images/iconExpand.png";
-		  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','expand');");
-  			document.getElementById("div"+catCode).innerHTML = ajaxRequest.responseText;
-  		}
+  		if(ajaxRequest.responseText) {
+	  		if(catAction == 'expand') {
+	  			var linkElement = document.getElementById("link"+catCode);
+					var imgElement = document.getElementById("img"+catCode);
+			  	imgElement.src="theme/default/images/iconContract.png";
+			  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','contract','"+ticketID+"');");
+	  			document.getElementById("div"+catCode).innerHTML += ajaxRequest.responseText;
+	  		} else if(catAction == 'contract') {
+	  			var linkElement = document.getElementById("link"+catCode);
+					var imgElement = document.getElementById("img"+catCode);
+			  	imgElement.src="theme/default/images/iconExpand.png";
+			  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','expand','"+ticketID+"');");
+	  			document.getElementById("div"+catCode).innerHTML = ajaxRequest.responseText;
+	  		}
+	  	}
   	}
   }
 	
+	var imgElement = document.getElementById("img"+catCode);
+	imgElement.src="theme/default/images/ajax-loader.gif";
 	ajaxRequest.open("GET","scripts/categoryListMgmt.php?catCode="+catCode+"&catAction="+catAction+"&ticketID="+ticketID,true);
 	ajaxRequest.send();
 }

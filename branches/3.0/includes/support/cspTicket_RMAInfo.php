@@ -35,7 +35,7 @@ $resRMAInfo1 = mysql_query($qryRMAInfo1);
 								</select>
 							</span>
 							<span style="display:inline-block;>
-								<input type="hidden" name="ticketNum" value="<?php echo $TicketNum; ?>" />
+								<input type="hidden" name="ticketNum" value="<?php echo $ticketID; ?>" />
 			     			<input type="submit" name="sbmRmaDevice" value="Save" />
 			     		</span>
 			     	</div>
