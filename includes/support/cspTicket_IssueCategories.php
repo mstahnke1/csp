@@ -4,8 +4,11 @@ $resCat1 = mysql_query($qryCat1);
 $qryCat3 = "SELECT ID FROM tblTicketMessages WHERE EnteredBy = '$agentID' AND TicketID = '$ticketID' AND msgType = 2";
 $rstCat3 = mysql_query($qryCat3);
 $numCat3 = mysql_num_rows($rstCat3);
+$qryCat4 = "SELECT ID FROM tblTicketMessages WHERE EnteredBy = '$agentID' AND TicketID = '$ticketID' AND msgType = 7";
+$rstCat4 = mysql_query($qryCat4);
+$numCat4 = mysql_num_rows($rstCat4);
 ?>
-<div class="cspDashModule" <?php if($numCat3 > 0) { echo 'style="display: block"'; } else { echo 'style="display: none"'; } ?>>
+<div id="issueCatMod" class="cspDashModule" <?php if($numCat3 > 0 && $numCat4 < 1) { echo 'style="display: block"'; } else { echo 'style="display: none"'; } ?>>
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<td class="cspTicketHeading">Categorize Issue</td>

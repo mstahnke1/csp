@@ -1,4 +1,5 @@
 function sbmPortalSearch(frmStr){
+	/*
 	var ajaxRequest;  // The variable that makes Ajax possible!
 	
 	try{
@@ -18,6 +19,13 @@ function sbmPortalSearch(frmStr){
 			}
 		}
 	}
+	*/
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
 	// Create a function that will receive data sent from the server
 	ajaxRequest.onreadystatechange = function(){
 		if(ajaxRequest.readyState == 4){
