@@ -22,10 +22,11 @@ if(isset($_POST['saveNewTicket'])) {
 	$custID = $_POST['custID'];
 	$reportedBy = nl2br(stripslashes(fix_apos("'", "''", $_POST['reportedBy'])));
 	$contactNumber = $_POST['contactNumber'];
+	$contactExt = $_POST['contactExt'];
 	$probDesc = nl2br(stripslashes(fix_apos("'", "''",$_POST['probDesc'])));
 	$dateOpened = date('Y-m-d H:i:s');
-	$qryNewTicket2 = "INSERT INTO tblTickets (CustomerNumber, Contact, ContactPhone, Summary, OpenedBy, DateOpened) 
-									 VALUES ('$custID', '$reportedBy', '$contactNumber', '$probDesc', '$agentID', '$dateOpened')";
+	$qryNewTicket2 = "INSERT INTO tblTickets (CustomerNumber, Contact, ContactPhone, Extension, Summary, OpenedBy, DateOpened) 
+									 VALUES ('$custID', '$reportedBy', '$contactNumber', '$contactExt', '$probDesc', '$agentID', '$dateOpened')";
 	$rstNewTicket2 = mysql_query($qryNewTicket2);
 	if($rstNewTicket2) {
 		$qryNewTicket3 = "SELECT MAX(ID) AS newTicketID FROM tblTickets WHERE CustomerNumber = '$custID' AND OpenedBy = '$agentID'";
@@ -49,9 +50,10 @@ if(isset($_POST['saveUpdatesTicket'])) {
 	$ticketID = $_POST['ticketID'];
 	$reportedBy = nl2br(stripslashes(fix_apos("'", "''", $_POST['reportedBy'])));
 	$contactNumber = $_POST['contactNumber'];
+	$contactExt = $_POST['contactExt'];
 	$probDesc = nl2br(stripslashes(fix_apos("'", "''",$_POST['probDesc'])));
 	$date = date('Y-m-d H:i:s');
-	$qryNewTicket2 = "UPDATE tblTickets SET Contact = '$reportedBy', ContactPhone = '$contactNumber', Summary = '$probDesc'  
+	$qryNewTicket2 = "UPDATE tblTickets SET Contact = '$reportedBy', ContactPhone = '$contactNumber', Extension = '$contactExt', Summary = '$probDesc'  
 									 WHERE ID = '$ticketID' LIMIT 1";
 	$rstNewTicket2 = mysql_query($qryNewTicket2);
 	if($rstNewTicket2) {
@@ -78,6 +80,7 @@ if(isset($_GET['action']) && $_GET['action'] == "editDetails") {
 	$rowEditTicket1 = mysql_fetch_array($rstEditTicket1);
 	$reportedBy = $rowEditTicket1['Contact'];
 	$contactNumber = $rowEditTicket1['ContactPhone'];
+	$contactExt = $rowEditTicket1['Extension'];
 	$probDesc = strip_tags($rowEditTicket1['Summary']);
 	$facilityName = $rowEditTicket1['facilityName'];
 }
@@ -107,7 +110,7 @@ if(isset($_GET['action']) && $_GET['action'] == "editDetails") {
 							<div>
 								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Facility:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $facilityName; ?></span>
 								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Reported By:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="reportedBy" value="<?php echo $reportedBy; ?>" /></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Contact Number:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" maxlength="10" size="10" /></span>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Contact Number:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" maxlength="10" size="10" />&nbsp;Ext:<input type="text" name="contactExt" value="<?php echo $contactExt; ?>" maxlength="5" size="5"></span>
 								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Problem Description:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><textarea name="probDesc" rows="4" cols="41"><?php echo $probDesc; ?></textarea></span>
 							</div>
 							<div style="clear:both; float:right; margin-right:1px;">

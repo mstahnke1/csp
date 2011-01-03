@@ -1,25 +1,4 @@
-function sbmPortalSearch(frmStr){
-	/*
-	var ajaxRequest;  // The variable that makes Ajax possible!
-	
-	try{
-		// Opera 8.0+, Firefox, Safari
-		ajaxRequest = new XMLHttpRequest();
-	} catch (e){
-		// Internet Explorer Browsers
-		try{
-			ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-		} catch (e) {
-			try{
-				ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-			} catch (e){
-				// Something went wrong
-				alert("Your browser is not supported!");
-				return false;
-			}
-		}
-	}
-	*/
+function sbmPortalSearch(frmStr, srchType){
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
@@ -35,10 +14,36 @@ function sbmPortalSearch(frmStr){
 	}
 	
 	var srchString = document.forms[frmStr].srchString.value;
-	var srchType = document.forms[frmStr].srchType.value;
 	var queryString = "srchType=" + srchType + "&srchString=" + srchString;
 	
 	ajaxRequest.open("POST", "cspSearchResults.php", true);
+	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+	ajaxRequest.send(queryString); 
+}
+
+function sbmRmaDevice(frmStr, ticketID, deviceAction) {
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	// Create a function that will receive data sent from the server
+	ajaxRequest.onreadystatechange=function() {
+  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			var ajaxDisplay = document.getElementById("divRmaDeviceLst");
+			ajaxDisplay.innerHTML = ajaxRequest.responseText;
+			document.forms[frmStr].reset();
+		}
+	}
+	
+	var deviceType = document.forms[frmStr].deviceType.value;
+	var serialNumber = document.forms[frmStr].serialNumber.value;
+	var problemDesc = document.forms[frmStr].problemDesc.value;
+	var warrantyStatus = document.forms[frmStr].warrantyStatus.value;
+	var queryString = "deviceType=" + deviceType + "&serialNumber=" + serialNumber + "&problemDesc=" + problemDesc + "&warrantyStatus=" + warrantyStatus + "&ticketID=" + ticketID + "&action=" + deviceAction;
+	
+	ajaxRequest.open("POST", "scripts/rmaDeviceMgmt.php", true);
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 	ajaxRequest.send(queryString); 
 }
@@ -61,13 +66,11 @@ function getChildCatList(catCode, catAction, ticketID) {
   		if(ajaxRequest.responseText) {
 	  		if(catAction == 'expand') {
 	  			var linkElement = document.getElementById("link"+catCode);
-					var imgElement = document.getElementById("img"+catCode);
 			  	imgElement.src="theme/default/images/iconContract.png";
 			  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','contract','"+ticketID+"');");
 	  			document.getElementById("div"+catCode).innerHTML += ajaxRequest.responseText;
 	  		} else if(catAction == 'contract') {
 	  			var linkElement = document.getElementById("link"+catCode);
-					var imgElement = document.getElementById("img"+catCode);
 			  	imgElement.src="theme/default/images/iconExpand.png";
 			  	linkElement.setAttribute("onclick", "getChildCatList('"+catCode+"','expand','"+ticketID+"');");
 	  			document.getElementById("div"+catCode).innerHTML = ajaxRequest.responseText;
