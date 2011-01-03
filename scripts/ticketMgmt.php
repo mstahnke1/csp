@@ -11,11 +11,12 @@ if(isset($_GET['action']) && $_GET['action'] == "endCall") {
 	$date = date('Y-m-d H:i:s');
 	$qryEndCall1 = "DELETE FROM activeCallList WHERE id = '$callID'";
 	if(mysql_query($qryEndCall1)) {
-		$qryEndCall2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
-										VALUES('$ticketID', 'Call Ended', '$agentID', '$date', 3)";
+		$callMsg = "Call ID: " . $callID;
+		$qryEndCall2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType, callID)
+										VALUES('$ticketID', '$callMsg', '$agentID', '$date', 3, '$callID')";
 		$rstEndCall2 = mysql_query($qryEndCall2);
 		if($rstEndCall2) {
-			include 'includes/db_close.inc.php';
+			include '../includes/db_close.inc.php';
 			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
 		} else {
 			die(mysql_error());
@@ -43,7 +44,7 @@ if(isset($_GET['action']) && $_GET['action'] == "closeTicket") {
 		$qryCloseTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
 												VALUES('$ticketID', 'Ticket Closed', '$agentID', '$date', 4)";
 		if(mysql_query($qryCloseTicket2)) {
-			include 'includes/db_close.inc.php';
+			include '../includes/db_close.inc.php';
 			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
 		} else {
 			die(mysql_error());
