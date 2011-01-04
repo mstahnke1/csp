@@ -20,7 +20,7 @@ $numTicketNav1 = mysql_num_rows($resTicketNav1);
 			}
 		}
 		?>
-		<li><a href="#">Escalate Ticket</a></li>
+		<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=escalateTicket&ticketID=<?php echo $ticketID; ?>'">Escalate Ticket</a></li>
 		<?php
 		if(!is_null($rowTicketDetail1['categoryCode'])) {
 			?>
@@ -30,7 +30,8 @@ $numTicketNav1 = mysql_num_rows($resTicketNav1);
 		if($numTicketDetail3 < 1) {
 		?>
 			<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewCall.php?ticketID=<?php echo $ticketID; ?>',1,0,0,1,0);">New Call</a></li>
-			<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=closeTicket&ticketID=<?php echo $ticketID; ?>'" >Close Ticket</a></li>
+			<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=cancelTicket&ticketID=<?php echo $ticketID; ?>'">Cancel Ticket</a></li>
+			<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=closeTicket&ticketID=<?php echo $ticketID; ?>'">Close Ticket</a></li>
 		<?php
 		}
 	}

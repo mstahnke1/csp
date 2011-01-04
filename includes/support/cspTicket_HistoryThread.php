@@ -36,6 +36,10 @@ $rstTicketHistory1 = mysql_query($qryTicketHistory1) or die(mysql_error());
 						$updateType = "Problem Details Updated";
 					} elseif($rowTicketHistory1['msgType'] == 7) {
 						$updateType = "Issue Category Updated";
+					} elseif($rowTicketHistory1['msgType'] == 8) {
+						$updateType = "Ticket Canceled";
+					} elseif($rowTicketHistory1['msgType'] == 9) {
+						$updateType = "Ticket Escalated";
 					}
 					?>
 					<div class="cspMOHighlight">

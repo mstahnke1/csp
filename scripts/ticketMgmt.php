@@ -2,6 +2,7 @@
 require_once('../includes/cspSessionMgmt.php');
 include('../includes/config.inc.php');
 include('../includes/db_connect.inc.php');
+require_once('ticketStatusChangeFunctions.php');
 
 $agentID = $_SESSION['uid'];
 
@@ -26,31 +27,44 @@ if(isset($_GET['action']) && $_GET['action'] == "endCall") {
 	}
 }
 
-if(isset($_GET['action']) && $_GET['action'] == "closeTicket") {
+if(isset($_GET['action']) && $_GET['action'] == "escalateTicket") {
 	$ticketID = $_GET['ticketID'];
 	$date = date('Y-m-d H:i:s');
-	$qryCloseTicket3 = "SELECT ID FROM tblTickets WHERE ID = '$ticketID' AND categoryCode IS NOT NULL";
-	$resCloseTicket3 = mysql_query($qryCloseTicket3);
-	if($resCloseTicket3) {
-		$numCloseTicket3 = mysql_num_rows($resCloseTicket3);
-		if($numCloseTicket3 == 0) {
-			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=23"));
-		}
-	} else {
-		die(mysql_error());
-	}
-	$qryCloseTicket1 = "UPDATE tblTickets SET Status = -1 WHERE ID = '$ticketID' LIMIT 1";
-	if(mysql_query($qryCloseTicket1)) {
-		$qryCloseTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
-												VALUES('$ticketID', 'Ticket Closed', '$agentID', '$date', 4)";
-		if(mysql_query($qryCloseTicket2)) {
-			include '../includes/db_close.inc.php';
-			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
+	$qryEscTicket1 = "UPDATE tblTickets SET Status = 2 WHERE ID = '$ticketID' LIMIT 1";
+	if(mysql_query($qryEscTicket1)) {
+		$qryEscTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
+												VALUES('$ticketID', 'Ticket Escalated', '$agentID', '$date', 9)";
+		if(mysql_query($qryEscTicket2)) {
+			include 'includes/db_close.inc.php';
+			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=24"));
 		} else {
 			die(mysql_error());
 		}
 	} else {
 		die(mysql_error());
+	}
+}
+
+if(isset($_GET['action']) && $_GET['action'] == "closeTicket") {
+	$ticketID = $_GET['ticketID'];
+	$closeChecks = verifyChangeStatus($ticketID, "close");
+	if($closeChecks == 0) {
+		$date = date('Y-m-d H:i:s');
+		$qryCloseTicket1 = "UPDATE tblTickets SET Status = -1 WHERE ID = '$ticketID' LIMIT 1";
+		if(mysql_query($qryCloseTicket1)) {
+			$qryCloseTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
+													VALUES('$ticketID', 'Ticket Closed', '$agentID', '$date', 4)";
+			if(mysql_query($qryCloseTicket2)) {
+				include '../includes/db_close.inc.php';
+				die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=" . $closeChecks));
+			} else {
+				die(mysql_error());
+			}
+		} else {
+			die(mysql_error());
+		}
+	} else {
+		die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=" . $closeChecks));
 	}
 }
 
@@ -64,6 +78,24 @@ if(isset($_GET['action']) && $_GET['action'] == "reopenTicket") {
 		if(mysql_query($qryCloseTicket2)) {
 			include 'includes/db_close.inc.php';
 			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
+		} else {
+			die(mysql_error());
+		}
+	} else {
+		die(mysql_error());
+	}
+}
+
+if(isset($_GET['action']) && $_GET['action'] == "cancelTicket") {
+	$ticketID = $_GET['ticketID'];
+	$date = date('Y-m-d H:i:s');
+	$qryCanTicket1 = "UPDATE tblTickets SET Status = 1 WHERE ID = '$ticketID' LIMIT 1";
+	if(mysql_query($qryCanTicket1)) {
+		$qryCanTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
+												VALUES('$ticketID', 'Ticket Canceled', '$agentID', '$date', 5)";
+		if(mysql_query($qryCanTicket2)) {
+			include 'includes/db_close.inc.php';
+			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=25"));
 		} else {
 			die(mysql_error());
 		}
