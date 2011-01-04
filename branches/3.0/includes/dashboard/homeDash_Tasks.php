@@ -3,15 +3,14 @@
 include 'includes/config.inc.php';
 include 'includes/db_connect.inc.php';
 
-$email = 'mikes@homefreesys.com';
-$employeeid = '1';
-$query8 = "SELECT id, f_name, l_name, dept, recFloorplan, recRmaEmail, manageRma, warr_prog FROM employees WHERE email = '$email'";
+$agent = $_SESSION['uid'];
+$query8 = "SELECT id, f_name, l_name, dept, recFloorplan, recRmaEmail, manageRma, warr_prog FROM employees WHERE id = '$agent'";
 $result8 = mysql_query($query8) or die (mysql_error());
 $row8 = mysql_fetch_array($result8);
 
 mysql_select_db($dbname2);
-$query3 = "SELECT * FROM taskinfo WHERE (((Assignto = '$employeeid' && Response != '2000' && Response != '2001')
-			|| Response = '$employeeid'";  # Shows tasks assigned in to logged in user
+$query3 = "SELECT * FROM taskinfo WHERE (((Assignto = '$agent' && Response != '2000' && Response != '2001')
+			|| Response = '$agent'";  # Shows tasks assigned in to logged in user
 if($row8['manageRma'] == 1) {
 	$query3 .= " || Response = '2002'"; # Shows tasks for those who manage RMA's
 }
@@ -24,7 +23,7 @@ if($row8['recRmaEmail'] == 1) {
 if($row8['dept'] == 5) {
 	$query3 .= " || Response = '2001'"; # Shows tasks for everyone in the warehouse dept.
 }
-	$query3 .= " || Response2 = '$employeeid')
+	$query3 .= " || Response2 = '$agent')
 			&& (Status NOT IN(3, 4, 5))) ORDER BY Duedate";
 $result3 = mysql_query($query3) or die(mysql_error());
 $numTasks = mysql_num_rows($result3);
