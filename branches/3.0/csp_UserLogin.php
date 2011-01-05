@@ -92,13 +92,14 @@ if(!isset($_SESSION['uid'])) {
     			$user = $_SESSION['username'];
     				
     			// Retrieve access level and user id
-					$query = "SELECT id, access FROM employees WHERE email = '$email'";
+					$query = "SELECT id, access, dept FROM employees WHERE email = '$email'";
 					$result = mysql_query($query) or die(mysql_error());
 					if(mysql_num_rows($result) > 0) {
 						$row = mysql_fetch_array($result);
 						// Add access level to the session
     				$_SESSION['access'] = $row['access'];
     				$_SESSION['uid'] = $row['id'];
+    				$_SESSION['dept'] = $row['dept'];
     			} else {
     				$query3 = "INSERT INTO employees (f_name, l_name, ext_num, mobile, email, access) VALUES ('$f_name', '$l_name', '', '', '$email', '5')";
     				mysql_query($query3) or die(mysql_error());

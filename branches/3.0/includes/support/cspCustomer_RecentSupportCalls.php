@@ -8,7 +8,7 @@ $qryRecentCalls1 = "SELECT tblTickets.*, GREATEST(MAX(tblTicketMessages.Date), t
 										FROM tblTickets 
 										LEFT JOIN employees ON tblTickets.OpenedBy = employees.id 
 										LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
-										WHERE tblTickets.CustomerNumber = '$custID' 
+										WHERE tblTickets.CustomerNumber = '$custID' AND tblTickets.Status <> 1 
 										GROUP BY tblTickets.ID 
 										ORDER BY lastUpdate DESC 
 										LIMIT 5";
@@ -36,13 +36,13 @@ $numRecentCalls1 = mysql_num_rows($rstRecentCalls1);
 					<?php
 					while($rowRecentCalls1 = mysql_fetch_array($rstRecentCalls1)) {
 						$agentName = $rowRecentCalls1['firstName'] . " " . $rowRecentCalls1['lastName'];
-						if($rowRecentCalls1['Status']==0) {
+						if($rowRecentCalls1['Status'] == 0) {
 							$Status = 'Open';
-						} elseif($rowRecentCalls1['Status']==1) {
+						} elseif($rowRecentCalls1['Status'] == 1) {
 							$Status = 'Canceled';
-						}elseif($rowRecentCalls1['Status']==2) {
+						} elseif($rowRecentCalls1['Status'] == 2) {
 							$Status = 'Escalated';
-						}else{
+						} else {
 							$Status = 'Closed';
 						}
 						?>

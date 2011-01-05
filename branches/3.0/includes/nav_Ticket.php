@@ -19,9 +19,11 @@ $numTicketNav1 = mysql_num_rows($resTicketNav1);
 				<?php
 			}
 		}
-		?>
-		<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=escalateTicket&ticketID=<?php echo $ticketID; ?>'">Escalate Ticket</a></li>
-		<?php
+		if($Status != "Escalated") {
+			?>
+			<li><a href="JavaScript:void(0);" onclick="changeStatus(2, '<?php echo $ticketID; ?>');">Escalate Ticket</a></li>
+			<?php
+		}
 		if(!is_null($rowTicketDetail1['categoryCode'])) {
 			?>
 			<li><a href="JavaScript:void(0);" onclick="javascript:showDiv('issueCatMod')">Re-Categorize Issue</a></li>
@@ -30,12 +32,12 @@ $numTicketNav1 = mysql_num_rows($resTicketNav1);
 		if($numTicketDetail3 < 1) {
 		?>
 			<li><a href="JavaScript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_NewCall.php?ticketID=<?php echo $ticketID; ?>',1,0,0,1,0);">New Call</a></li>
-			<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=cancelTicket&ticketID=<?php echo $ticketID; ?>'">Cancel Ticket</a></li>
-			<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=closeTicket&ticketID=<?php echo $ticketID; ?>'">Close Ticket</a></li>
+			<li><a href="JavaScript:void(0);" onclick="changeStatus(1, '<?php echo $ticketID; ?>');">Cancel Ticket</a></li>
+			<li><a href="JavaScript:void(0);" onclick="changeStatus(-1, '<?php echo $ticketID; ?>');">Close Ticket</a></li>
 		<?php
 		}
 	}
-	if($Status == "Closed") {
+	if($Status == "Closed" && ($_SESSION['dept'] == 2 || $_SESSION['access'] >= 7)) {
 		?>
 		<li><a href="JavaScript:void(0);" onclick="window.location='scripts/ticketMgmt.php?action=reopenTicket&ticketID=<?php echo $ticketID; ?>'">Reopen Ticket</a></li>
 		<?php

@@ -76,7 +76,7 @@ if(isset($_GET['action']) && $_GET['action'] == "reopenTicket") {
 		$qryCloseTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
 												VALUES('$ticketID', 'Ticket Reopened', '$agentID', '$date', 5)";
 		if(mysql_query($qryCloseTicket2)) {
-			include 'includes/db_close.inc.php';
+			include '../includes/db_close.inc.php';
 			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID));
 		} else {
 			die(mysql_error());
@@ -94,7 +94,7 @@ if(isset($_GET['action']) && $_GET['action'] == "cancelTicket") {
 		$qryCanTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
 												VALUES('$ticketID', 'Ticket Canceled', '$agentID', '$date', 5)";
 		if(mysql_query($qryCanTicket2)) {
-			include 'includes/db_close.inc.php';
+			include '../includes/db_close.inc.php';
 			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=25"));
 		} else {
 			die(mysql_error());

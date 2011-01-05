@@ -86,3 +86,23 @@ function getChildCatList(catCode, catAction, ticketID) {
 	ajaxRequest.send();
 }
 
+function changeStatus(newStatus, ticketID) {
+	if(newStatus == -1) {
+		var auth = confirm("Are you sure you would like to CLOSE this ticket?");
+		if(auth) {
+			window.location = "scripts/ticketMgmt.php?action=closeTicket&ticketID="+ticketID;
+		}
+	}
+	if(newStatus == 1) {
+		var auth = confirm("Are you sure you would like to CANCEL this ticket?");
+		if(auth) {
+			window.location = "scripts/ticketMgmt.php?action=cancelTicket&ticketID="+ticketID;
+ 		}
+	}
+	if(newStatus == 2) {
+		var auth = confirm("Are you sure you would like to ESCALATE this ticket?");
+		if(auth) {
+			window.location = "scripts/ticketMgmt.php?action=escalateTicket&ticketID="+ticketID;
+		}
+	}
+}
