@@ -1,10 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
 <!-- START New Ticket Module -->
 <?php
-include_once 'includes/config.inc.php';
-include 'includes/db_connect.inc.php';
+include_once('includes/config.inc.php');
+include('includes/db_connect.inc.php');
+require_once('includes/functions.inc.php');
 $companyName = 'HomeFree';
 if(isset($_GET['ticketID'])) {
 	$ticketID = $_GET['ticketID'];
@@ -12,7 +10,7 @@ if(isset($_GET['ticketID'])) {
 
 if(isset($_POST['saveAgentComment'])) {
 	$ticketID = $_POST['ticketID'];
-	$agentComment = $_POST['agentComment'];
+	$agentComment = nl2br(stripslashes(fix_apos("'", "''", $_POST['agentComment'])));
 	$date = date('Y-m-d H:i:s');
 	$qryAddComment = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType) 
 										VALUES('$ticketID', '$agentComment', '1', '$date', 0)";
@@ -21,7 +19,9 @@ if(isset($_POST['saveAgentComment'])) {
 }
 
 ?>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
 <head>
 	<title><?php echo $companyName; ?> | CSP - Support</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />

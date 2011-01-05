@@ -47,8 +47,9 @@ if(isset($_GET['action']) && $_GET['action'] == "escalateTicket") {
 
 if(isset($_GET['action']) && $_GET['action'] == "closeTicket") {
 	$ticketID = $_GET['ticketID'];
-	$closeChecks = verifyChangeStatus($ticketID, "close");
+	$closeChecks = statusChangeVerify($ticketID, "close");
 	if($closeChecks == 0) {
+		statusChangeTasks($ticketID, "close");
 		$date = date('Y-m-d H:i:s');
 		$qryCloseTicket1 = "UPDATE tblTickets SET Status = -1 WHERE ID = '$ticketID' LIMIT 1";
 		if(mysql_query($qryCloseTicket1)) {

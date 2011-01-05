@@ -1,6 +1,6 @@
 <?php
-$dbhost = 'hf01sql';
-$dbuser = 'ups_track';
-$dbpass = '7ZLXRn9.xZfRCuXV';
+$dbhost = '127.0.0.1';
+$dbuser = 'csp';
+$dbpass = 'LperPKnzBxuhZJhC';
 $dbname = 'Work';
 ?>

@@ -10,8 +10,8 @@ $query = !empty($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : null;
 //$url = urlencode(!empty($query) ? " $host$self?$query" : " $host$self");
 $url = urlencode(!empty($query) ? " $self?$query" : " $self");
 
-include 'includes/config.inc.php';
-include 'includes/db_connect.inc.php';
+include '../../includes/config.inc.php';
+include '../../includes/db_connect.inc.php';
 if(!isset($_SESSION['username']))
 {
 	$user = "Unknown";
@@ -30,7 +30,7 @@ else
 	$name = $_SESSION['displayname'];
 	$message="Hello $name!";
 }
-include 'includes/db_close.inc.php';
+include '../../includes/db_close.inc.php';
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -68,7 +68,7 @@ include 'includes/db_close.inc.php';
 					<td valign="bottom">
 						<table cellspacing="0" cellpadding="0" border="0">
 							<tr>
-						  		<td><a href="/csPortal/csPortal_Main.php"><img src="../images/Home_ButtonOff.gif" border="0" onmouseover="this.src='../images/Home_ButtonOver.gif'" onmouseout="this.src='../images/Home_ButtonOff.gif'";" height="36" alt="Click to go to HF homepage."></a></td>
+						  		<td><a href="../../cspUserHome_Dashboard.php"><img src="../images/Home_ButtonOff.gif" border="0" onmouseover="this.src='../images/Home_ButtonOver.gif'" onmouseout="this.src='../images/Home_ButtonOff.gif'";" height="36" alt="Click to go to HF homepage."></a></td>
 						  		<td><a href="/csPortal/csPortal_Sales.php"><img src="../images/Sales_ButtonActive.gif" border="0" onmouseover="this.src='../images/Sales_ButtonOver.gif'" onmouseout="this.src='../images/Sales_ButtonActive.gif'";" height="36" alt="Click to go to Sales homepage."></a></td>
 						  		<td><a href="/csPortal/csPortal_Support.php"><img src="../images/Support_ButtonOff.gif" border="0" onmouseover="this.src='../images/Support_ButtonOver.gif'" onmouseout="this.src='../images/Support_ButtonOff.gif'";" height="36" alt="Click for customer support options."></a></td>								
 						  		<?php

@@ -7,6 +7,7 @@ include('includes/db_connect.inc.php');
 $companyName = cspSettingValue('12');
 $reportedBy = "";
 $contactNumber = "";
+$contactExt = "";
 $probDesc = "";
 $agentID = $_SESSION['uid'];
 
