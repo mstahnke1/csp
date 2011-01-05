@@ -196,7 +196,8 @@ table.cspDashRow
 
 div.cspMOHighlight:hover
 {
-	background-color:#E0E0E0;
+	background-color:#F0F0F0;
+	//background-color:#B7CEEC;
 }
 
 td.cspBodyHeading

@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
-$conn1 = mysql_connect('hf01sql', 'ups_track', '7ZLXRn9.xZfRCuXV') or die(mysql_error());
-mysql_select_db('homefree');
+$conn1 = mysql_connect('127.0.0.1', 'csp', 'LperPKnzBxuhZJhC') or die(mysql_error());
+mysql_select_db('csp');
 $email = $_SESSION['mail'];
 $uid = $_SESSION['uid'];
 $query = "SELECT id, f_name, l_name, dept, recRmaEmail, recFloorplan, manageRma FROM employees WHERE id = '$uid'";

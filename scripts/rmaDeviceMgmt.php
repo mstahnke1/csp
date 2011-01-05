@@ -21,8 +21,8 @@ $resRmaDevice2 = mysql_query($qryRmaDevice2) or die(mysql_error());
 ?>
 <div>
 	<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Device</u></span>
-	<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Serial Number</u></span>
-	<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Warranty Status</u></span>
+	<span style="width:14%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Serial Number</u></span>
+	<span style="width:24%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Warranty Status</u></span>
 	<span style="width:40%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Issue Reported</u></span>
 </div>
 <?php
@@ -45,10 +45,10 @@ while($rowRmaDevice2 = mysql_fetch_assoc($resRmaDevice2)) {
 			break;
 	}
 	?>
-	<div>
+	<div class="cspMOHighlight">
 		<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRmaDevice2['partName']; ?></span>
-		<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRmaDevice2['SN']; ?></span>
-		<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $warranty; ?></span>
+		<span style="width:14%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRmaDevice2['SN']; ?></span>
+		<span style="width:24%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $warranty; ?></span>
 		<span style="width:40%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRmaDevice2['Problem']; ?></span>
 	</div>
 	<?php
