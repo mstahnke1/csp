@@ -1,5 +1,4 @@
 <li><a href="cspUserSupport_Customer.php?custID=<?php echo $custID; ?>">Customer</a><ul>
-	<li><a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Search.php?type=Ticket'">Lookup Ticket</a></li>
 	<?php
 	if(isset($custID)) {
 		?>
