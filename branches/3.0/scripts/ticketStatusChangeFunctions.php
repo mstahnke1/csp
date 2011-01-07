@@ -24,6 +24,23 @@ function statusChangeVerify($ticketID, $newStatus) {
 		} else {
 			die(mysql_error());
 		}
+		
+		// Verify source of sale exists when RMA is being processed
+		$qryCloseTicket5 = "SELECT tblTickets.ID, tblFacilities.TypeOfSale AS TypeOfSale 
+												FROM tblTickets 
+												LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
+												WHERE tblTickets.ID = '$ticketID'";
+		$resCloseTicket5 = mysql_query($qryCloseTicket5);
+		$qryCloseTicket6 = "SELECT ID FROM rmaDevices WHERE TicketID = '$ticketID'";
+		$resCloseTicket6 = mysql_query($qryCloseTicket6) or die(mysql_error);
+		$numCloseTicket6 = mysql_num_rows($resCloseTicket6);
+		if($resCloseTicket5) {
+			if(((is_null($resCloseTicket5['TypeOfSale'])) || ($resCloseTicket5['TypeOfSale'] == 0)) && $numCloseTicket6 > 0) {
+				return('21');
+			}
+		} else {
+			die(mysql_error());
+		}
 	}
 	return('0');
 }
@@ -53,13 +70,41 @@ function statusChangeTasks($ticketID, $newStatus) {
 			$qryRma2 = "UPDATE tblTickets SET rmaReturn = '1' WHERE ID = $ticketID LIMIT 1";
 			mysql_query($qryRma2) or die(mysql_error());
 			while($rowRma1 = mysql_fetch_assoc($resRma1)) {
-				$rmaDevices .= "<div>" . $rowRma1['partDesc'] . " (" . $rowRma1['SN'] . ") - " . $rowRma1['Problem'] . "</div>";
+				switch($rowRMAInfo1['Warranty']) {
+					case 1:
+						$warranty = "Warrantied - Repair";
+						break;
+					case 2:
+						$warranty = "NOT Warrantied - Repair";
+						break;
+					case 3:
+						$warranty = "NOT Warrantied - Purchase replacement";
+						break;
+					case 4:
+						$warranty = "Warrantied - <b>Return Only</b>";
+						break;
+					case 5:
+						$warranty = "NOT Warrantied - <b>Return Only</b>";
+						break;
+				}
+				$rmaDevices .= "<div>" . $rowRma1['partDesc'] . " (" . $rowRma1['SN'] . ") - " . $rowRma1['Problem'] . " - " . $warranty . "</div>";
 			}
 			$qryRma3 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
 									VALUES ('$ticketID', '$rmaDevices', '$agent', '$date', '10')";
 			mysql_query($qryRma3) or die(mysql_error());
+			/*
+			<-------- LEFT OFF HERER --------->
+			$qryRma4 = "SELECT tblTickets.ID, tblFacilities.TypeOfSale AS TypeOfSale 
+									FROM tblTickets 
+									LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
+									WHERE tblTickets.ID = '$ticketID'";
+			$resRma4 = mysql_query($qryRma4);
+			$rowRma4 = mysql_fetch_assoc($resRma4);
+			if($rowRma4['TypeOfSale'] == 1) {
+				case 1
+				*/
 		} else {
-			//If no device are present make sure ticket is not labeled as RMA from a previous close
+			//If no devices are present make sure ticket is not labeled as RMA from a previous close
 			$qryRma2 = "UPDATE tblTickets SET rmaReturn = '0' WHERE ID = $ticketID LIMIT 1";
 			$resRma2 = mysql_query($qryRma2);
 			if(!$resRma2) {
@@ -71,8 +116,6 @@ function statusChangeTasks($ticketID, $newStatus) {
 				mysql_query($qryRmaError);
 			}
 		}
-		
-		
 	}
 }
 ?>

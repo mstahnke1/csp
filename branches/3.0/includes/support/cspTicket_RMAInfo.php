@@ -16,11 +16,18 @@ $numRMAInfo1 = mysql_num_rows($resRMAInfo1);
 		<tr>
 			<td>
 				<div id="divRmaDeviceLst">
-					<div>
-						<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Device</u></span>
-						<span style="width:14%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Serial Number</u></span>
-						<span style="width:24%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Warranty Status</u></span>
-						<span style="width:40%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Issue Reported</u></span>
+					<div<?php if($numRMAInfo1 < 1) { echo ' style="display:none;"'; } ?>>
+						<?php
+						if($Status != "Closed" && $Status != "Canceled") {
+							?>
+							<span style="width:3%; display:inline-block; vertical-align:top; padding:0px 1px 0px 0px;"></span>
+							<?php
+						}
+						?>
+						<span style="width:18%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Device</u></span>
+						<span style="width:14%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Serial Number</u></span>
+						<span style="width:24%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Warranty Status</u></span>
+						<span style="width:38%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Issue Reported</u></span>
 					</div>
 					<?php
 					while($rowRMAInfo1 = mysql_fetch_assoc($resRMAInfo1)) {
@@ -43,10 +50,21 @@ $numRMAInfo1 = mysql_num_rows($resRMAInfo1);
 						}
 						?>
 						<div class="cspMOHighlight">
-							<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRMAInfo1['partName']; ?></span>
-							<span style="width:14%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRMAInfo1['SN']; ?></span>
-							<span style="width:24%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $warranty; ?></span>
-							<span style="width:40%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRMAInfo1['Problem']; ?></span>
+							<?php
+							if($Status != "Closed" && $Status != "Canceled") {
+								?>
+								<span style="width:3%; display:inline-block; vertical-align:top; padding:0px 1px 0px 0px;">
+									<form name="updDevice<?php echo $rowRMAInfo1['ID']; ?>">
+									 <input type="checkbox" name="device" onChange="updRmaDevice('<?php echo $rowRMAInfo1['ID']; ?>', '<?php echo $ticketID; ?>');" />
+									</form>
+								</span>
+								<?php
+							}
+							?>
+							<span style="width:18%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRMAInfo1['partName']; ?></span>
+							<span style="width:14%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRMAInfo1['SN']; ?></span>
+							<span style="width:24%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $warranty; ?></span>
+							<span style="width:38%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRMAInfo1['Problem']; ?></span>
 						</div>
 						<?php
 					}

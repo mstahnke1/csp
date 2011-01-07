@@ -21,7 +21,37 @@ function sbmPortalSearch(frmStr, srchType){
 	ajaxRequest.send(queryString); 
 }
 
+function updRmaDevice(deviceID, ticketID) {
+	var auth = confirm("Remove device from RMA list?");
+	if(auth) {
+		if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  	ajaxRequest=new XMLHttpRequest();
+	  } else {// code for IE6, IE5
+			ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		// Create a function that will receive data sent from the server
+		ajaxRequest.onreadystatechange=function() {
+	  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+				var ajaxDisplay = document.getElementById("divRmaDeviceLst");
+				ajaxDisplay.innerHTML = ajaxRequest.responseText;
+			}
+		}
+		
+		ajaxRequest.open("GET","scripts/rmaDeviceMgmt.php?deviceID="+deviceID+"&action=remove&ticketID="+ticketID,true);
+		ajaxRequest.send();
+	} else {
+		var frmStr = "updDevice"+deviceID;
+		document.forms[frmStr].device.checked=false;
+	}
+}
+
 function sbmRmaDevice(frmStr, ticketID, deviceAction) {
+	var frmName = document.forms[frmStr];
+	if(frmName.serialNumber.value == "" || frmName.problemDesc.value == "" || frmName.warrantyStatus.value == "0") {
+		alert("Must fill in all device RMA details to save");
+		return false;
+	}
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
