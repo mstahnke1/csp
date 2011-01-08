@@ -29,8 +29,8 @@ if(!isset($_SESSION['username']))
 		}
 }
 $access = $_SESSION['access'];
-$conn11 = mysql_connect('hf01sql', 'ups_track', '7ZLXRn9.xZfRCuXV') or die(mysql_error());
-mysql_select_db('homefree');
+$conn11 = mysql_connect('127.0.0.1', 'csp', 'LperPKnzBxuhZJhC') or die(mysql_error());
+mysql_select_db('csp');
 $uid = $_SESSION['uid'];
 $email = $_SESSION['mail'];
 $query1 = "SELECT id, f_name, l_name, dept, recRmaEmail, recFloorplan, manageRma FROM employees WHERE id = '$uid'";
@@ -233,7 +233,7 @@ if(isset($_GET['view']))
   						<select name="employee"> 
   							<option value="0">None</option>
 <?php
-							mysql_select_db('homefree');
+							mysql_select_db('csp');
 							$selectresponse = "SELECT id,f_name, l_name,dept FROM employees ORDER BY f_name";
 					    $resselectresponse = mysql_query($selectresponse) or die (mysql_error());  
 					    while($selectedresponse = mysql_fetch_array($resselectresponse))
@@ -249,7 +249,7 @@ if(isset($_GET['view']))
   						<select name="employee2"> 
   							<option value="0">None</option>
 <?php
-							mysql_select_db('homefree');
+							mysql_select_db('csp');
 							$selectcoresponse = "SELECT id,f_name, l_name,dept FROM employees ORDER BY f_name";
 					    $resselectcoresponse = mysql_query($selectcoresponse) or die (mysql_error());  
 					    while($selectedcoresponse = mysql_fetch_array($resselectcoresponse))
@@ -265,7 +265,7 @@ if(isset($_GET['view']))
   						<select name="employee3"> 
   							<option value="0">None</option>
 <?php
-							mysql_select_db('homefree');
+							mysql_select_db('csp');
 							$selectcheck = "SELECT id,f_name, l_name,dept FROM employees ORDER BY f_name";
 					    $resselectcheck = mysql_query($selectcheck) or die (mysql_error());  
 					    while($selectedcheck = mysql_fetch_array($resselectcheck))
@@ -281,7 +281,7 @@ if(isset($_GET['view']))
   						<select name="assignto"> 
   							<option value="0">None</option>
 <?php
-							mysql_select_db('homefree');
+							mysql_select_db('csp');
 							$selectassign = "SELECT id,f_name, l_name,dept FROM employees ORDER BY f_name";
 					    $resselectassign = mysql_query($selectassign) or die (mysql_error());  
 					    while($selectedassign = mysql_fetch_array($resselectassign))
@@ -473,7 +473,7 @@ if(isset($_GET['view']))
 				if(($type == 11) OR ($type == 28))
 				{
 					$custnum = $taskinfo['CustomerNumber'];
-					mysql_select_db('homefree');
+					mysql_select_db('csp');
 					$query17 = "SELECT FacilityName FROM tblfacilities WHERE CustomerNumber = '$custnum'";
 					$result17 = mysql_query($query17) or die (mysql_error());
 					$row17 = mysql_fetch_array($result17);
@@ -642,7 +642,7 @@ if(isset($_GET['view']))
 				<tr>
 					<td>
 <?php
-						mysql_select_db('homefree');
+						mysql_select_db('csp');
 						$selectresponse = "SELECT id,f_name, l_name,dept FROM employees WHERE id = '$employee'";
 				    $resselectresponse = mysql_query($selectresponse) or die (mysql_error()); 
 				    $countrespone = mysql_num_rows($resselectresponse); 
@@ -673,7 +673,7 @@ if(isset($_GET['view']))
 					</td>		
 					<td>
 <?php
-								mysql_select_db('homefree');
+								mysql_select_db('csp');
 								$selectcoresponse = "SELECT id,f_name, l_name,dept FROM employees ORDER BY f_name";
 				    		$resselectcoresponse = mysql_query($selectcoresponse) or die (mysql_error());  
 				    		
@@ -710,7 +710,7 @@ if(isset($_GET['view']))
 					</td>
 					<td>
 <?php
-						mysql_select_db('homefree');
+						mysql_select_db('csp');
 						$selectcheck = "SELECT id,f_name, l_name,dept FROM employees ORDER BY f_name";
 				    $resselectcheck = mysql_query($selectcheck) or die (mysql_error());  
 						if($status == 3 OR $status == 4)
@@ -742,7 +742,7 @@ if(isset($_GET['view']))
 					</td>
 					<td>
 <?php
-						mysql_select_db('homefree');
+						mysql_select_db('csp');
 						$selectassign = "SELECT id,f_name, l_name,dept FROM employees ORDER BY f_name";
 				    $resselectassign = mysql_query($selectassign) or die (mysql_error());	
 						if($status == 3 OR $status == 4)
@@ -824,7 +824,7 @@ if(isset($_GET['view']))
 					</tr>
 <?php				
 				}		
-				mysql_select_db('homefree');
+				mysql_select_db('csp');
 				$selectcreator = "SELECT f_name,l_name FROM employees WHERE id = '$createdby'";
 				$rescreator = mysql_query($selectcreator) or die (mysql_error());  
 				$taskcreator = mysql_fetch_array($rescreator);
@@ -882,7 +882,7 @@ if(isset($_GET['view']))
 <?php
 							while($remarkselected = mysql_fetch_array($ressqlremarks))
 								{
-									mysql_select_db('homefree');
+									mysql_select_db('csp');
 									$addedby = $remarkselected['addedby'];
 									$query3 = "SELECT f_name, l_name FROM employees WHERE id = '$addedby'";
 				  				$result3 = mysql_query($query3) or die (mysql_error());	
@@ -991,7 +991,7 @@ if(isset($_GET['view']))
 					$row31 = mysql_fetch_array($result31);		
 					$status = $row31['Status'];						
 					$priority = $row30['priority'];
-					mysql_select_db('homefree');
+					mysql_select_db('csp');
 					$query2 = "SELECT f_name, l_name FROM employees WHERE id = '$who'";
 					$result2 = mysql_query($query2) or die (mysql_error());
 					$row2 = mysql_fetch_array($result2);
@@ -1083,7 +1083,7 @@ if(isset($_GET['view']))
 <?php
 								while($remarkselected = mysql_fetch_array($ressqlremarks))
 									{
-										mysql_select_db('homefree');
+										mysql_select_db('csp');
 										$addedby = $remarkselected['addedby'];
 										$query3 = "SELECT f_name, l_name FROM employees WHERE id = '$addedby'";
 					  				$result3 = mysql_query($query3) or die (mysql_error());	
@@ -1145,7 +1145,7 @@ if((isset($_GET['add']))&& ($_GET['add']=="Add Task"))
 	$duedateref = strtotime($duedate);
 	$ticketnum = $_GET['ticketNum'];
 	
-	mysql_select_db('homefree');
+	mysql_select_db('csp');
 	$query13 = "SELECT email,dept FROM employees WHERE id = '$employee' ORDER BY l_name";
 	$result13 = mysql_query($query13) or die (mysql_error());
  	$row13 = mysql_fetch_array($result13);					
@@ -1391,7 +1391,7 @@ if((isset($_GET['save']))&& ($_GET['save']=="Save"))
 		$assignto = $sqlinfo['Assignto'];
 		$assignment = $sqlinfo['Assignto'];
 	}														
-	mysql_select_db('homefree');
+	mysql_select_db('csp');
 	if($hellotype <> 11)
 	{
 		$query12 = "SELECT email,dept FROM employees WHERE id = '$createdby'";
@@ -1442,7 +1442,7 @@ if((isset($_GET['save']))&& ($_GET['save']=="Save"))
 	{
 		if(($employee == 2002) && ($status == 2))
 		{
-			mysql_select_db('homefree');
+			mysql_select_db('csp');
 			$query17 = "SELECT id,email FROM employees WHERE recRmaEmail = 1";
 			$result17 = mysql_query($query17) or die(mysql_error());
 			$count17 = mysql_num_rows($result17);
@@ -1461,7 +1461,7 @@ if((isset($_GET['save']))&& ($_GET['save']=="Save"))
 		}
 		elseif(($employee == 2000) && ($status == 10))
 		{
-			mysql_select_db('homefree');
+			mysql_select_db('csp');
 			$query17 = "SELECT id,email FROM employees WHERE dept = 5";
 			$result17 = mysql_query($query17) or die(mysql_error());
 			$count17 = mysql_num_rows($result17);
@@ -1621,7 +1621,7 @@ if((isset($_GET['save']))&& ($_GET['save']=="Save"))
 			$auditremark = "INSERT INTO tbltaskaudit (Date, User, Action, taskid, Query, coresponse, type, priority, status, assignto, checkby) VALUES 
 								('$date','$employeeid','$action','$taskid','$sql',0,0,'$priority','$status',0,0)";
 			mysql_query($auditremark) or die(mysql_error());	
-			mysql_select_db('homefree');
+			mysql_select_db('csp');
 			$query12 = "SELECT email,dept FROM employees WHERE id = '$createdby'";
     	$result12 = mysql_query($query12) or die (mysql_error());
      	$row12 = mysql_fetch_array($result12);	
@@ -1760,7 +1760,7 @@ if((isset($_GET['viewticketNum'])) OR (isset($_GET['viewtaskNum'])))
 		$result12 = mysql_query($query12) or die (mysql_error());
 		$row12 = mysql_fetch_array($result12);		
 		$status = $row12['Status'];
-		mysql_select_db('homefree');
+		mysql_select_db('csp');
 		if($response == 1000)
   	{
   		$name = 'Floorplan GRP';

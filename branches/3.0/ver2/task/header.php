@@ -30,7 +30,7 @@ else
 	$name = $_SESSION['displayname'];
 	$message="Hello $name!";
 }
-include '../../includes/db_close.inc.php';
+
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
