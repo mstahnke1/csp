@@ -10,6 +10,13 @@ if(isset($_GET['action']) && $_GET['action'] == "endCall") {
 	$callID = $_GET['callID'];
 	$ticketID = $_GET['ticketID'];
 	$date = date('Y-m-d H:i:s');
+	//Verify a comment has been added for this call before ending the call
+	$qryEndCall2 = "SELECT ID FROM tblTicketMessages WHERE TicketID = '$ticketID' AND msgType = 0 AND Date > (SELECT Date FROM tblTicketMessages WHERE callid = '$callID')";
+	$resEndCall2 = mysql_query($qryEndCall2);
+	$numEndCall2 = mysql_num_rows($resEndCall2);
+	if($numEndCall2 == 0) {
+		die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=27"));
+	}
 	$qryEndCall1 = "DELETE FROM activeCallList WHERE id = '$callID'";
 	if(mysql_query($qryEndCall1)) {
 		$callMsg = "Call ID: " . $callID;
@@ -51,7 +58,7 @@ if(isset($_GET['action']) && $_GET['action'] == "closeTicket") {
 	if($closeChecks == 0) {
 		statusChangeTasks($ticketID, "close");
 		$date = date('Y-m-d H:i:s');
-		$qryCloseTicket1 = "UPDATE tblTickets SET Status = -1 WHERE ID = '$ticketID' LIMIT 1";
+		$qryCloseTicket1 = "UPDATE tblTickets SET Status = -1, DateClosed = '$date' WHERE ID = '$ticketID' LIMIT 1";
 		if(mysql_query($qryCloseTicket1)) {
 			$qryCloseTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
 													VALUES('$ticketID', 'Ticket Closed', '$agentID', '$date', 4)";

@@ -5,6 +5,9 @@ $numTicketDetail3 = mysql_num_rows($rstTicketDetail3);
 $qryTicketNav1 = "SELECT ID FROM rmaDevices WHERE TicketID = '$ticketID'";
 $resTicketNav1 = mysql_query($qryTicketNav1) or die(mysql_error());
 $numTicketNav1 = mysql_num_rows($resTicketNav1);
+$qryTicketNav2 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warranty = 2 AND Device IN(SELECT `part#` FROM devicelist WHERE rmaPreApproval = '1')";
+$resTicketNav2 = mysql_query($qryTicketNav2);
+$numTicketNav2 = mysql_num_rows($resTicketNav2);
 ?>
 <li><a href="#">Ticket</a><ul>
 	<?php
@@ -36,6 +39,11 @@ $numTicketNav1 = mysql_num_rows($resTicketNav1);
 			<li><a href="JavaScript:void(0);" onclick="changeStatus(-1, '<?php echo $ticketID; ?>');">Close Ticket</a></li>
 		<?php
 		}
+	}
+	if($Status == "Closed" && $numTicketNav2 > 0) {
+		?>
+		<li><a href="JavaScript:void(0);" onclick="window.open('ver2/rmaAuthForm.php?ticketID=<?php echo $ticketID; ?>')">Authorization Form</a></li>
+		<?php
 	}
 	if($Status == "Closed" && ($_SESSION['dept'] == 2 || $_SESSION['access'] >= 7)) {
 		?>
