@@ -160,6 +160,19 @@ div.cspDashModule {
 	//vertical-align:top;
 }
 
+div.rmaStatusInfo {
+	//background-color: #C6E2FF;
+	padding: 1px;
+	margin: 1px;
+	border-bottom: dashed 1px #999999;
+}
+
+td.cspTicketHeading
+{
+	border-bottom: 1px solid #999999;
+	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
+}
+
 div.cspTicketComment {
 	display:none;
 	border: 1px solid #999999;
@@ -205,12 +218,6 @@ td.cspBodyHeading
 	border-top: 1px solid #488AC7;
 	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
 	BACKGROUND-COLOR: #BDEDFF;
-}
-
-td.cspTicketHeading
-{
-	border-bottom: 1px solid #999999;
-	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
 }
 
 div.cspFooter
