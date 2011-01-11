@@ -10,10 +10,11 @@ require_once('includes/cspSessionMgmt.php');
 	<link rel="stylesheet" type="text/css" href="theme/default/cspDefault.css" />
 	<script type="text/javascript" src="js/cb.js"></script>
 	<script type="text/javascript" src="js/loadPage.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body>
+<body<?php if($numSessionInfo1 > 0) { echo ' onload="activeCalls();"'; } ?>>
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
