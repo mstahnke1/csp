@@ -53,7 +53,7 @@ if(isset($_GET['ticketID'])) {
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body">
+<body<?php if($numSessionInfo1 > 0) { echo ' onload="activeCalls();"'; } ?>>
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
