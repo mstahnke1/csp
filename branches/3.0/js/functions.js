@@ -84,6 +84,10 @@ function showDiv(str) {
 	}
 } 
 
+function activeCalls() {
+	alert('You must end your active call ASAP!')
+}
+
 function getChildCatList(catCode, catAction, ticketID) {
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
