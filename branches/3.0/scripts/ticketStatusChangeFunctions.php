@@ -113,7 +113,7 @@ function statusChangeTasks($ticketID, $newStatus) {
 									Contact: ' . $rowRma4['Contact'] . '<br />
 									Reason Opened: ' . $rowRma4['Summary'] . '<br />';
 									while($rowRma5 = mysql_fetch_array($resRma5)) {
-										$rmaBody .= 'Technican Remarks: ' . $rowRma5['Message'] . '<br />';
+										$rmaBody .= 'Agent Remarks: ' . $rowRma5['Message'] . '<br />';
 									}
 									$rmaBody .= '</p><p><u>Device Details</u><br />';
 									$rmaBody .= $rmaDevices;
