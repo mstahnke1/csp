@@ -1,4 +1,4 @@
-	<!-- START Database Backup Dashboard Module -->
+<!-- START Database Backup Dashboard Module -->
 <?php
 include 'includes/config.inc.php';
 include 'includes/db_connect.inc.php';

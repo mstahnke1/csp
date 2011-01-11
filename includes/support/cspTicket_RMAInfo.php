@@ -7,16 +7,73 @@ $qryRMAInfo1 = "SELECT rmaDevices.*, deviceList.partDesc AS partName
 								WHERE rmaDevices.TicketID = '$ticketID'";
 $resRMAInfo1 = mysql_query($qryRMAInfo1) or die(mysql_error());
 $numRMAInfo1 = mysql_num_rows($resRMAInfo1);
+$qryRMAInfo3 = "SELECT * FROM tblTicketMessages WHERE TicketID = '$ticketID' AND msgType = '11'";
+$resRMAInfo3 = mysql_query($qryRMAInfo3) or die(mysql_error());
+mysql_select_db($dbname2);
+$qryRMAInfo4 = "SELECT * FROM taskinfo WHERE ticketNum = '$ticketID' AND Response = '2000' AND Type = '28'";
+$resRMAInfo4 = mysql_query($qryRMAInfo4);
+$numRMAInfo4 = mysql_num_rows($resRMAInfo4);
+$rowRMAInfo4 = mysql_fetch_array($resRMAInfo4);
+if($rowRMAInfo4['Status'] == 3) {
+	$repairAuth = "Repair Authorized";
+} else {
+	$repairAuth = "Repair Not Authorized";
+}
+mysql_select_db($dbname);
 ?>
-<div id="rmaInfo" class="cspDashModule" <?php if($numRMAInfo1 < 1) { echo 'style="display: none"'; }?>>
+<div id="rmaInfo" class="cspDashModule"<?php if($numRMAInfo1 < 1) { echo ' style="display: none"'; }?>>
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td class="cspTicketHeading">RMA Information</td>
+			<td class="cspTicketHeading">
+				<span>RMA Information</span>
+				<span id="rmaReturnAuth" style="font-variant:normal; FONT-WEIGHT: normal; float:right;<?php if($numRMAInfo1 < 1 && $Status != "Closed") { echo ' display:none;'; } ?>"><a href="javascript:void(0);" onclick="showDiv('divRmaReturnNotes');">[return verification]</a></span>
+			</td>
 		</tr>
 		<tr>
 			<td>
 				<div id="divRmaDeviceLst">
-					<div<?php if($numRMAInfo1 < 1) { echo ' style="display:none;"'; } ?>>
+					<div id="divRmaStatusInfo" class="rmaStatusInfo"<?php if($numRMAInfo1 < 1 && $Status != "Closed") { echo ' style="display:none;"'; } ?>>
+						<div>
+							<span><strong>Authorization:</strong></span>
+							<span><?php echo $repairAuth; ?></span>
+						</div>
+						<?php
+						while($rowRMAInfo3 = mysql_fetch_assoc($resRMAInfo3)) {
+							?>
+							<div>
+								<span><strong>Return Notes:</strong></span>
+								<span><?php echo $rowRMAInfo3['Message']; ?></span>
+							</div>
+							<?php
+						}
+						?>
+						<div id="divRmaReturnNotes" style="display: none;">
+							<form name="rmaReturnFrm" id="rmaReturnFrm" action="scripts/ticketMgmt.php" method="get">
+								<table width="100%">
+									<tr>
+										<td colspan="2">
+											<font size="2" face="Arial">Use the notes section to put changes or notes to the return.</font>
+				    				</td>
+			     				</tr>
+			     				<tr>
+										<td valign="top" style="text-align:right;">
+											<font size="2" face="Arial">Return Notes:</font>
+				    				</td>
+				    				<td>
+				    					<textarea name="returnNote" rows="5" cols="50"></textarea>
+				    				</td>
+			     				</tr>
+			     				<tr>
+			     					<td colspan="2" align="center">
+			     						<input type="hidden" name="ticketID" value="<?php echo $ticketID; ?>" />
+			     						<input type="submit" name="returnAuth" value="Verified" /><input type="submit" name="returnAuth" value="Modified" /><input type="button" value="Cancel" onClick="javascript:window.location.reload()">
+			     					</td>
+			     				</tr>
+		     				</table>
+	     				</form>
+						</div>
+					</div>
+					<div>
 						<?php
 						if($Status != "Closed" && $Status != "Canceled") {
 							?>

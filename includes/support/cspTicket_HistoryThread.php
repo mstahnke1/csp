@@ -42,6 +42,8 @@ $rstTicketHistory1 = mysql_query($qryTicketHistory1) or die(mysql_error());
 						$updateType = "Ticket Escalated";
 					} elseif($rowTicketHistory1['msgType'] == 10) {
 						$updateType = "RMA Processed";
+					} elseif($rowTicketHistory1['msgType'] == 11) {
+						$updateType = "Return Processed";
 					}
 					?>
 					<div class="cspMOHighlight">
