@@ -4,9 +4,17 @@ session_start();
 
 if(file_exists('includes/functions.inc.php')) {
 	include_once('includes/functions.inc.php');
+	include_once('includes/config.inc.php');
+	include_once('includes/db_connect.inc.php');
 } elseif(file_exists('../includes/functions.inc.php')) {
 	include_once('../includes/functions.inc.php');
+	include_once('../includes/config.inc.php');
+	include_once('../includes/db_connect.inc.php');
 }
+
+$qrySessionInfo1 = "SELECT * FROM activeCallList WHERE agent = '$_SESSION[uid]'";
+$resSessionInfo1 = mysql_query($qrySessionInfo1) or die(mysql_error());
+$numSessionInfo1 = mysql_num_rows($resSessionInfo1);
 
 $companyName = cspSettingValue('12');
 
@@ -31,4 +39,5 @@ if(!isset($_SESSION['uid'])) {
 if(isset($_GET['msgID'])) {
 	//$sysMsg = $portalMsg[$_GET['msgID']][$lang];
 }
+//include_once('../includes/db_close.inc.php');
 ?>
