@@ -3,8 +3,7 @@
 include('includes/config.inc.php');
 include('includes/db_connect.inc.php');
 include_once('includes/functions.inc.php');
-if(isset($_GET['custID'])) {
-	$custID = $_GET['custID'];
+if(isset($custID)) {
 	$qryCustInfo1 = "SELECT tblFacilities.*, employees.f_name AS repFirstName, employees.l_name AS repLastName 
 									FROM tblFacilities 
 									LEFT JOIN tblSalesRepByTerritories ON tblFacilities.CountryCode = tblSalesRepByTerritories.CountryCode 
