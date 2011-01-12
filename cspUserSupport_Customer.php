@@ -1,14 +1,10 @@
 <?php
 require_once('includes/cspSessionMgmt.php');
-
-if(isset($_GET['custID'])) {
-	$custID = $_GET['custID'];
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	
-<body<?php if($numSessionInfo1 > 0) { echo ' onload="activeCalls();"'; } ?>>
+<body<?php if(isset($numSessionInfo1) && $numSessionInfo1 > 0) { echo ' onload="activeCalls();"'; } ?>>
 	<title><?php echo $companyName; ?> | CSP - Support</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="theme/default/cspDefault.css" />
@@ -20,7 +16,7 @@ if(isset($_GET['custID'])) {
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body<?php if($numSessionInfo1 > 0) { echo ' onload="activeCalls();"'; } ?>>
+<body<?php if($alertSessionInfo1 == "TRUE") { echo ' onload="activeCalls();"'; } ?>>
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
@@ -40,11 +36,16 @@ if(isset($_GET['custID'])) {
 					</ul>
 				</div>
 				<div class="cbb">
+					<div class="cspSysMsg">
+						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+					</div>
 					<div class="dashLeftCol">
 						<?php require_once('includes/support/cspCustomer_Info.php'); ?>
+						<?php require_once('includes/support/cspCustomer_InternalNotes.php'); ?>
 					</div>
 					<div class="dashRightCol">
 						<?php require_once('includes/support/cspCustomer_Contacts.php'); ?>
+						<?php require_once('includes/support/cspCustomer_FileManager.php'); ?>
 					</div>
 					<div class="dashFullCol">
 						<?php require_once('includes/support/cspCustomer_RecentSupportCalls.php'); ?>

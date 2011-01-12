@@ -14,7 +14,7 @@ require_once('includes/cspSessionMgmt.php');
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body<?php if($numSessionInfo1 > 0) { echo ' onload="activeCalls();"'; } ?>>
+<body<?php if($alertSessionInfo1 == "TRUE") { echo ' onload="activeCalls();"'; } ?>>
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
