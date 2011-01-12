@@ -48,5 +48,9 @@ if(!isset($_SESSION['uid'])) {
 if(isset($_GET['msgID'])) {
 	$sysMsg = $portalMsg[$_GET['msgID']][$lang];
 }
+
+if(isset($_GET['sysMsg'])) {
+	$sysMsg = $_GET['sysMsg'];
+}
 //include_once('../includes/db_close.inc.php');
 ?>

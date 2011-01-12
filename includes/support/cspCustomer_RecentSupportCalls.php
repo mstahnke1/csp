@@ -2,18 +2,18 @@
 <?php
 include('includes/config.inc.php');
 include('includes/db_connect.inc.php');
-
-$custID = $_GET['custID'];
-$qryRecentCalls1 = "SELECT tblTickets.*, GREATEST(MAX(tblTicketMessages.Date), tblTickets.DateOpened) AS lastUpdate, tblTicketMessages.Date, employees.f_name AS firstName, employees.l_name AS lastName 
-										FROM tblTickets 
-										LEFT JOIN employees ON tblTickets.OpenedBy = employees.id 
-										LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
-										WHERE tblTickets.CustomerNumber = '$custID' AND tblTickets.Status <> 1 
-										GROUP BY tblTickets.ID 
-										ORDER BY lastUpdate DESC 
-										LIMIT 5";
-$rstRecentCalls1 = mysql_query($qryRecentCalls1) or die(mysql_error());
-$numRecentCalls1 = mysql_num_rows($rstRecentCalls1);
+if(isset($custID)) {
+	$qryRecentCalls1 = "SELECT tblTickets.*, GREATEST(MAX(tblTicketMessages.Date), tblTickets.DateOpened) AS lastUpdate, tblTicketMessages.Date, employees.f_name AS firstName, employees.l_name AS lastName 
+											FROM tblTickets 
+											LEFT JOIN employees ON tblTickets.OpenedBy = employees.id 
+											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
+											WHERE tblTickets.CustomerNumber = '$custID' AND tblTickets.Status <> 1 
+											GROUP BY tblTickets.ID 
+											ORDER BY lastUpdate DESC 
+											LIMIT 5";
+	$rstRecentCalls1 = mysql_query($qryRecentCalls1) or die(mysql_error());
+	$numRecentCalls1 = mysql_num_rows($rstRecentCalls1);
+}
 ?>
 
 <div class="cspDashModule">

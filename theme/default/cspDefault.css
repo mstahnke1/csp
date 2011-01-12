@@ -128,13 +128,18 @@ div.cspNavBarItem
 	background-color: #00FF66;
 	//background-color: #8db3ff; }
 
-div.cspContent
-{
+div.cspContent {
 	height:100%;
 	//border:1px solid gray;
 	margin-left:56px;
 	margin-right:198px;
 	font:12px arial;
+}
+
+div.posCenter {
+	margin-left:auto;
+	margin-right:auto;
+	width:30%;
 }
 
 div.dashLeftCol {
@@ -181,10 +186,14 @@ div.cspTicketComment {
 }
 
 div.cspSysMsg {
-	background:#C6DEFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
+	//background:#C6DEFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
+	background:#FFFFFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
 	font:100% arial bold;
 	padding-left: 24px;
 	margin-bottom: 10px;
+	margin-left:auto;
+	margin-right:auto;
+	width:30%;
 }
 
 fieldset {

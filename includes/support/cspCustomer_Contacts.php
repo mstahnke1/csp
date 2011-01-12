@@ -3,8 +3,7 @@
 include('includes/config.inc.php');
 include('includes/db_connect.inc.php');
 include_once('includes/functions.inc.php');
-if(isset($_GET['custID'])) {
-	$custID = $_GET['custID'];
+if(isset($custID)) {
 	$qryCustContacts1 = "SELECT * FROM clients WHERE custRef = '$custID' AND active = 0";
 	$rstCustContacts1 = mysql_query($qryCustContacts1) or die(mysql_error());
 }
