@@ -30,7 +30,7 @@ if(isset($_POST['saveAgentComment'])) {
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body>
+<body onload="focus();newAgentComment.agentComment.focus();">
 	<center>
 		<div class="cspDashModule" style="width:500px; font:12px arial;">
 			<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
@@ -53,7 +53,7 @@ if(isset($_POST['saveAgentComment'])) {
 				</tr>
 			</table>
 		</div>
-		</center>
+	</center>
 </body>
 
 <?php

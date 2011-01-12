@@ -53,7 +53,7 @@ function statusChangeTasks($ticketID, $newStatus) {
 	require_once "Mail.php";
 	if($newStatus == "close") {
 		// Check for RMA devices
-		$qryRma1 = "SELECT rmaDevices.*, deviceList.partDesc AS partDesc 
+		$qryRma1 = "SELECT rmaDevices.*, deviceList.partDesc AS partDesc, deviceList.rmaPreApproval AS preApp 
 								FROM rmaDevices 
 								LEFT JOIN deviceList ON rmaDevices.Device = `deviceList`.`part#` 
 								WHERE rmaDevices.TicketID = '$ticketID'";
@@ -71,10 +71,14 @@ function statusChangeTasks($ticketID, $newStatus) {
 			//If RMA devices are present process request
 			$date = date('Y-m-d H:i:s');
 			$rmaDevices = "";
+			$preApp = 0;
 			$agent = $_SESSION['uid'];
 			$qryRma2 = "UPDATE tblTickets SET rmaReturn = '1' WHERE ID = $ticketID LIMIT 1";
 			mysql_query($qryRma2) or die(mysql_error());
 			while($rowRma1 = mysql_fetch_assoc($resRma1)) {
+				if($rowRma1['preApp'] == 1) {
+					$preApp++;
+				}
 				switch($rowRma1['Warranty']) {
 					case 1:
 						$warranty = "Warrantied - Repair";
@@ -132,24 +136,30 @@ function statusChangeTasks($ticketID, $newStatus) {
 					mysql_select_db($dbname2);
 					mysql_query($qryRma6) or die("HF qryRma6a: ".mysql_error());
 					mysql_select_db($dbname);
-					$query11 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND (Warranty = '1' OR Warranty = '4')"; #Problem Warrantied
+					$query11 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warranty IN (1, 4)"; #Problem Warrantied
 					$result11 = mysql_query($query11) or die("HF query11: ".mysql_error());
 					$count11 = mysql_num_rows($result11);
-					$query12 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warranty = '2' AND Device IN(SELECT `part#` FROM devicelist WHERE rmaPreApproval = '1')"; #Problem NOT Warrantied
+					$query12 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warranty IN (2, 3, 5)"; #Problem NOT Warrantied
 					$result12 = mysql_query($query12) or die("Query 12: " . mysql_error());
 					$count12 = mysql_num_rows($result12);
 					if($count11 > 0 && $count12 == 0) { # If all devices are warrantied
-						$query8 = "SELECT f_name, l_name, email FROM employees WHERE dept = 5 AND active = 0";
+						$query8 = "SELECT f_name, l_name, email FROM employees WHERE (((dept = 5) OR (recRmaEmail = 1)) AND active = 0)";
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
 						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
+						$query7 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
+											VALUES ('28', '$subjectSales', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2000', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 						mysql_select_db($dbname2);
 						mysql_query($query6) or die("HF 6a: ".mysql_error());
+						mysql_query($query7) or die("HF query7: ".mysql_error());
 						mysql_select_db($dbname);
-					} elseif($count11 > 0 && $count12 > 0) { # If some devices are warranty and some not warranty but need pre-approval
+					} elseif($count11 > 0 && $count12 > 0) { # If some devices are warranty and some not warranty
 						$query8 = "SELECT f_name, l_name, email FROM employees WHERE (((dept = 5) OR (recRmaEmail = 1)) AND active = 0)";
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
-						$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair approvals **</b><br />';
+						if($preApp > 0) {
+							$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair approvals **</b><br />';
+							$rmaBodyInsert .= '<b>** ' . $count12 . ' device(s) need repair approvals **</b><br />';
+						}
 						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 						$query7 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
@@ -158,17 +168,20 @@ function statusChangeTasks($ticketID, $newStatus) {
 						mysql_query($query6) or die("6b: ".mysql_error());
 						mysql_query($query7) or die("HF query7: ".mysql_error());
 						mysql_select_db($dbname);
-					} elseif($count11 == 0 && $count12 > 0) { # If devices are not warranty and need pre-approval
+					} elseif($count11 == 0 && $count12 > 0) { # If all devices are not warranty
 						$query8 = "SELECT f_name, l_name, email FROM employees WHERE recRmaEmail = 1 AND active = 0";
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
-						$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair authorization **</b><br />';
+						if($preApp > 0) {
+							$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair authorization **</b><br />';
+							$rmaBodyInsert .= '<b>** ' . $count12 . ' device(s) need repair authorization **</b><br />';
+						}
 						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectSales', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2000', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 						mysql_select_db($dbname2);
 						mysql_query($query6) or die("6c: ".mysql_error());
 						mysql_select_db($dbname);
 					}
-						break;
+					break;
 				case 2:
 					//Direct Supply RMA tasks
 					$qryRma6 = "DELETE FROM taskinfo WHERE ticketNum = '$ticketID' AND Status = '1' AND Type = '28'";
