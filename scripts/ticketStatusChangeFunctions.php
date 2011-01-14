@@ -241,7 +241,7 @@ function statusChangeTasks($ticketID, $newStatus) {
 									VALUES ('$ticketID', '$rmaDevices', '$agent', '$date', '10')";
 			mysql_query($qryRma3) or die(mysql_error());
 		} else {
-			//If no devices are present make sure ticket is not labeled as RMA from a previous close
+			//If no devices are present make sure ticket is not labeled as RMA from a previous close -- STATUS 4
 			$qryRma2 = "UPDATE tblTickets SET rmaReturn = '0' WHERE ID = $ticketID LIMIT 1";
 			$resRma2 = mysql_query($qryRma2);
 			if(!$resRma2) {
@@ -252,6 +252,13 @@ function statusChangeTasks($ticketID, $newStatus) {
 												VALUES ('$agent', '$statement', '$browser', CURDATE(), CURTIME())";
 				mysql_query($qryRmaError);
 			}
+			// Cancel any tasks that may exist from previously processing an RMA
+			$qryRma6 = "UPDATE taskinfo 
+									SET Status = '4' 
+									WHERE ticketNum = '$ticketID' AND Status = '1' AND Type = '28'";
+			mysql_select_db($dbname2);
+			mysql_query($qryRma6) or die("Cancel Tasks: ".mysql_error());
+			mysql_select_db($dbname);
 		}
 	}
 }

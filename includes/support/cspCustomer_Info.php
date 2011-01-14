@@ -39,7 +39,7 @@ if(isset($custID)) {
 		</tr>
 		<tr>
 			<td>
-				<?php if(!is_null($rowCustInfo1['FacilityNameOther']) || $rowCustInfo1['FacilityNameOther'] != "") {
+				<?php if(!is_null($rowCustInfo1['FacilityNameOther']) && $rowCustInfo1['FacilityNameOther'] != "") {
 					?>
 					<div><span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Alternate Name:</span><span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowCustInfo1['FacilityNameOther']; ?></span></div>
 					<?php
