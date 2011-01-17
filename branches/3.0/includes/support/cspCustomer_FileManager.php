@@ -26,10 +26,10 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 					?>
 					<div id="divFileLst">
 						<div>
-							<span style="width:5%; display:inline-block; padding:1px;"> &nbsp;</span>
-							<span style="width:60%; display:inline-block; padding:1px;"><u>Description</u></span>
-							<span style="width:11%; display:inline-block; padding:1px;"><u>Size</u></span>
-							<span style="width:19%; display:inline-block; padding:1px;"><u>Filed</u></span>
+							<span style="width:5%; display:inline-block; padding:1px;"><img src="theme/default/images/trash_bin_icon.gif" width="16" height="16" /></span>
+							<span style="width:60%; display:inline-block; padding:1px; vertical-align: top;"><u>Description</u></span>
+							<span style="width:11%; display:inline-block; padding:1px; vertical-align: top;"><u>Size</u></span>
+							<span style="width:19%; display:inline-block; padding:1px; vertical-align: top;"><u>Filed</u></span>
 						</div>
 						<?php
 						while($rowFileMngr1 = mysql_fetch_assoc($resFileMngr1)) {
@@ -58,6 +58,12 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 						<?php
 					}
 					?>
+					</div>
+					<?php
+				} else {
+					?>
+					<div>
+						<span>No files found</span>
 					</div>
 					<?php
 				}
