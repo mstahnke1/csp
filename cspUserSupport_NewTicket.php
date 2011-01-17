@@ -133,7 +133,7 @@ if(isset($_GET['action']) && $_GET['action'] == "editDetails") {
 				</tr>
 			</table>
 		</div>
-		</center>
+	</center>
 </body>
 
 <?php

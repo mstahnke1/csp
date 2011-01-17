@@ -108,6 +108,12 @@ function showDiv(str) {
 	if (document.getElementById) {
 		document.getElementById(str).style.display = 'block'; 
 	}
+}
+
+function hideDiv(str) { 
+	if (document.getElementById) {
+		document.getElementById(str).style.display = 'none'; 
+	}
 } 
 
 function activeCalls() {
