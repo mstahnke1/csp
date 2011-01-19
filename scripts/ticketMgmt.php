@@ -102,7 +102,7 @@ if(isset($_GET['action']) && $_GET['action'] == "cancelTicket") {
 	$qryCanTicket1 = "UPDATE tblTickets SET Status = 1 WHERE ID = '$ticketID' LIMIT 1";
 	if(mysql_query($qryCanTicket1)) {
 		$qryCanTicket2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
-												VALUES('$ticketID', 'Ticket Canceled', '$agentID', '$date', 5)";
+												VALUES('$ticketID', 'Ticket Canceled', '$agentID', '$date', 8)";
 		if(mysql_query($qryCanTicket2)) {
 			include '../includes/db_close.inc.php';
 			die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=25"));
