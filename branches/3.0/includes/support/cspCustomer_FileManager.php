@@ -27,8 +27,8 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 					<div id="divFileLst">
 						<div>
 							<span style="width:5%; display:inline-block; padding:1px;"><img src="theme/default/images/trash_bin_icon.gif" width="16" height="16" /></span>
-							<span style="width:60%; display:inline-block; padding:1px; vertical-align: top;"><u>Description</u></span>
-							<span style="width:11%; display:inline-block; padding:1px; vertical-align: top;"><u>Size</u></span>
+							<span style="width:56%; display:inline-block; padding:1px; vertical-align: top;"><u>Description</u></span>
+							<span style="width:15%; display:inline-block; padding:1px; vertical-align: top;"><u>Size</u></span>
 							<span style="width:19%; display:inline-block; padding:1px; vertical-align: top;"><u>Filed</u></span>
 						</div>
 						<?php
@@ -51,8 +51,8 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 									 <input type="checkbox" name="chkFile" onchange="updFile('<?php echo $rowFileMngr1['id']; ?>', 'customer', '<?php echo $custID; ?>');" />
 									</form>
 								</span>
-								<span style="width:60%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $fileName; ?></span>
-								<span style="width:11%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $rowFileMngr1['size']; ?> K</span>
+								<span style="width:56%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $fileName; ?></span>
+								<span style="width:15%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $rowFileMngr1['size']; ?> K</span>
 								<span style="width:19%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo date('Y-m-d', strtotime($rowFileMngr1['timestamp'])); ?></span>
 							</div>
 						<?php
