@@ -65,63 +65,29 @@ if(isset($_POST['action']) && $_POST['action'] == "add") {
 	}
 }
 
-if(isset($_GET['action']) && $_GET['action'] == "deleteFile") {
-	$fileID = $_GET['fileID'];
-	$refType = $_GET['refType'];
-	$refNum = $_GET['refNum'];
-	$query2 = "SELECT location FROM filemanager WHERE id = '$fileID'";
-	$result2 = mysql_query($query2);
-	$row2 = mysql_fetch_assoc($result2);
-	$fileLoc = $row2['location'];
-	$fileName = basename($fileLoc);
-	if(file_exists("$fileLoc")) {
-		rename("$fileLoc", "../attachments/trash/$fileName");
-		$query3 = "UPDATE filemanager SET publish = 0 WHERE id = '$fileID' LIMIT 1";
-		$result3 = mysql_query($query3);
-		if(!$result3) {
-			echo mysql_error();
-		}
-	} else {
-		echo "File could not be found. It may have been deleted already.";
-	}
-	$qryFileMng1 = "SELECT * FROM filemanager WHERE refNumber = '$refNum' && attachType = '$refType' && publish = -1 ORDER BY timestamp DESC";
-	$resFileMng1 = mysql_query($qryFileMng1) or die(mysql_error());
-	$numFileMng1 = mysql_num_rows($resFileMng1);
-	if($numFileMng1 > 0) {
-		?>
-		<div>
-			<span style="width:5%; display:inline-block; padding:1px;"> &nbsp;</span>
-			<span style="width:60%; display:inline-block; padding:1px;"><u>Description</u></span>
-			<span style="width:11%; display:inline-block; padding:1px;"><u>Size</u></span>
-			<span style="width:19%; display:inline-block; padding:1px;"><u>Filed</u></span>
-		</div>
-		<?php
-		while($rowFileMng1 = mysql_fetch_assoc($resFileMng1)) {
-			$fileName = $rowFileMng1['name'];
-			if(findexts($rowFileMng1['description']) != findexts($rowFileMng1['name'])) {
-				$fileName .= "." . findexts($rowFileMng1['description']);
+if(isset($_POST['action']) && $_POST['action'] == "removeFiles") {
+	$custID = $_POST['custID'];
+	$refType = $_POST['refType'];
+	$refNum = $_POST['refNum'];
+	foreach ($_POST as $key => $value) {
+		if(!($key == "refType" || $key == "refNum" || $key == "action")) {
+			$fileID = $key;
+			$query2 = "SELECT location FROM filemanager WHERE id = '$fileID'";
+			$result2 = mysql_query($query2);
+			$row2 = mysql_fetch_assoc($result2);
+			$fileLoc = $row2['location'];
+			$fileName = basename($fileLoc);
+			if(file_exists("$fileLoc")) {
+				rename("$fileLoc", "../attachments/trash/$fileName");
+				$query3 = "UPDATE filemanager SET publish = 0 WHERE id = '$fileID' LIMIT 1";
+				$result3 = mysql_query($query3);
+				if(!$result3) {
+					echo mysql_error();
+				}
 			}
-			/*
-			if(file_exists("theme/default/images/icons/" . $fileType . ".png")) {
-				$fileImg = '<img src="theme/default/images/icons/' . $fileType . '.png" height="15" width="15" title=' . $fileType . ' />';
-			} else {
-				$fileImg = '<img src="theme/default/images/icons/Default.png" height="15" width="15" />';
-			}
-			*/
-			?>
-			<div class="cspMOHighlight">
-				<span style="width:5%; display:inline-block; vertical-align:top; padding:0px 1px 0px 0px;">
-					<form name="updFile<?php echo $rowFileMng1['id']; ?>">
-					 <input type="checkbox" name="chkFile" onchange="updFile('<?php echo $rowFileMng1['id']; ?>');" />
-					</form>
-				</span>
-				<span style="width:60%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $fileName; ?></span>
-				<span style="width:11%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $rowFileMng1['size']; ?> K</span>
-				<span style="width:19%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo date('Y-m-d', strtotime($rowFileMng1['timestamp'])); ?></span>
-			</div>
-			<?php
 		}
 	}
+	die(header("Location: " . $_SERVER['HTTP_REFERER'] . "&msgID=5"));
 }
 
 if(isset($_GET['action']) && $_GET['action'] == "restoreFile") {

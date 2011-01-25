@@ -142,7 +142,7 @@ if(isset($_GET['custID'])) {
 				<tr>
 					<td>
 						<div>
-							<form name="custInfo" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form name="custInfo" method="post" target="_top" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 								<div>
 									<span style="display:inline-block; width:26%; line-height:26px; vertical-align:top; text-align:right; padding:1px;">Customer Number:</span>
 									<span style="display:inline-block; width:72%; vertical-align:top;  float:right; padding:1px;"><input type="text" name="custNum" size="5" maxlength="6" value="<?php echo $custNum; ?>" <?php if(isset($_GET['custID'])) { echo 'READONLY'; } ?> /></span>
@@ -239,7 +239,7 @@ if(isset($_GET['custID'])) {
 								</div>
 								<div style="clear:both; float:right; margin-right:1px;">
 									<span><input type="hidden" name="transType" value="<?php echo $transType; ?>" /><input type="submit" name="saveCustInfo" value="Save" /></span>
-									<span><input type="button" name="cancel" value="Cancel" onClick="javascript:TINY.box.hide();" /></span>
+									<span><input type="button" name="cancel" value="Cancel" onClick="javascript:window.close();" /></span>
 								</div>
 							</form>
 						</div>
