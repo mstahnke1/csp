@@ -13,8 +13,8 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 			<td class="cspBodyHeading">
 				<span>File Manager</span>
 				<span style="float: right;">
-					<a href="javacript:void(0);" onclick="showDiv('uploadFrm');">
-						<img src="theme/default/images/icons/add_file_icon.gif" height="14" width="14" title="Add file" />
+					<a href="javascript:void(0);" onclick="showDiv('uploadFrm'); return false;">
+						<img src="theme/default/images/icons/add_file_icon.gif" height="14" width="14" border="0" title="Add file" />
 					</a>
 				</span>
 			</td>
@@ -25,39 +25,46 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 				if($numFileMngr1 > 0) {
 					?>
 					<div id="divFileLst">
-						<div>
-							<span style="width:5%; display:inline-block; padding:1px;"><img src="theme/default/images/trash_bin_icon.gif" width="16" height="16" /></span>
-							<span style="width:56%; display:inline-block; padding:1px; vertical-align: top;"><u>Description</u></span>
-							<span style="width:15%; display:inline-block; padding:1px; vertical-align: top;"><u>Size</u></span>
-							<span style="width:19%; display:inline-block; padding:1px; vertical-align: top;"><u>Filed</u></span>
-						</div>
-						<?php
-						while($rowFileMngr1 = mysql_fetch_assoc($resFileMngr1)) {
-							$fileName = $rowFileMngr1['name'];
-							if(findexts($rowFileMngr1['description']) != findexts($rowFileMngr1['name'])) {
-								$fileName .= "." . findexts($rowFileMngr1['description']);
-							}
-							/*
-							if(file_exists("theme/default/images/icons/" . $fileType . ".png")) {
-								$fileImg = '<img src="theme/default/images/icons/' . $fileType . '.png" height="15" width="15" title=' . $fileType . ' />';
-							} else {
-								$fileImg = '<img src="theme/default/images/icons/Default.png" height="15" width="15" />';
-							}
-							*/
-							?>
-							<div class="cspMOHighlight">
-								<span style="width:5%; display:inline-block; vertical-align:top; padding:0px 1px 0px 0px;">
-									<form name="updFile<?php echo $rowFileMngr1['id']; ?>">
-									 <input type="checkbox" name="chkFile" onchange="updFile('<?php echo $rowFileMngr1['id']; ?>', 'customer', '<?php echo $custID; ?>');" />
-									</form>
-								</span>
-								<span style="width:56%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $fileName; ?></span>
-								<span style="width:15%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $rowFileMngr1['size']; ?> K</span>
-								<span style="width:19%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo date('Y-m-d', strtotime($rowFileMngr1['timestamp'])); ?></span>
+						<form name="updFileList" action="scripts/fileMgmt.php" method="post">
+							<div>
+								<span style="width:5%; display:inline-block; padding:1px;">&nbsp;</span>
+								<span style="width:56%; display:inline-block; padding:1px; vertical-align: top;"><u>Description</u></span>
+								<span style="width:15%; display:inline-block; padding:1px; vertical-align: top;"><u>Size</u></span>
+								<span style="width:19%; display:inline-block; padding:1px; vertical-align: top;"><u>Filed</u></span>
 							</div>
-						<?php
-					}
-					?>
+							<?php
+							while($rowFileMngr1 = mysql_fetch_assoc($resFileMngr1)) {
+								$fileName = $rowFileMngr1['name'];
+								if(findexts($rowFileMngr1['description']) != findexts($rowFileMngr1['name'])) {
+									$fileName .= "." . findexts($rowFileMngr1['description']);
+								}
+								/*
+								if(file_exists("theme/default/images/icons/" . $fileType . ".png")) {
+									$fileImg = '<img src="theme/default/images/icons/' . $fileType . '.png" height="15" width="15" title=' . $fileType . ' />';
+								} else {
+									$fileImg = '<img src="theme/default/images/icons/Default.png" height="15" width="15" />';
+								}
+								*/
+								?>
+								<div class="cspMOHighlight">
+									<span style="width:5%; display:inline-block; vertical-align:top; padding:0px 1px 0px 0px;">
+										<input type="checkbox" name="<?php echo $rowFileMngr1['id']; ?>" />
+									</span>
+									<span style="width:56%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $fileName; ?></span>
+									<span style="width:15%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $rowFileMngr1['size']; ?> K</span>
+									<span style="width:19%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo date('Y-m-d', strtotime($rowFileMngr1['timestamp'])); ?></span>
+								</div>
+							<?php
+							}
+							?>
+							<div>
+								<input type="hidden" name="action" value="removeFiles" />
+								<input type="hidden" name="refType" value="customer" />
+								<input type="hidden" name="refNum" value="<?php echo $custID; ?>" />
+								<img src="theme/default/images/arrow_ltr.png" /><em>With selected:</em>
+								<a href="javascript:void(0)" onclick="fileDelConf();">Remove</a>
+							</div>
+						</form>
 					</div>
 					<?php
 				} else {

@@ -46,29 +46,10 @@ function updRmaDevice(deviceID, ticketID) {
 	}
 }
 
-function updFile(fileID, refType, refNum) {
-	var auth = confirm("Are you sure you want to REMOVE file?");
-	
+function fileDelConf() {
+	var auth = confirm("Are you sure you want to REMOVE the selected files?");
 	if(auth) {
-		if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-	  	ajaxRequest=new XMLHttpRequest();
-	  } else {// code for IE6, IE5
-			ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		
-		// Create a function that will receive data sent from the server
-		ajaxRequest.onreadystatechange=function() {
-	  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
-				var ajaxDisplay = document.getElementById("divFileLst");
-				ajaxDisplay.innerHTML = ajaxRequest.responseText;
-			}
-		}
-		
-		ajaxRequest.open("GET","scripts/fileMgmt.php?fileID="+fileID+"&refType="+refType+"&refNum="+refNum+"&action=deleteFile",true);
-		ajaxRequest.send();
-	} else {
-		var frmStr = "updFile"+fileID;
-		document.forms[frmStr].chkFile.checked=false;
+		document.updFileList.submit();
 	}
 }
 

@@ -163,7 +163,7 @@ if(!isset($_SESSION['uid'])) {
 	<link rel="icon" type="image/ico" href="favicon.ico" />
 </head>
 
-<body onLoad="focus();cspLoginForm.user.focus();">
+<body onLoad="document.getElementById('cspLoginForm').user.focus();">
 	<center>
 		<div class="cspContainer">
 			<div class="cspHeader">
@@ -182,7 +182,7 @@ if(!isset($_SESSION['uid'])) {
 					</div>
 					<div class="dashLeftCol">
 						<h3>Agent Login</h3>
-						<form name="cspLoginForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+						<form id="cspLoginForm" name="cspLoginForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<table>
 								<tr>
 									<td align="right">User name:</td>
