@@ -46,6 +46,25 @@ function updRmaDevice(deviceID, ticketID) {
 	}
 }
 
+function getPage(pageURL, divID) {
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	// Create a function that will receive data sent from the server
+	ajaxRequest.onreadystatechange=function() {
+  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			var ajaxDisplay = document.getElementById(divID);
+			ajaxDisplay.innerHTML = ajaxRequest.responseText;
+		}
+	}
+	
+	ajaxRequest.open("GET",pageURL,true);
+	ajaxRequest.send();
+}
+
 function fileDelConf() {
 	var auth = confirm("Are you sure you want to REMOVE the selected files?");
 	if(auth) {

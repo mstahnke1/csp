@@ -39,19 +39,21 @@ if(isset($_GET['custID'])) {
 					</ul>
 				</div>
 				<div class="cbb">
-					<div class="cspSysMsg">
-						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
-					</div>
-					<div class="dashLeftCol">
-						<?php require_once('includes/support/cspCustomer_Info.php'); ?>
-						<?php require_once('includes/support/cspCustomer_InternalNotes.php'); ?>
-					</div>
-					<div class="dashRightCol">
-						<?php require_once('includes/support/cspCustomer_Contacts.php'); ?>
-						<?php require_once('includes/support/cspCustomer_FileManager.php'); ?>
-					</div>
-					<div class="dashFullCol">
-						<?php require_once('includes/support/cspCustomer_RecentSupportCalls.php'); ?>
+					<div id="newContent">
+						<div class="cspSysMsg">
+							<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+						</div>
+						<div class="dashLeftCol">
+							<?php require_once('includes/support/cspCustomer_Info.php'); ?>
+							<?php require_once('includes/support/cspCustomer_InternalNotes.php'); ?>
+						</div>
+						<div class="dashRightCol">
+							<?php require_once('includes/support/cspCustomer_Contacts.php'); ?>
+							<?php require_once('includes/support/cspCustomer_FileManager.php'); ?>
+						</div>
+						<div class="dashFullCol">
+							<?php require_once('includes/support/cspCustomer_RecentSupportCalls.php'); ?>
+						</div>
 					</div>
 				</div>
 			</div>
