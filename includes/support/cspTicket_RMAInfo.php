@@ -66,6 +66,7 @@ mysql_select_db($dbname);
 			     				<tr>
 			     					<td colspan="2" align="center">
 			     						<input type="hidden" name="ticketID" value="<?php echo $ticketID; ?>" />
+			     						<input type="hidden" name="custID" value="<?php echo $custID; ?>" />
 			     						<input type="submit" name="returnAuth" value="Verified" /><input type="submit" name="returnAuth" value="Modified" /><input type="button" value="Cancel" onClick="javascript:window.location.reload()">
 			     					</td>
 			     				</tr>

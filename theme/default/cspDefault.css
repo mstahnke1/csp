@@ -1,8 +1,11 @@
 body {
 	MARGIN-TOP: 5px;
-	//background-image: url('images/bkg.gif');
-	//background-repeat: repeat-x;
-	//background-color: #00CC33;
+	font:10px arial;
+	/*
+	background-image: url('images/bkg.gif');
+	background-repeat: repeat-x;
+	background-color: #00CC33;
+	*/
 }
 
 div.cspContainer
