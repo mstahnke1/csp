@@ -21,6 +21,31 @@ function sbmPortalSearch(frmStr, srchType){
 	ajaxRequest.send(queryString); 
 }
 
+function srchShipments(frmStr){
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	// Create a function that will receive data sent from the server
+	ajaxRequest.onreadystatechange = function(){
+		if(ajaxRequest.readyState == 4){
+			var ajaxDisplay = document.getElementById("trackDetails");
+			ajaxDisplay.innerHTML = ajaxRequest.responseText;
+		}
+	}
+	
+	var refNum = document.forms[frmStr].refNum.value;
+	var dateFrom = document.forms[frmStr].dateFrom.value;
+	var dateTo = document.forms[frmStr].dateTo.value;
+	var queryString = "refNum=" + refNum + "&dateFrom=" + dateFrom + "&dateTo=" + dateTo;
+	
+	ajaxRequest.open("POST", "scripts/shipmentDetails.php", true);
+	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajaxRequest.send(queryString); 
+}
+
 function updRmaDevice(deviceID, ticketID) {
 	var auth = confirm("Remove device from RMA list?");
 	if(auth) {
@@ -60,6 +85,26 @@ function getPage(pageURL, divID) {
 			ajaxDisplay.innerHTML = ajaxRequest.responseText;
 		}
 	}
+	
+	ajaxRequest.open("GET",pageURL,true);
+	ajaxRequest.send();
+}
+
+function getSysDetails(pageURL, divID, sysID) {
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	// Create a function that will receive data sent from the server
+	ajaxRequest.onreadystatechange=function() {
+  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			var ajaxDisplay = document.getElementById(divID);
+			ajaxDisplay.innerHTML = ajaxRequest.responseText;
+		}
+	}
+	pageURL = pageURL+"?sysID="+sysID;
 	
 	ajaxRequest.open("GET",pageURL,true);
 	ajaxRequest.send();
