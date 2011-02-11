@@ -124,11 +124,11 @@ div.cspNavBarItem
 	float: none; }
 #navbar li:hover li a {
 	//background-color: #69f;
-	background-color: #00CC66;
+	background-color: #87CEEB;
 	border-bottom: 1px solid #fff;
 	color: #000; }
 #navbar li li a:hover {
-	background-color: #00FF66;
+	background-color: #BDEDFF;
 	//background-color: #8db3ff; }
 
 div.cspContent {

@@ -381,7 +381,7 @@ else
   							</td>
   							<td valign="bottom">
   								<A HREF="#" onClick="cal.select(document.forms['searchParams'].dateFrom,'anchor1','yyyy-MM-dd'); return false;" NAME="anchor1" ID="anchor1"><img src="images/calendar_icon.png" border="0" alt="Select" /></a>
-  								<SCRIPT LANGUAGE="JavaScript" SRC="/CalendarPopup.js"></SCRIPT>
+  								<SCRIPT LANGUAGE="JavaScript" SRC="js/CalendarPopup.js"></SCRIPT>
     							<SCRIPT LANGUAGE="JavaScript">
     								var cal = new CalendarPopup();
   								</SCRIPT>
@@ -392,7 +392,7 @@ else
   							</td>
   							<td valign="bottom">
   								<A HREF="#" onClick="cal.select(document.forms['searchParams'].dateTo,'anchor2','yyyy-MM-dd'); return false;" NAME="anchor2" ID="anchor2"><img src="images/calendar_icon.png" border="0" alt="Select" /></a>
-  								<SCRIPT LANGUAGE="JavaScript" SRC="/CalendarPopup.js"></SCRIPT>
+  								<SCRIPT LANGUAGE="JavaScript" SRC="js/CalendarPopup.js"></SCRIPT>
     							<SCRIPT LANGUAGE="JavaScript">
       							var cal = new CalendarPopup();
   								</SCRIPT>

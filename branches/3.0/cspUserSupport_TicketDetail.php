@@ -77,26 +77,28 @@ if(isset($_GET['ticketID'])) {
 					<div class="cspSysMsg">
 						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
 					</div>
-					<div class="dashLeftCol">
-						<?php require_once('includes/support/cspTicket_CustomerDetails.php'); ?>
-					</div>
-					<div class="dashRightCol">
-						<?php require_once('includes/support/cspTicket_TicketDetails.php'); ?>
-					</div>
-					<div class="dashFullCol">
-						<?php require_once('includes/support/cspTicket_RMAInfo.php'); ?>
-						<?php require_once('includes/support/cspTicket_ActiveCallThread.php'); ?>
-					</div>
-					<div class="dashRightCol">
-						<?php //require_once('includes/support/cspTicket_FileManager.php'); ?>
-					</div>
-					<div class="dashFullCol">
-						<?php
-						if($Status != "Closed" && $Status != "Canceled") {
-							require_once('includes/support/cspTicket_IssueCategories.php');
-						}
-						?>
-						<?php require_once('includes/support/cspTicket_HistoryThread.php'); ?>
+					<div id="newContent">
+						<div class="dashLeftCol">
+							<?php require_once('includes/support/cspTicket_CustomerDetails.php'); ?>
+						</div>
+						<div class="dashRightCol">
+							<?php require_once('includes/support/cspTicket_TicketDetails.php'); ?>
+						</div>
+						<div class="dashFullCol">
+							<?php require_once('includes/support/cspTicket_RMAInfo.php'); ?>
+							<?php require_once('includes/support/cspTicket_ActiveCallThread.php'); ?>
+						</div>
+						<div class="dashRightCol">
+							<?php //require_once('includes/support/cspTicket_FileManager.php'); ?>
+						</div>
+						<div class="dashFullCol">
+							<?php
+							if($Status != "Closed" && $Status != "Canceled") {
+								require_once('includes/support/cspTicket_IssueCategories.php');
+							}
+							?>
+							<?php require_once('includes/support/cspTicket_HistoryThread.php'); ?>
+						</div>
 					</div>
 				</div>
 			</div>

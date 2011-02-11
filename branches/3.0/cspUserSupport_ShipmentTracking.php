@@ -1,8 +1,8 @@
 <?php
 require_once('includes/cspSessionMgmt.php');
-if(isset($_GET['custID'])) {
-	$custID = $_GET['custID'];
-}
+include_once('includes/config.inc.php');
+include_once('includes/db_connect.inc.php');
+include_once('includes/functions.inc.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +35,6 @@ if(isset($_GET['custID'])) {
 				<div class="cspNavBar">
 					<ul id="navbar">
 						<?php require_once('includes/nav_Support.php'); ?>
-						<?php require_once('includes/nav_Customer.php'); ?>
 					</ul>
 				</div>
 				<div class="cbb">
@@ -43,16 +42,8 @@ if(isset($_GET['custID'])) {
 						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
 					</div>
 					<div id="newContent">
-						<div class="dashLeftCol">
-							<?php require_once('includes/support/cspCustomer_Info.php'); ?>
-							<?php require_once('includes/support/cspCustomer_InternalNotes.php'); ?>
-						</div>
-						<div class="dashRightCol">
-							<?php require_once('includes/support/cspCustomer_Contacts.php'); ?>
-							<?php require_once('includes/support/cspCustomer_FileManager.php'); ?>
-						</div>
 						<div class="dashFullCol">
-							<?php require_once('includes/support/cspCustomer_RecentSupportCalls.php'); ?>
+							<?php require_once('includes/support/cspShipments_Tracking.php'); ?>
 						</div>
 					</div>
 				</div>
