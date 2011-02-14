@@ -219,28 +219,36 @@ table.cspDashRow
 	//vertical-align:top;
 }
 
-div.cspMOHighlight:hover
-{
+div.cspMOHighlight:hover {
 	background-color:#F0F0F0;
 	//background-color:#B7CEEC;
 }
 
-td.cspBodyHeading
-{
+span.modListHeading {
+	display:inline-block;
+	padding:0px;
+	text-decoration:underline;
+}
+
+span.modList {
+	display:inline-block;
+	padding:0px;
+	vertical-align:top;
+}
+
+td.cspBodyHeading {
 	border-top: 1px solid #488AC7;
 	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
 	BACKGROUND-COLOR: #BDEDFF;
 }
 
-div.cspFooter
-{
+div.cspFooter {
 	height:18px;
 	//border:1px solid gray;
 	clear:both;
 }
 
-div.menuBox
-{
+div.menuBox {
 	height:50px;
 	width:50px;
 	//border:1px solid gray;
@@ -248,29 +256,24 @@ div.menuBox
 	line-height: 85px;
 }
 
-div.menuBox:hover
-{
+div.menuBox:hover {
 	//border:2px solid #00CC66;
 	text-decoration:none;
 }
 
-div.menuBox.box1
-{
+div.menuBox.box1 {
 	background-image: url('images/home_icon.gif');
 }
 
-div.menuBox.box2
-{
+div.menuBox.box2 {
 	background-image: url('images/support_button.png');
 }
 
-div.menuBox.box3
-{
+div.menuBox.box3 {
 	background-image: url('images/Sales_Icon.jpg');
 }
 
-div.menuBox.box4
-{
+div.menuBox.box4 {
 	background-image: url('images/icon_admin.png');
 }
 
