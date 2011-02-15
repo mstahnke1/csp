@@ -50,7 +50,7 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 									<span style="width:5%; display:inline-block; vertical-align:top; padding:0px 1px 0px 0px;">
 										<input type="checkbox" name="<?php echo $rowFileMngr1['id']; ?>" />
 									</span>
-									<span style="width:56%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $fileName; ?></span>
+									<span style="width:56%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><a href="attachments/<?php echo $rowFileMngr1['location']; ?>"><?php echo $fileName; ?></a></span>
 									<span style="width:15%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo $rowFileMngr1['size']; ?> K</span>
 									<span style="width:19%; display:inline-block; line-height: 18px; padding:1px; vertical-align:top;"><?php echo date('Y-m-d', strtotime($rowFileMngr1['timestamp'])); ?></span>
 								</div>
