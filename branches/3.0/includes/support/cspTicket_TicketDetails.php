@@ -5,7 +5,7 @@ $rowTicketDetails1 = mysql_fetch_array($rstTicketDetails1);
 if(is_null($rowTicketDetail1['categoryCode'])) {
 	$categoryCode = "Undefined";
 } else {
-	$categoryCode = $rowTicketDetail1['categoryCode'];
+	$categoryCode = $rowTicketDetail1['catDesc'];
 }
 mysql_select_db($dbname2);
 $qryTicketDetails2 = "SELECT * FROM taskinfo WHERE ticketNum = '$ticketID'";
@@ -26,7 +26,7 @@ mysql_select_db($dbname);
 				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Opened By:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $openedBy; ?></span>
 				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Date Created:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $rowTicketDetail1['DateOpened']; ?></span>
 				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Last Updated:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $rowTicketDetails1['lastUpdate']; ?></span>
-				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Linked Tasks:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><a href="ver2/task/task.php?action=UPDATE&viewticketNum=<?php echo $ticketID; ?>" target="_blank"><?php echo $taskCount; ?></a></span>
+				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Linked Tasks:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><a href="task/task.php?action=UPDATE&viewticketNum=<?php echo $ticketID; ?>" target="_blank"><?php echo $taskCount; ?></a></span>
 				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Issue Category:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $categoryCode; ?></span>
 			</td>
 		</tr>

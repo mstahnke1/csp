@@ -12,9 +12,10 @@ if(isset($_GET['msgID'])) {
 }
 
 if(isset($_GET['ticketID'])) {
-	$qryTicketDetail1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName 
+	$qryTicketDetail1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName, issueCategories.description AS catDesc 
 											FROM tblTickets 
 											LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
+											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
 											WHERE tblTickets.ID = '$ticketID'";
 	$rstTicketDetail1 = mysql_query($qryTicketDetail1) or die(mysql_error());
 	$rowTicketDetail1 = mysql_fetch_array($rstTicketDetail1);

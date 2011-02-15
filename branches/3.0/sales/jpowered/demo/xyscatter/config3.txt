@@ -1,0 +1,82 @@
+/* --------------------------------------------------------------------------------------------- */
+/*                                                                                               */
+/* For the full range of options and parameter meanings please see:-                             */
+/*                                                                                               */
+/* http://www.jpowered.com/php-scripts/adv-graph-chart/documentation/configurationOptions.htm    */
+/*                                                                                               */
+/* --------------------------------------------------------------------------------------------- */
+
+width:  700
+height: 400
+
+backgroundcolor:   #FFFFFF
+
+series1:           #CC0099|Product X|left|15|diamond|true|solid|
+
+grid:              true
+axis:              true
+3d:                false
+depth3d:           10
+ndecplaces:        0
+thousandseparator: ,
+displayvalues:     false
+
+chartStartY:       0
+chartStartX:       0
+chartscale:        80000
+chartscaleX:       20000
+
+
+gridbgcolor:       #006B6B
+gridbgcolor2:      #208B8B
+axiscolor:         dark grey
+floorcolor:        light gray
+gridcolor:         #BFFFFF
+gridstyle:         dotted
+
+ylables:           true
+ylabelfont:        Arial
+ylabelfontsize:    10
+ylabelfontbold:    false
+ylabelfontitalic:  false
+ylabelcolor:       black
+y2labelcolor:      blue
+ylabelpre:         $
+ylabelpost: 
+
+titletext:         Sales vs Downloads
+titlefont:         Arial
+titlefontsize:     12
+titlefontbold:     true
+titlefontitalic:   false
+titlecolor:        #006B6B
+titleposition:     -1,50
+
+xtitletext:        Number of Downloads
+xtitlefont:        Arial
+xtitlefontsize:    11
+xtitlefontbold:    true
+xtitlefontitalic:  false
+xtitlecolor:       #006B6B
+
+ytitletext:        Value of Sales
+ytitlefont:        Arial
+ytitlefontsize:    11
+ytitlefontbold:    true
+ytitlefontitalic:  false
+ytitlecolor:       #006B6B
+
+xlabelcolor:       #006B6B
+ylabelcolor:       #006B6B
+
+
+legend:            true
+legendstyle:       horizontal
+legendbgcolor:     #FFFFFF
+legendbordercolor: #FFFFFF
+legendtextcolor:   #006B6B
+legendtitle: 
+legendfont:        Arial
+legendfontsize:    10
+legendfontbold:    false
+legendfontitalic:  true
