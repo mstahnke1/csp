@@ -1,0 +1,45 @@
+﻿<html>
+
+<head>
+<title>Graph Test</title>
+
+<script type="text/javascript">
+function createGraph() {
+
+        // which form ?
+        formIndex = 0;
+        for (i=0;i<document.forms.length;i++) {
+                if (document.forms[i].name == "plotGraph") {
+                        formIndex = i;
+                }
+        }
+
+        // new image tag
+        newcontent  = '<img src="/csPortal_dev/sales/jpowered/graph/vertical-bar-graph.php?';
+        newcontent += 'datascript=../../graphtest/datafunction.php&';
+        newcontent += 'config=../../graphtest/config.php';
+        newcontent += 'width=800';
+        newcontent += 'height=400>';
+
+        document.getElementById("graphContent").innerHTML = newcontent;
+
+        // return false to stop the 'normal' form submission
+        // process and prevent the whole page being refreshed
+        return false;
+}
+</script>
+</head>
+
+<body>
+
+<div id="graphContent">
+<img src="/csPortal_dev/sales/jpowered/graph/vertical-bar-graph.php?
+datascript=../../graphtest/datafunction.php&
+config=../../graphtest/config.txt"
+width=800
+height=400>
+</div>
+
+</body>
+
+</html>

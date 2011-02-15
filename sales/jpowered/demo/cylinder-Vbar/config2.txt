@@ -1,0 +1,83 @@
+/* --------------------------------------------------------------------------------------------- */
+/*                                                                                               */
+/* For the full range of options and parameter meanings please see:-                             */
+/*                                                                                               */
+/* http://www.jpowered.com/php-scripts/adv-graph-chart/documentation/configurationOptions.htm    */
+/*                                                                                               */
+/* --------------------------------------------------------------------------------------------- */
+
+width:  700
+height: 400
+
+series1:           orange|Product X
+
+quality:           medium
+
+outline:           true
+gradientfill:      true
+backgroundcolor:   white
+
+grid:              true
+axis:              true
+vspace:            25
+nrows:             10
+ndecplaces:        0
+barwidth:          70
+barspacing:        10
+
+chartscale:        100
+chartstarty:       0
+
+gridbgcolor:       #00CC80
+gridbgcolor2:      #00EEA0
+axiscolor:         dark green
+floorcolor:        #00CC80
+gridcolor:         dark green
+gridstyle:         dotted
+
+ylables:           true
+ylabelfont:        Arial
+ylabelfontsize:    11
+ylabelfontbold:    false
+ylabelfontitalic:  false
+ylabelcolor:       #444444
+y2labelcolor:      blue
+ylabelpost:        pts 
+
+titletext:         Total Score for the Season
+titlefont:         Arial
+titlefontsize:     12
+titlefontbold:     true
+titlefontitalic:   false
+titlecolor:        #444444
+titleposition:     -1,50
+
+
+xtitletext:        Player
+xtitlefont:        Arial
+xtitlefontsize:    11
+xtitlefontbold:    true
+xtitlefontitalic:  false
+xtitlecolor:       #444444
+
+ytitletext:        Score
+ytitlefont:        Arial
+ytitlefontsize:    11
+ytitlefontbold:    true
+ytitlefontitalic:  false
+ytitlecolor:       #444444
+
+xlabels:           John|Robert|Janice|Alf|Susan|
+xlabelorientation: Up Angle
+xlabeloffset:      0
+xlabelfont:        Arial
+xlabelfontsize:    11
+xlabelfontbold:    false
+xlabelfontitalic:  false
+xlabelcolor:       #444444
+
+legend:            false
+legendfont:        Arial
+legendfontsize:    10
+legendfontbold:    false
+legendfontitalic:  true
