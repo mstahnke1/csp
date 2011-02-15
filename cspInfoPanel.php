@@ -8,7 +8,7 @@ if(isset($_SESSION['uid'])) {
 			<span style="float:right; padding-right:2px;"><a href="JavaScript:void(0);" onclick="window.location='csp_UserLogin.php?action=logout'">[Log Out]</a></span>
 		</div>
 		<div>Date: <?php echo date("D M jS Y"); ?></div>
-		<div class="cspInfoPanelMsg">Happy Thanksgiving!</div>
+		<div class="cspInfoPanelMsg"></div>
 	</div>
 	<?php
 }
