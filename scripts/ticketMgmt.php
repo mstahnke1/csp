@@ -142,7 +142,7 @@ if(isset($_GET['returnAuth'])) {
 		$subject = "Repair ticket request " . $ticketID . " (" . $facility . ")";
 		$subject = nl2br(stripslashes(fix_apos("'", "''", $subject)));
 		$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, Cancelationdate, ticketNum, CustomerNumber)
-							VALUES ('11', '$subject', '2', '9', '$subject', '$date', '$dueDate', '2002', '$_SESSION[uid]', '$date', '$ticketID', '$custNum')";
+							VALUES ('11', '$subject', '2', '9', '$subject', '$date', '$dueDate', '2002', '$_SESSION[uid]', '$date', '$ticketID', '$custID')";
 		if(mysql_query($query6)) {
 			$query3 = "SELECT MAX(ID) FROM taskinfo";
 			if($result3 = mysql_query($query3)) {
