@@ -126,7 +126,6 @@ function statusChangeTasks($ticketID, $newStatus) {
 			$rmaSubject = "Customer return request " . $ticketID . " (" . $rowRma4['facilityName'] . ")";
 			$createDate = date('Y-m-d H:i:s');
 			$dueDate = (date('Y-m-d H:i:s', mktime(date("H"), date("i"), date("s"), date("m"), date("d")+1, date("Y"))));
-			$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
 			switch($rowRma4['TypeOfSale']) {
 				case 1:
 					//HomeFree RMA Tasks
@@ -145,6 +144,7 @@ function statusChangeTasks($ticketID, $newStatus) {
 					if($count11 > 0 && $count12 == 0) { # If all devices are warrantied
 						$query8 = "SELECT f_name, l_name, email FROM employees WHERE (((dept = 5) OR (recRmaEmail = 1)) AND active = 0)";
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
+						$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
 						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 						$query7 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
@@ -158,8 +158,8 @@ function statusChangeTasks($ticketID, $newStatus) {
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
 						if($preApp > 0) {
 							$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair approvals **</b><br />';
-							$rmaBodyInsert .= '<b>** ' . $count12 . ' device(s) need repair approvals **</b><br />';
 						}
+						$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
 						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 						$query7 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
@@ -173,8 +173,8 @@ function statusChangeTasks($ticketID, $newStatus) {
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
 						if($preApp > 0) {
 							$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair authorization **</b><br />';
-							$rmaBodyInsert .= '<b>** ' . $count12 . ' device(s) need repair authorization **</b><br />';
 						}
+						$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
 						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectSales', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2000', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 						mysql_select_db($dbname2);
@@ -202,7 +202,8 @@ function statusChangeTasks($ticketID, $newStatus) {
 						$subjectInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaSubject)));
 					}
 					$query8 = "SELECT f_name, l_name, email FROM employees WHERE recRmaEmail = 1 AND active = 0";
-					$result8 = mysql_query($query8);
+					$result8 = mysql_query($query8) or die("8: ".mysql_error());
+					$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
 					$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 										VALUES ('28', '$subjectInsert', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2000', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 					mysql_select_db($dbname2);
@@ -237,9 +238,10 @@ function statusChangeTasks($ticketID, $newStatus) {
 					die(header('Location: ../cspUserSupport_TicketDetail.php?ticketID=' . $ticketID . '&msgID=16'));
 				}
 			}
+			$rmaDevices = nl2br(stripslashes(fix_apos("'", "''", $rmaDevices)));
 			$qryRma3 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType)
 									VALUES ('$ticketID', '$rmaDevices', '$agent', '$date', '10')";
-			mysql_query($qryRma3) or die(mysql_error());
+			mysql_query($qryRma3) or die("qryRma3: ".mysql_error());
 		} else {
 			//If no devices are present make sure ticket is not labeled as RMA from a previous close -- STATUS 4
 			$qryRma2 = "UPDATE tblTickets SET rmaReturn = '0' WHERE ID = $ticketID LIMIT 1";
