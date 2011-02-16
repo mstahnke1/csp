@@ -13,7 +13,7 @@ div.cspContainer
 	width:1000px;
 	height:100%;
 	margin:5px;
-	//border:1px solid gray;
+	/*border:1px solid gray;*/
 	line-height:110%;
 	BACKGROUND-COLOR: #FFFFFF;
 }
@@ -21,7 +21,7 @@ div.cspContainer
 div.cspHeader
 {
 	height:60px;
-	//border:1px solid gray;
+	/*border:1px solid gray;*/
 	clear:both;
 }
 
@@ -48,11 +48,13 @@ div.cspLeftPanel
 	float:left;
 	width:52px;
 	height:100%;
+	margin-top:10px;
+	/*
 	//height:100%;
 	//overflow: auto;
-	margin-top:10px;
 	//background:#E0E0E0;
 	//border-right:1px solid gray;
+	*/
 }
 
 div.cspRightPanel
@@ -62,7 +64,7 @@ div.cspRightPanel
 	height:300px;
 	overflow: auto;
 	margin:0px;
-	//border-left:3px solid gray;
+	/*border-left:3px solid gray;*/
 	font:10px arial;
 }
 
@@ -104,7 +106,7 @@ div.cspNavBarItem
 #navbar li a {
 	display: block;
 	padding: 3px 3px;
-	//background-color: #5e8ce9;
+	/*background-color: #5e8ce9;*/
 	background:url('images/NavBarArrow.gif') no-repeat 0% 50%;
 	padding-left:18px;
 	color: #000000;
@@ -112,7 +114,7 @@ div.cspNavBarItem
 	text-decoration: none; }
 #navbar li ul {
 	display: none; 
-	//width: 10em; /* Width to help Opera out */
+	/*width: 10em; /* Width to help Opera out */
 	background-color: #69f;}
 #navbar li:hover ul {
 	display: block;
@@ -123,17 +125,18 @@ div.cspNavBarItem
 #navbar li:hover li {
 	float: none; }
 #navbar li:hover li a {
-	//background-color: #69f;
+	/*background-color: #69f;*/
 	background-color: #87CEEB;
 	border-bottom: 1px solid #fff;
 	color: #000; }
 #navbar li li a:hover {
 	background-color: #BDEDFF;
-	//background-color: #8db3ff; }
+	/*background-color: #8db3ff;*/
+}
 
 div.cspContent {
 	height:100%;
-	//border:1px solid gray;
+	/*border:1px solid gray;*/
 	margin-left:56px;
 	margin-right:198px;
 	font:12px arial;
@@ -146,13 +149,13 @@ div.posCenter {
 }
 
 div.dashLeftCol {
-	//border:1px solid gray;
+	/*border:1px solid gray;*/
 	float:left;
 	width:49%;
 }
 
 div.dashRightCol {
-	//border:1px solid gray;
+	/*border:1px solid gray;*/
 	float:right;
 	width:49%;
 }
@@ -163,13 +166,15 @@ div.dashFullCol {
 }
 
 div.cspDashModule {
+	/*
 	//display:inline-block;
 	//width:49%;
 	//vertical-align:top;
+	*/
 }
 
 div.rmaStatusInfo {
-	//background-color: #C6E2FF;
+	/*background-color: #C6E2FF;*/
 	padding: 1px;
 	margin: 1px;
 	border-bottom: dashed 1px #999999;
@@ -189,7 +194,7 @@ div.cspTicketComment {
 }
 
 div.cspSysMsg {
-	//background:#C6DEFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
+	/*background:#C6DEFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;*/
 	background:#FFFFFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;
 	font:100% arial bold;
 	padding-left: 24px;
@@ -214,14 +219,16 @@ legend {
 table.cspDashRow
 {
 	margin-bottom:10px;
-	//margin-left:5px;
 	width:100%;
+	/*
+	//margin-left:5px;
 	//vertical-align:top;
+	*/
 }
 
 div.cspMOHighlight:hover {
 	background-color:#F0F0F0;
-	//background-color:#B7CEEC;
+	/*background-color:#B7CEEC;*/
 }
 
 span.modListHeading {
@@ -244,20 +251,20 @@ td.cspBodyHeading {
 
 div.cspFooter {
 	height:18px;
-	//border:1px solid gray;
+	/*border:1px solid gray;*/
 	clear:both;
 }
 
 div.menuBox {
 	height:50px;
 	width:50px;
-	//border:1px solid gray;
+	/*border:1px solid gray;*/
 	font: small-caps bold 13px arial;
 	line-height: 85px;
 }
 
 div.menuBox:hover {
-	//border:2px solid #00CC66;
+	/*border:2px solid #00CC66;*/
 	text-decoration:none;
 }
 

@@ -12,7 +12,7 @@ if(isset($_GET['msgID'])) {
 }
 
 if(isset($_GET['ticketID'])) {
-	$qryTicketDetail1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName, issueCategories.description AS catDesc 
+	$qryTicketDetail1 = "SELECT tblTickets.*, tblFacilities.FacilityName AS facilityName, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
 											FROM tblTickets 
 											LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 

@@ -5,7 +5,19 @@ $rowTicketDetails1 = mysql_fetch_array($rstTicketDetails1);
 if(is_null($rowTicketDetail1['categoryCode'])) {
 	$categoryCode = "Undefined";
 } else {
-	$categoryCode = $rowTicketDetail1['catDesc'];
+	$catDesc = $rowTicketDetail1['catDesc'];
+	$catCode = $rowTicketDetail1['parentCode'];
+	$i = 1;
+	while($i > 0) {
+		$qryCatCode1 = "SELECT * FROM issueCategories WHERE code = '$catCode'";
+		$rstCatCode1 = mysql_query($qryCatCode1);
+		$i = mysql_num_rows($rstCatCode1);
+		$rowCatCode1 = mysql_fetch_assoc($rstCatCode1);
+		if($i > 0) {
+			$catDesc = $rowCatCode1['description'] . " -> " . $catDesc;
+		}
+		$catCode = $rowCatCode1['parentCode'];
+	}
 }
 mysql_select_db($dbname2);
 $qryTicketDetails2 = "SELECT * FROM taskinfo WHERE ticketNum = '$ticketID'";
@@ -27,7 +39,7 @@ mysql_select_db($dbname);
 				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Date Created:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $rowTicketDetail1['DateOpened']; ?></span>
 				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Last Updated:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $rowTicketDetails1['lastUpdate']; ?></span>
 				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Linked Tasks:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><a href="task/task.php?action=UPDATE&viewticketNum=<?php echo $ticketID; ?>" target="_blank"><?php echo $taskCount; ?></a></span>
-				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Issue Category:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $categoryCode; ?></span>
+				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Issue Category:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $catDesc; ?></span>
 			</td>
 		</tr>
 	</table>
