@@ -47,7 +47,7 @@ if(isset($_POST['action']) && $_POST['action'] == "add") {
     			if(move_uploaded_file($_FILES["uploadFile"]["tmp_name"],
     				"../attachments/$attachType/$refNumber/" . $fileName))
     			{
-	    			$fileLocation = "../attachments/$attachType/$refNumber/" . $fileName;
+	    			$fileLocation = "attachments/$attachType/$refNumber/" . $fileName;
 	    			$qryFileMngr1 = "INSERT INTO filemanager (name, description, size, fileType, location, refNumber, attachType, addedBy) VALUES
 	    							('$fileDesc', '$fileName', '$fileSize', '$fileType', '$fileLocation', '$refNumber', '$attachType', '$_SESSION[uid]')";
 	    			$resFileMngr1 = mysql_query($qryFileMngr1) or die(mysql_error());
