@@ -1,5 +1,6 @@
 <!-- START New Ticket Module -->
 <?php
+require_once('includes/cspSessionMgmt.php');
 include_once('includes/config.inc.php');
 include('includes/db_connect.inc.php');
 require_once('includes/functions.inc.php');
