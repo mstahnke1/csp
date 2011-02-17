@@ -44,8 +44,7 @@ if(isset($_POST['action']) && $_POST['action'] == "add") {
   	  		if(!is_dir("../attachments/$attachType/$refNumber")) {
 						mkdir("../attachments/$attachType/$refNumber");
 					}
-    			if(move_uploaded_file($_FILES["uploadFile"]["tmp_name"],
-    				"../attachments/$attachType/$refNumber/" . $fileName))
+    			if(move_uploaded_file($_FILES["uploadFile"]["tmp_name"], "../attachments/$attachType/$refNumber/" . $fileName))
     			{
 	    			$fileLocation = "attachments/$attachType/$refNumber/" . $fileName;
 	    			$qryFileMngr1 = "INSERT INTO filemanager (name, description, size, fileType, location, refNumber, attachType, addedBy) VALUES

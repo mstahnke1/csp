@@ -3,7 +3,7 @@ $qryTicketDetails1 = "SELECT MAX(Date) AS lastUpdate FROM tblTicketMessages WHER
 $rstTicketDetails1 = mysql_query($qryTicketDetails1) or die(mysql_error());
 $rowTicketDetails1 = mysql_fetch_array($rstTicketDetails1);
 if(is_null($rowTicketDetail1['categoryCode'])) {
-	$categoryCode = "Undefined";
+	$catDesc = "Undefined";
 } else {
 	$catDesc = $rowTicketDetail1['catDesc'];
 	$catCode = $rowTicketDetail1['parentCode'];
