@@ -76,8 +76,8 @@ if(isset($_POST['action']) && $_POST['action'] == "removeFiles") {
 			$row2 = mysql_fetch_assoc($result2);
 			$fileLoc = $row2['location'];
 			$fileName = basename($fileLoc);
-			if(file_exists("$fileLoc")) {
-				rename("$fileLoc", "../attachments/trash/$fileName");
+			if(file_exists("../$fileLoc")) {
+				rename("../$fileLoc", "../attachments/trash/$fileName");
 				$query3 = "UPDATE filemanager SET publish = 0 WHERE id = '$fileID' LIMIT 1";
 				$result3 = mysql_query($query3);
 				if(!$result3) {
