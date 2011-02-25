@@ -1,7 +1,8 @@
 <div class="cspDashModule">	
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td class="cspTicketHeading">Problem Details
+			<td class="cspTicketHeading">
+				<span style="display:inline-block; float:left;">Problem Details</span>
 				<?php
 				if(!($Status == "Closed" || $Status == "Canceled")) {
 					?>
@@ -13,10 +14,22 @@
 		</tr>
 		<tr>
 			<td>
-				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Facility:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $rowTicketDetail1['facilityName']; ?></span>
-				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Reported By:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $rowTicketDetail1['Contact']; ?></span>
-				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Contact Number:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo formatPhone($rowTicketDetail1['ContactPhone']); ?>&nbsp;ext&nbsp;<?php echo $rowTicketDetail1['Extension']; ?></span>
-				<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Description:</span><span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:2px 1px 1px 1px"><?php echo $rowTicketDetail1['Summary']; ?></span>
+				<div>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Facility:</span>
+					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['facilityName']; ?></span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Reported By:</span>
+					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['Contact']; ?></span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Contact Number:</span>
+					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo formatPhone($rowTicketDetail1['ContactPhone']); ?>&nbsp;ext&nbsp;<?php echo $rowTicketDetail1['Extension']; ?></span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Description:</span>
+					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['Summary']; ?></span>
+				</div>
 			</td>
 		</tr>
 	</table>

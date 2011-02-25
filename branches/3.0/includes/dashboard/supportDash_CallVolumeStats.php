@@ -15,7 +15,7 @@ $qryDashCallVol1 = "SELECT COUNT(tblTickets.id) as ticketCount, tblTickets.id AS
 										AND tblTicketMessages.msgType = 2 
 										GROUP BY custNum 
 										ORDER BY ticketCount DESC 
-										LIMIT 15";
+										LIMIT 25";
 $rstDashCallVol1 = mysql_query($qryDashCallVol1) or die(mysql_error());
 $numDashCallVol1 = mysql_num_rows($rstDashCallVol1);
 ?>
