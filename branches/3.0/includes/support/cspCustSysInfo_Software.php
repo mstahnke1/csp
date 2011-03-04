@@ -25,32 +25,20 @@ switch ($rowSysInfo1['SystemType']) {
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">AMS Version:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysInfo1['SystemAMSVersion']; ?></span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">AMS Version:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['SystemAMSVersion']; ?></span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">License:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $licType; ?></span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">License:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $licType; ?></span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">User Licenses:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysInfo1['clientLic']; ?></span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">User Licenses:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['clientLic']; ?></span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Database Type:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysInfo1['dbType']; ?></span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">Database Type:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['dbType']; ?></span>
 				</div>
 			</td>
 		</tr>

@@ -11,7 +11,7 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<td class="cspBodyHeading">
-				<span>File Manager</span>
+				<span style="float: left;">File Manager</span>
 				<span style="float: right;">
 					<a href="javascript:void(0);" onclick="showDiv('uploadFrm'); return false;">
 						<img src="theme/default/images/icons/add_file_icon.gif" height="14" width="14" border="0" title="Add file" />

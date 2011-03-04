@@ -9,7 +9,7 @@ $qryTicketNav2 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warr
 $resTicketNav2 = mysql_query($qryTicketNav2);
 $numTicketNav2 = mysql_num_rows($resTicketNav2);
 ?>
-<li><a href="#">Ticket</a><ul>
+<li><a href="cspUserSupport_TicketDetail.php?ticketID=<?php echo $ticketID; ?>">Ticket</a><ul>
 	<?php
 	if($Status == "Open" || $Status == "Escalated") {
 		if($numTicketDetail3 > 0) {

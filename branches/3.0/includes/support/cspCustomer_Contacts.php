@@ -21,15 +21,22 @@ if(isset($custID)) {
 					?>
 					<div style="padding-bottom:5px;">
 						<span style="display:inline-block; width:98%; vertical-align:top;"><?php echo $rowCustContacts1['f_name'] . " " . $rowCustContacts1['l_name'] . " <em>(" . $rowCustContacts1['position'] . ")</em>"; ?></span>
+					</div>
 						<?php
 						if(!(is_null($rowCustContacts1['phone1']) || $rowCustContacts1['phone1'] == "")) {
 							?>
-							<span style="display:inline-block; width:25%; vertical-align:top; text-align:right; padding:1px 1px 1px 10px;">Phone:</span><span style="display:inline-block; width:70%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo formatPhone($rowCustContacts1['phone1']); ?></span>
+							<div>
+								<span style="display:inline-block; width:25%; vertical-align:top; text-align:right; float:left; padding:1px 1px 1px 10px;">Phone:</span>
+								<span style="display:inline-block; width:70%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo formatPhone($rowCustContacts1['phone1']); ?></span>
+							</div>
 							<?php
 						}
 						if(!(is_null($rowCustContacts1['email']) || $rowCustContacts1['email'] == "")) {
 							?>
-							<span style="display:inline-block; width:25%; vertical-align:top; text-align:right; padding:1px 1px 1px 10px;">Email:</span><span style="display:inline-block; width:70%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $rowCustContacts1['email']; ?></span>
+							<div>
+								<span style="display:inline-block; width:25%; vertical-align:top; text-align:right; float:left; padding:1px 1px 1px 10px;">Email:</span>
+								<span style="display:inline-block; width:70%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowCustContacts1['email']; ?></span>
+							</div>
 							<?php
 						}
 						?>

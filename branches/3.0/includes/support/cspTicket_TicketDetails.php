@@ -34,31 +34,31 @@ mysql_select_db($dbname);
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:1px;">Ticket ID:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; float:left; text-align:right; padding:1px;">Ticket ID:</span>
 					<span style="display:inline-block; width:68%; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['ID']; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:1px;">Status:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; float:left; text-align:right; padding:1px;">Status:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $Status; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:1px;">Opened By:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; float:left; text-align:right; padding:1px;">Opened By:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $openedBy; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:1px;">Date Created:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; float:left; text-align:right; padding:1px;">Date Created:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['DateOpened']; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:1px;">Last Updated:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; float:left; text-align:right; padding:1px;">Last Updated:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetails1['lastUpdate']; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:1px;">Linked Tasks:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; float:left; text-align:right; padding:1px;">Linked Tasks:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><a href="task/task.php?action=UPDATE&viewticketNum=<?php echo $ticketID; ?>" target="_blank"><?php echo $taskCount; ?></a></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:1px;">Issue Category:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; float:left; text-align:right; padding:1px;">Issue Category:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $catDesc; ?></span>
 				</div>
 			</td>

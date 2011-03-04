@@ -7,7 +7,12 @@ require_once('includes/cspSessionMgmt.php');
 <head>
 	<title><?php echo $companyName; ?> | CSP - Home</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="theme/default/cspDefault.css" />
+	<![if !IE]>
+		<link rel="stylesheet" type="text/css" href="theme/default/cspDefault.css" />
+	<![endif]>
+	<![if IE]>
+		<link rel="stylesheet" type="text/css" href="theme/default/cspDefaultIE.css" />
+	<![endif]>
 	<script type="text/javascript" src="js/cb.js"></script>
 	<script type="text/javascript" src="js/loadPage.js"></script>
 	<script type="text/javascript" src="js/functions.js"></script>

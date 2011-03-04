@@ -72,15 +72,22 @@ if(isset($_POST['saveNewCall'])) {
 		<div class="cspDashModule" style="width:400px; font:12px arial;">
 			<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 				<tr>
-					<td class="cspBodyHeading">Create New Ticket</td>
+					<td class="cspBodyHeading">Start New Call</td>
 				</tr>
 				<tr>
 					<td>
 						<form name="newTicket" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<div>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Ticket:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $ticketID; ?></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Facility:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $rowNewCall1['facilityName']; ?></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Call Type:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px">
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px;">Ticket:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $ticketID; ?></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px;">Facility:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowNewCall1['facilityName']; ?></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; line-height:20px; vertical-align:top; text-align:right; float:left; padding:1px;">Call Type:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;">
 									<select name="callType">
 										<option value="0" <?php if($callType == 0){ echo 'selected="selected"'; } ?>>Office Hours Call Center</option>
 										<option value="1" <?php if($callType == 1){ echo 'selected="selected"'; } ?>>After Hours Call Center</option>
@@ -89,8 +96,14 @@ if(isset($_POST['saveNewCall'])) {
 										<option value="3" <?php if($callType == 3){ echo 'selected="selected"'; } ?>>Proactive Call</option>
 									</select>
 								</span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Reported By:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="reportedBy" value="<?php echo $rowNewCall1['Contact']; ?>" /></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Contact Number:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="contactNumber" value="<?php echo $rowNewCall1['ContactPhone']; ?>" maxlength="10" size="10" /></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; line-height:24px; vertical-align:top; text-align:right; float:left; padding:1px;">Reported By:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="reportedBy" value="<?php echo $rowNewCall1['Contact']; ?>" /></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; line-height:24px; vertical-align:top; text-align:right; float:left; padding:1px;">Contact Number:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="contactNumber" value="<?php echo $rowNewCall1['ContactPhone']; ?>" maxlength="10" size="10" /></span>
 							</div>
 							<div style="clear:both; float:right; margin-right:1px;">
 								<span><input type="hidden" name="ticketID" value="<?php echo $ticketID; ?>" /><input type="submit" name="saveNewCall" value="Start" /></span><span><input type="button" name="cancel" value="Cancel" onClick="javascript:TINY.box.hide();" /></span>
@@ -100,7 +113,7 @@ if(isset($_POST['saveNewCall'])) {
 				</tr>
 			</table>
 		</div>
-		</center>
+	</center>
 </body>
 
 <?php
