@@ -15,19 +15,19 @@
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Facility:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; float:left; padding:1px;">Facility:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['facilityName']; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Reported By:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; float:left; padding:1px;">Reported By:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['Contact']; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Contact Number:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; float:left; padding:1px;">Contact Number:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo formatPhone($rowTicketDetail1['ContactPhone']); ?>&nbsp;ext&nbsp;<?php echo $rowTicketDetail1['Extension']; ?></span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; padding:2px 1px 1px 5px;">Description:</span>
+					<span style="display:inline-block; width:28%; vertical-align:top; text-align:right; float:left; padding:1px;">Description:</span>
 					<span style="display:inline-block; width:68%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowTicketDetail1['Summary']; ?></span>
 				</div>
 			</td>

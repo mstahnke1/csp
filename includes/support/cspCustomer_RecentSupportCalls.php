@@ -27,11 +27,11 @@ if(isset($custID)) {
 				if($numRecentCalls1 > 0) {
 					?>
 					<div>
-						<span style="width:6%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Ticket</u></span>
-						<span style="width:8%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Status</u></span>
-						<span style="width:15%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Reported By</u></span>
-						<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Last Updated</u></span>
-						<span style="width:49%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><u>Problem Description</u></span>
+						<span style="width:6%; display:inline-block; vertical-align:top; padding:1px;"><u>Ticket</u></span>
+						<span style="width:8%; display:inline-block; vertical-align:top; padding:1px;"><u>Status</u></span>
+						<span style="width:15%; display:inline-block; vertical-align:top; padding:1px;"><u>Reported By</u></span>
+						<span style="width:18%; display:inline-block; vertical-align:top; padding:1px;"><u>Last Updated</u></span>
+						<span style="width:49%; display:inline-block; vertical-align:top; padding:1px;"><u>Problem Description</u></span>
 					</div>
 					<?php
 					while($rowRecentCalls1 = mysql_fetch_array($rstRecentCalls1)) {
@@ -47,20 +47,20 @@ if(isset($custID)) {
 						}
 						?>
 						<a href="cspUserSupport_TicketDetail.php?ticketID=<?php echo $rowRecentCalls1['ID']; ?>">
-						<div class="cspMOHighlight">
-							<span style="width:6%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRecentCalls1['ID']; ?></span>
-							<span style="width:8%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $Status; ?></span>
-							<span style="width:15%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRecentCalls1['Contact']; ?></span>
-							<span style="width:18%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRecentCalls1['lastUpdate']; ?></span>
-							<span style="width:49%; display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;"><?php echo $rowRecentCalls1['Summary']; ?></span>
-						</div>
+							<div class="cspMOHighlight">
+								<span style="width:6%; display:inline-block; vertical-align:top; padding:1px;"><?php echo $rowRecentCalls1['ID']; ?></span>
+								<span style="width:8%; display:inline-block; vertical-align:top; padding:1px;"><?php echo $Status; ?></span>
+								<span style="width:15%; display:inline-block; vertical-align:top; padding:1px;"><?php echo $rowRecentCalls1['Contact']; ?></span>
+								<span style="width:18%; display:inline-block; vertical-align:top; padding:1px;"><?php echo $rowRecentCalls1['lastUpdate']; ?></span>
+								<span style="width:49%; display:inline-block; vertical-align:top; padding:1px;"><?php echo $rowRecentCalls1['Summary']; ?></span>
+							</div>
 						</a>
 						<?php
 					}
 				} else {
 					?>
 					<div>
-						<span style="display:inline-block; vertical-align:top; padding:1px 1px 1px 1px;">No support calls recorded</span>
+						<span style="display:inline-block; vertical-align:top; padding:1px;">No support calls recorded</span>
 					</div>
 					<?php
 				}

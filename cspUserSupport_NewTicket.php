@@ -109,10 +109,20 @@ if(isset($_GET['action']) && $_GET['action'] == "editDetails") {
 					<td>
 						<form name="newTicket" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<div>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Facility:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $facilityName; ?></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Reported By:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="reportedBy" value="<?php echo $reportedBy; ?>" /></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Contact Number:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" maxlength="10" size="10" />&nbsp;Ext:<input type="text" name="contactExt" value="<?php echo $contactExt; ?>" maxlength="5" size="5"></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:25px;">Problem Description:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><textarea name="probDesc" rows="4" cols="41"><?php echo $probDesc; ?></textarea></span>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px;">Facility:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px;"><?php echo $facilityName; ?></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px; line-height:23px;">Reported By:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px;"><input type="text" name="reportedBy" value="<?php echo $reportedBy; ?>" /></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px; line-height:20px;">Contact Number:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px;"><input type="text" name="contactNumber" value="<?php echo $contactNumber; ?>" maxlength="10" size="10" />&nbsp; Ext:<input type="text" name="contactExt" value="<?php echo $contactExt; ?>" maxlength="5" size="5" /></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px; line-height:20px;">Problem Description:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px;"><textarea name="probDesc" rows="4" cols="41"><?php echo $probDesc; ?></textarea></span>
 							</div>
 							<div style="clear:both; float:right; margin-right:1px;">
 								<?php 

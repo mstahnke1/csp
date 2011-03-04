@@ -49,9 +49,16 @@ if(isset($_POST['saveAgentComment'])) {
 					<td>
 						<form name="newAgentComment" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<div>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Facility:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $rowNewComm1['FacilityName']; ?></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px;">Ticket:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 1px 1px"><?php echo $ticketID; ?></span>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px 1px 1px 5px; line-height:20px;">Agent Comment:</span><span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px 1px 0px 1px"><textarea name="agentComment" rows="6" cols="41"></textarea></span>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px;">Facility:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowNewComm1['FacilityName']; ?></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px;">Ticket:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $ticketID; ?></span>
+							</div>
+							<div>
+								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; padding:1px; line-height:20px;">Agent Comment:</span>
+								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><textarea name="agentComment" rows="6" cols="41"></textarea></span>
 							</div>
 							<div style="clear:both; float:right; margin-right:1px;">
 								<span><input type="hidden" name="ticketID" value="<?php echo $ticketID; ?>" /><input type="submit" name="saveAgentComment" value="Save" /></span><span><input type="button" name="cancel" value="Cancel" onClick="javascript:TINY.box.hide();" /></span>

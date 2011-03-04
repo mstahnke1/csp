@@ -10,9 +10,6 @@ $qrySysInfo2 = "SELECT id, systemType, SystemStationLocation FROM tblCustSystemI
 $rstSysInfo2 = mysql_query($qrySysInfo2);
 $numSysInfo2 = mysql_num_rows($rstSysInfo2);
 ?>
-<div class="cspSysMsg">
-	<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
-</div>
 <div class="dashLeftCol">
 	<?php require_once('includes/support/cspCustSysInfo_Software.php'); ?>
 	<?php require_once('includes/support/cspCustSysInfo_MonStations.php'); ?>

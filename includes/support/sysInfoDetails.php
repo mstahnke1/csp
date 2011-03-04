@@ -60,124 +60,72 @@ if (($rowSysDetails1['VpnClientType'] == 0) OR (is_null($rowSysDetails1['VpnClie
 	<tr>
 		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Physical Location:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['SystemStationLocation']; ?></span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Physical Location:</span>
+				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemStationLocation']; ?>&nbsp;</span>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Manufacturer:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['SystemManufacturer']; ?></span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Manufacturer:</span>
+				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemManufacturer']; ?>&nbsp;</span>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Model Number:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['SystemModelNumber']; ?></span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Model Number:</span>
+				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemModelNumber']; ?>&nbsp;</span>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Serial Number:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['SystemSerialNumber']; ?></span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Serial Number:</span>
+				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemSerialNumber']; ?>&nbsp;</span>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">User Name:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['SystemUserName']; ?></span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">User Name:</span>
+				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemUserName']; ?>&nbsp;</span>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Password:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['SystemPassword']; ?></span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Password:</span>
+				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemPassword']; ?>&nbsp;</span>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">LAN IP Address:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['SystemIPAddress']; ?></span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">LAN IP Address:</span>
+				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemIPAddress']; ?>&nbsp;</span>
 			</div>
+			<?php
+			if($rowSysDetails1['systemType'] != "pgTransmitter") {
+				?>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Operating System:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OperatingSystem']; ?>&nbsp;</span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">OS License Key:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OperatingSystemLicense']; ?>&nbsp;</span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Notes:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
+				</div>
+				<?php
+			} else {
+				?>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Protocol:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Connection Type:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $connType; ?>&nbsp;</span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Comm. Port:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['commPort']; ?>&nbsp;</span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">RAS Port:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['RasPort']; ?>&nbsp;</span>
+				</div>
+				<?php
+			}
+			?>
 		</td>
 	</tr>
-	<?php
-	if($rowSysDetails1['systemType'] != "pgTransmitter") {
-		?>
-		<tr>
-			<td>
-				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Operating System:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['OperatingSystem']; ?></span>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">OS License Key:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['OperatingSystemLicense']; ?></span>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Notes:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['OtherInfo']; ?></span>
-				</div>
-			</td>
-		</tr>
-		<?php
-	} else {
-		?>
-		<tr>
-			<td>
-				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Protocol:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['OtherInfo']; ?></span>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Connection Type:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $connType; ?></span>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Comm. Port:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['commPort']; ?></span>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">RAS Port:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['RasPort']; ?></span>
-				</div>
-			</td>
-		</tr>
-		<?php
-	}
-	?>
 </table>
 <?php
 if($rowSysDetails1['systemType'] != "pgTransmitter") {
@@ -189,80 +137,44 @@ if($rowSysDetails1['systemType'] != "pgTransmitter") {
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Connection Type:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $connType; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Connection Type:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $connType; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">Modem Number:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo formatPhone($rowSysDetails1['SystemDialInNumber']); ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Modem Number:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo formatPhone($rowSysDetails1['SystemDialInNumber']); ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">WAN IP/Host name:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['WanIPAddress']; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">WAN IP/Host name:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['WanIPAddress']; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">VPN Client:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $vpnType; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">VPN Client:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $vpnType; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">VPN User:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['VpnUsername']; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">VPN User:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['VpnUsername']; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">VPN Password:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['VpnPassword']; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">VPN Password:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['VpnPassword']; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">RAS User Name:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['RasUsername']; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">RAS User Name:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['RasUsername']; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">RAS Password:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['RASPassword']; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">RAS Password:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['RASPassword']; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">RAS Port:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $rowSysDetails1['RasPort']; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">RAS Port:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['RasPort']; ?>&nbsp;</span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; text-align:right; padding:1px;">RAS Dedicated?:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px 1px 1px 5px"><?php echo $dedicated; ?></span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">RAS Dedicated?:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $dedicated; ?>&nbsp;</span>
 				</div>
 			</td>
 		</tr>
