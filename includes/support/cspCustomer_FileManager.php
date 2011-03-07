@@ -80,7 +80,7 @@ $numFileMngr1 = mysql_num_rows($resFileMngr1);
 					<table>
 						<form method="post" action="scripts/fileMgmt.php" enctype="multipart/form-data">
 							<input type="hidden" name="action" value="add" />
-							<input type="hidden" name="type" value="customer" />
+							<input type="hidden" name="type" value="customers" />
 							<input type="hidden" name="custID" value="<?php echo $custID; ?>" />
 							<tr>
 								<td>File Description:<br /><input name="fileDesc" type="text" />
