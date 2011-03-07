@@ -3,7 +3,7 @@ include('includes/config.inc.php');
 include('includes/db_connect.inc.php');
 include_once('includes/functions.inc.php');
 $custID = $_GET['custID'];
-$qryFileMngr1 = "SELECT * FROM filemanager WHERE refNumber = '$custID' && attachType = 'customer' && publish = -1 ORDER BY timestamp DESC";
+$qryFileMngr1 = "SELECT * FROM filemanager WHERE refNumber = '$custID' && attachType = 'customers' && publish = -1 ORDER BY timestamp DESC";
 $resFileMngr1 = mysql_query($qryFileMngr1) or die(mysql_error());
 $numFileMngr1 = mysql_num_rows($resFileMngr1);
 ?>

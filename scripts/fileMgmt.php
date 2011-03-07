@@ -30,10 +30,10 @@ if(isset($_POST['action']) && $_POST['action'] == "add") {
 	  		$fileSize = ceil($_FILES["uploadFile"]["size"] / 1024);
 	  		
 	  		switch($attachType) {
-	  			case "customer":
+	  			case "customers":
 	  				$refNumber = $_POST['custID'];
 	  				break;
-	  			case "ticket":
+	  			case "tickets":
 	  				$refNumber = $_POST['ticketID'];
 	  				break;
 	  		}
