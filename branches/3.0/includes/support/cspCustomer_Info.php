@@ -78,11 +78,11 @@ if(isset($custID)) {
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Phone Number:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo formatPhone($rowCustInfo1['PhoneNumber']); ?></span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo formatPhone($rowCustInfo1['PhoneNumber']); ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Fax Number:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo formatPhone($rowCustInfo1['FaxNumber']); ?></span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo formatPhone($rowCustInfo1['FaxNumber']); ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Sales Rep:</span>
