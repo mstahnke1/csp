@@ -301,7 +301,7 @@ a:active {
 }
 
 a:hover {
-	COLOR: #000000; FONT-SIZE: 12px; FONT-WEIGHT:bold; TEXT-DECORATION: none;
+	COLOR: #000000; FONT-SIZE: 12px; FONT-WEIGHT:normal; TEXT-DECORATION: none;
 }
 
 a.leftArrow:hover {

@@ -26,15 +26,15 @@ switch ($rowSysInfo1['pagerType']) {
 			<td>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Pager Type:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $pagerType; ?></span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $pagerType; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Frequency:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysInfo1['pagingFrequency']; ?></span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysInfo1['pagingFrequency']; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">FCC (FRN):</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysInfo1['FRN']; ?></span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysInfo1['FRN']; ?>&nbsp;</span>
 				</div>
 			</td>
 		</tr>
