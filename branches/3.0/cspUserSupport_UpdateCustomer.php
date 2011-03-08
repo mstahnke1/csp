@@ -189,7 +189,7 @@ if(isset($_GET['custID'])) {
 											<?php
 											while($rowCustInfo3 = mysql_fetch_assoc($resCustInfo3)) {
 												?>
-												<option value="<?php echo $rowCustInfo3['StateOrProvinceCode']; ?>" <?php if($rowCustInfo3['StateOrProvinceCode'] == $zip){ echo 'selected="selected"'; } ?>><?php echo $rowCustInfo3['StateOrProvince']; ?></option>
+												<option value="<?php echo $rowCustInfo3['StateOrProvinceCode']; ?>" <?php if($rowCustInfo3['StateOrProvinceCode'] == $state){ echo 'selected="selected"'; } ?>><?php echo $rowCustInfo3['StateOrProvince']; ?></option>
 												<?php
 											}
 											?>
