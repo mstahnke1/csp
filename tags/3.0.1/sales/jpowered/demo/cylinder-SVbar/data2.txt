@@ -1,0 +1,10 @@
+data1series1:   250
+data2series1:   600
+data3series1:   350
+data4series1:   200
+data5series1:   820
+data6series1:   350
+data7series1:   640
+data8series1:   650
+data9series1:   430
+data10series1:  320
