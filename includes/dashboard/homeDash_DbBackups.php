@@ -39,7 +39,8 @@ $rsltDashDb2 = mysql_query($qryDashDb2) or die(mysql_error());
 					?>
 					<div class="cspMOHighlight">
 						<a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Customer.php?custID=<?php echo $rowDashDb2['CustomerNumber']; ?>'">
-							<span style="display:inline-block; width:77%;"><?php echo $row13['FacilityName']; ?></span><span style="display:inline-block; width:23%;"><em>No Backup</em></span>
+							<span style="display:inline-block; width:76%;"><?php echo $row13['FacilityName']; ?></span>
+							<span style="display:inline-block; width:23%;"><em>No Backup</em></span>
 						</a>
 					</div>
 					<?php
@@ -51,7 +52,8 @@ $rsltDashDb2 = mysql_query($qryDashDb2) or die(mysql_error());
 					?>
 					<div class="cspMOHighlight">
 						<a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Customer.php?custID=<?php echo $rowDashDb1['CustomerNumber']; ?>'">
-							<span style="display:inline-block; width:77%;"><?php echo $row13['FacilityName']; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo date("Y-m-d", strtotime($rowDashDb1['MaxTimestamp'])); ?></span>
+							<span style="display:inline-block; width:76%;"><?php echo $row13['FacilityName']; ?></span>
+							<span style="display:inline-block; width:23%; vertical-align:top;"><?php echo date("Y-m-d", strtotime($rowDashDb1['MaxTimestamp'])); ?></span>
 						</a>
 					</div>
 					<?php

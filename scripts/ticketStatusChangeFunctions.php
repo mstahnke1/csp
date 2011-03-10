@@ -87,7 +87,7 @@ function statusChangeTasks($ticketID, $newStatus) {
 						$warranty = "NOT Warrantied - Repair";
 						break;
 					case 3:
-						$warranty = "NOT Warrantied - Purchase replacement";
+						$warranty = "NOT Warrantied - Replacement";
 						break;
 					case 4:
 						$warranty = "Warrantied - <b>Return Only</b>";
@@ -96,7 +96,11 @@ function statusChangeTasks($ticketID, $newStatus) {
 						$warranty = "NOT Warrantied - <b>Return Only</b>";
 						break;
 				}
-				$rmaDevices .= "<div>" . $rowRma1['partDesc'] . " (" . $rowRma1['SN'] . ") - " . $rowRma1['Problem'] . " - " . $warranty . "</div>";
+				$rmaDevices .= "<p>" . $rowRma1['partDesc'] . " (" . $rowRma1['SN'] . ") - " . $rowRma1['Problem'] . " - " . $warranty;
+				if ($rowRma1['CRP'] == 1) {
+					$rmaDevices .= " - (NO RETURN - Order replacement part)";
+				}
+				$rmaDevices .= "</p>";
 			}
 			$qryRma4 = "SELECT tblTickets.*, tblFacilities.TypeOfSale AS TypeOfSale, tblFacilities.FacilityName AS facilityName, tblFacilities.CustomerNumber AS facilityID 
 									FROM tblTickets 
@@ -109,21 +113,21 @@ function statusChangeTasks($ticketID, $newStatus) {
 			$ticketUrl = "http://".$_SERVER['HTTP_HOST']."/dev/csp/cspUserSupport_TicketDetail.php?ticketID=".$ticketID;
 			//Prepare task and email body
 			$rmaBody = '<p>
-									Customer return has been requested for ticket <a href="' . $ticketUrl . '">' . $ticketID . '</a>
+									Customer repair/return has been requested for ticket <a href="' . $ticketUrl . '">' . $ticketID . '</a>
 									</p>
 									<p>
-									<u>Return Details</u><br />
+									<u><strong>Repair/Return Details</strong></u><br />
 									Facility: ' . $rowRma4['facilityName'] . '<br />
 									Contact: ' . $rowRma4['Contact'] . '<br />
 									Reason Opened: ' . $rowRma4['Summary'] . '<br />';
 									while($rowRma5 = mysql_fetch_array($resRma5)) {
 										$rmaBody .= 'Agent Remarks: ' . $rowRma5['Message'] . '<br />';
 									}
-									$rmaBody .= '</p><p><u>Device Details</u><br />';
+									$rmaBody .= '</p><p><u><strong>Device Details</strong></u><br />';
 									$rmaBody .= $rmaDevices;
 									$rmaBody .= '</p>';
 			$rmaFrom = $_SESSION['displayname'] . " <" . $_SESSION['mail'] . ">";
-			$rmaSubject = "Customer return request " . $ticketID . " (" . $rowRma4['facilityName'] . ")";
+			$rmaSubject = "Customer repair/return request " . $ticketID . " (" . $rowRma4['facilityName'] . ")";
 			$createDate = date('Y-m-d H:i:s');
 			$dueDate = (date('Y-m-d H:i:s', mktime(date("H"), date("i"), date("s"), date("m"), date("d")+1, date("Y"))));
 			switch($rowRma4['TypeOfSale']) {
@@ -138,30 +142,45 @@ function statusChangeTasks($ticketID, $newStatus) {
 					$query11 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warranty IN (1, 4)"; #Problem Warrantied
 					$result11 = mysql_query($query11) or die("HF query11: ".mysql_error());
 					$count11 = mysql_num_rows($result11);
+					$query13 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warranty IN (1) AND CRP = 1"; #Check for number of CRP
+					$result13 = mysql_query($query13) or die("HF qry13: ".mysql_error());
+					$count13 = mysql_num_rows($result13);
 					$query12 = "SELECT * FROM rmaDevices WHERE TicketID = '$ticketID' AND Warranty IN (2, 3, 5)"; #Problem NOT Warrantied
 					$result12 = mysql_query($query12) or die("Query 12: " . mysql_error());
 					$count12 = mysql_num_rows($result12);
 					if($count11 > 0 && $count12 == 0) { # If all devices are warrantied
-						$query8 = "SELECT f_name, l_name, email FROM employees WHERE (((dept = 5) OR (recRmaEmail = 1)) AND active = 0)";
+						$query8 = "SELECT f_name, l_name, email FROM employees WHERE ((";
+						if($count11 == $count13) {
+							$query8 .= "(dept = 5) OR ";
+						}
+						$query8 .= "(recRmaEmail = 1)) AND active = 0)";
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
 						$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
-						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
-											VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
+						mysql_select_db($dbname2);
+						if($count11 > $count13) {
+							$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
+												VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
+							mysql_query($query6) or die("HF 6a: ".mysql_error());
+						}
 						$query7 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectSales', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2000', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
-						mysql_select_db($dbname2);
-						mysql_query($query6) or die("HF 6a: ".mysql_error());
 						mysql_query($query7) or die("HF query7: ".mysql_error());
 						mysql_select_db($dbname);
 					} elseif($count11 > 0 && $count12 > 0) { # If some devices are warranty and some not warranty
-						$query8 = "SELECT f_name, l_name, email FROM employees WHERE (((dept = 5) OR (recRmaEmail = 1)) AND active = 0)";
+						$query8 = "SELECT f_name, l_name, email FROM employees WHERE ((";
+						if($count11 == $count13) {
+							$query8 .= "(dept = 5) OR ";
+						}
+						$query8 .= "(recRmaEmail = 1)) AND active = 0)";
 						$result8 = mysql_query($query8) or die("HF query8: ".mysql_error());
 						if($preApp > 0) {
 							$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair approvals **</b><br />';
 						}
 						$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
-						$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
-											VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
+						if($count11 > $count13) {
+							$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
+												VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
+						}
 						$query7 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectSales', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2000', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
 						mysql_select_db($dbname2);

@@ -3,13 +3,14 @@ if(isset($_POST['action']) && $_POST['action'] == "add") {
 	include('../includes/config.inc.php');
 	include('../includes/db_connect.inc.php');
 	include('../includes/functions.inc.php');
+	$chkCRP = $_POST['chkCRP'];
 	$ticketID = $_POST['ticketID'];
 	$deviceType = $_POST['deviceType'];
 	$serialNumber = nl2br(stripslashes(fix_apos("'", "''", $_POST['serialNumber'])));
 	$problemDesc = nl2br(stripslashes(fix_apos("'", "''", $_POST['problemDesc'])));
 	$warrantyStatus = $_POST['warrantyStatus'];
-	$qryRmaDevice1 = "INSERT INTO rmaDevices (SN, TicketID, Device, Problem, Warranty) 
-										VALUES ('$serialNumber', '$ticketID', '$deviceType', '$problemDesc', '$warrantyStatus')";
+	$qryRmaDevice1 = "INSERT INTO rmaDevices (SN, TicketID, Device, Problem, Warranty, CRP) 
+										VALUES ('$serialNumber', '$ticketID', '$deviceType', '$problemDesc', '$warrantyStatus', '$chkCRP')";
 	mysql_query($qryRmaDevice1) or die(mysql_error());
 }
 
@@ -34,8 +35,9 @@ $numRmaDevice2 = mysql_num_rows($resRmaDevice2);
 	<span style="width:3%; display:inline-block; vertical-align:top; padding:0px 1px 0px 0px;"></span>
 	<span style="width:18%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Device</u></span>
 	<span style="width:14%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Serial Number</u></span>
-	<span style="width:24%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Warranty Status</u></span>
+	<span style="width:18%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Warranty Status</u></span>
 	<span style="width:38%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Issue Reported</u></span>
+	<span style="width:4%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>CRP?</u></span>
 </div>
 <?php
 while($rowRmaDevice2 = mysql_fetch_assoc($resRmaDevice2)) {
@@ -47,7 +49,7 @@ while($rowRmaDevice2 = mysql_fetch_assoc($resRmaDevice2)) {
 			$warranty = "NOT Warrantied - Repair";
 			break;
 		case 3:
-			$warranty = "NOT Warrantied - Purchase replacement";
+			$warranty = "NOT Warrantied - Replacement";
 			break;
 		case 4:
 			$warranty = "Warrantied - <b>Return Only</b>";
@@ -65,8 +67,9 @@ while($rowRmaDevice2 = mysql_fetch_assoc($resRmaDevice2)) {
 		</span>
 		<span style="width:18%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRmaDevice2['partName']; ?></span>
 		<span style="width:14%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRmaDevice2['SN']; ?></span>
-		<span style="width:24%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $warranty; ?></span>
+		<span style="width:18%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $warranty; ?></span>
 		<span style="width:38%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRmaDevice2['Problem']; ?></span>
+		<span style="width:4%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px; margin-top: 5px;"><?php if($rowRmaDevice2['CRP'] == 1) echo '<img src="theme/default/images/check3.gif" width="10" height="10" />'; ?></span>
 	</div>
 	<?php
 }
