@@ -84,8 +84,9 @@ mysql_select_db($dbname);
 						?>
 						<span style="width:18%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Device</u></span>
 						<span style="width:14%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Serial Number</u></span>
-						<span style="width:24%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Warranty Status</u></span>
-						<span style="width:38%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Issue Reported</u></span>
+						<span style="width:20%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Warranty Status</u></span>
+						<span style="width:37%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>Issue Reported</u></span>
+						<span style="width:4%; display:inline-block; vertical-align:top; padding:0px 1px 0px 1px;"><u>CRP?</u></span>
 					</div>
 					<?php
 					while($rowRMAInfo1 = mysql_fetch_assoc($resRMAInfo1)) {
@@ -97,7 +98,7 @@ mysql_select_db($dbname);
 								$warranty = "NOT Warrantied - Repair";
 								break;
 							case 3:
-								$warranty = "NOT Warrantied - Purchase replacement";
+								$warranty = "NOT Warrantied - Replacement";
 								break;
 							case 4:
 								$warranty = "Warrantied - <b>Return Only</b>";
@@ -121,8 +122,9 @@ mysql_select_db($dbname);
 							?>
 							<span style="width:18%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRMAInfo1['partName']; ?></span>
 							<span style="width:14%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRMAInfo1['SN']; ?></span>
-							<span style="width:24%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $warranty; ?></span>
-							<span style="width:38%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRMAInfo1['Problem']; ?></span>
+							<span style="width:20%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $warranty; ?></span>
+							<span style="width:37%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px;"><?php echo $rowRMAInfo1['Problem']; ?></span>
+							<span style="width:4%; display:inline-block; vertical-align:top; line-height:20px; padding:0px 1px 0px 1px; margin-top: 5px;"><?php if ($rowRMAInfo1['CRP'] == 1) { echo '<img src="theme/default/images/check3.gif" width="10" height="10" />'; } ?></span>
 						</div>
 						<?php
 					}
@@ -151,14 +153,20 @@ mysql_select_db($dbname);
 									<option value="0"> --- </option>
 									<option value="1">Yes</option>
 									<option value="4">Yes (Return Only)</option>
-									<option value="2">No (Return for Repair)</option>
-									<option value="3">No (Purchase replacement)</option>
+									<option value="2">No (Repair)</option>
+									<option value="3">No (Replacement)</option>
 									<option value="5">No (Return Only)</option>
 								</select>
 							</span>
+							<span style="display:inline-block;">*CRP?:<br /><input name="chkCRP" type="checkbox" /></span>
+						</div>
+						<div>
 							<span style="display:inline-block;">
 			     			<input type="submit" value="Save" />
 			     		</span>
+			     	</div>
+			     	<div>
+			     		<span style="display:inline-block; FONT-SIZE: 10px; FONT-WEIGHT:bold; FONT-STYLE: italic; TEXT-DECORATION: none;">* CRP is a customer replaceable part. Replacement part will be sent for customer repair instead of returned for repair.</span>
 						</form>
 					</div>
 					<?php

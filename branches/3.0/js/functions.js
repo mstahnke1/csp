@@ -138,11 +138,16 @@ function sbmRmaDevice(frmStr, ticketID, deviceAction) {
 		}
 	}
 	
+	if(document.forms[frmStr].chkCRP.checked == true) {
+		var chkCRP = 1;
+	} else {
+		var chkCRP = 0;
+	}
 	var deviceType = document.forms[frmStr].deviceType.value;
 	var serialNumber = document.forms[frmStr].serialNumber.value;
 	var problemDesc = document.forms[frmStr].problemDesc.value;
 	var warrantyStatus = document.forms[frmStr].warrantyStatus.value;
-	var queryString = "deviceType=" + deviceType + "&serialNumber=" + serialNumber + "&problemDesc=" + problemDesc + "&warrantyStatus=" + warrantyStatus + "&ticketID=" + ticketID + "&action=" + deviceAction;
+	var queryString = "deviceType=" + deviceType + "&serialNumber=" + serialNumber + "&problemDesc=" + problemDesc + "&warrantyStatus=" + warrantyStatus + "&chkCRP=" + chkCRP + "&ticketID=" + ticketID + "&action=" + deviceAction;
 	
 	ajaxRequest.open("POST", "scripts/rmaDeviceMgmt.php", true);
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
