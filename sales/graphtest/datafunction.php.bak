@@ -1,0 +1,55 @@
+﻿<?php
+
+//function datascript() {
+
+        $dataLines = array();
+
+        // ensure $_REQUEST["year"] is set and has a value
+        // between 2006 and 2008.
+        if (!isset($_REQUEST["year"])) {
+                $_REQUEST["year"] = 2008;
+        }
+        if ($_REQUEST["year"]>2008 || $_REQUEST["year"]<2006) {
+                $_REQUEST["year"] = 2008;
+        }
+
+
+        // connect to the database
+        $dbLink = mysql_connect('hf01sql', 'drewd', 'Q1w2e3') or die(mysql_error());
+        if (!$dbLink) {
+                print "Could not connect: ".mysql_error();
+                exit(0);
+        }
+
+        if (!mysql_select_db("drewd_graphtestdb", $dbLink)) {
+                print "Could not select database: ".mysql_error();
+                exit(0);
+        }
+
+        // Contstruct the data lines for ProductX, ProductY and Product Z
+        $sql = "SELECT productx,producty,productz
+                  FROM salesPerYear
+                 WHERE year=".$_REQUEST["year"]."
+                 ORDER BY month ";
+        $result = mysql_query($sql, $dbLink);
+
+        $dataNum = 1;
+        while ( $row = mysql_fetch_array($result,MYSQL_ASSOC) ) {
+        	//echo $row['productx'];
+                $dataLines[] = "data".$dataNum."series1: ".$row["productx"];
+                $dataLines[] = "data".$dataNum."series2: ".$row["producty"];
+                $dataLines[] = "data".$dataNum."series3: ".$row["productz"];
+                $dataNum++;
+        }
+
+        // release the result set and close the databse connection
+        mysql_free_result($result);
+        mysql_close($dbLink);
+
+        // return the data lines to the graphing software
+        return $dataLines;
+//}
+
+// Make sure there are no characters (not even a space or return character)
+// after the following line
+?>
