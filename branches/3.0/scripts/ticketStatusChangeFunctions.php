@@ -177,14 +177,14 @@ function statusChangeTasks($ticketID, $newStatus) {
 							$rmaBody .= '<b>** ' . $count12 . ' device(s) need repair approvals **</b><br />';
 						}
 						$rmaBodyInsert = nl2br(stripslashes(fix_apos("'", "''", $rmaBody)));
+						mysql_select_db($dbname2);
 						if($count11 > $count13) {
 							$query6 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 												VALUES ('28', '$subjectWarehouse', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2001', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
+							mysql_query($query6) or die("6b: ".mysql_error());
 						}
 						$query7 = "INSERT INTO taskinfo (Type, Subject, Priority, Status, Description, Createdate, Duedate, Response, Createdby, ticketNum, CustomerNumber)
 											VALUES ('28', '$subjectSales', '2', '1', '$rmaBodyInsert', '$createDate', '$dueDate', '2000', '$_SESSION[uid]', '$ticketID', '$rowRma4[facilityID]')";
-						mysql_select_db($dbname2);
-						mysql_query($query6) or die("6b: ".mysql_error());
 						mysql_query($query7) or die("HF query7: ".mysql_error());
 						mysql_select_db($dbname);
 					} elseif($count11 == 0 && $count12 > 0) { # If all devices are not warranty
