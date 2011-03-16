@@ -27,13 +27,11 @@ if(isset($_POST)) {
 	
 	$dateFrom = $_POST['dateFrom'];
 	if($dateFrom != "") {
-		echo "date from";
 		$where[] = "tblTicketMessages.Date >= '$dateFrom' ";
 	}
 	
 	$dateTo = $_POST['dateTo'];
 	if($dateTo != "") {
-		echo "date to";
 		$where[] = "tblTicketMessages.Date <= '$dateTo' ";
 	}
 	
