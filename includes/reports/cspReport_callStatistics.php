@@ -56,11 +56,13 @@ if(isset($_POST)) {
 	
 	$ticketStatus = $_POST['ticketStatus'];
 	if($ticketStatus != "ALL"){
-		if($ticketStatus == -1) {
+		if($ticketStatus == -1 || $ticketStatus == 1) {
 	 		$where[] = "tblTickets.Status = '$ticketStatus' ";
 	 	} else {
-	 		$where[] = "tblTickets.Status >= '$ticketStatus' ";
+	 		$where[] = "tblTickets.Status IN (0, 2) ";
 	 	}
+	} else {
+		$where[] = "tblTickets.Status != 1 ";
 	}
 	
 	$callType = $_POST['callType'];
@@ -88,20 +90,26 @@ if(isset($_POST)) {
 		$numTotalOffice = $numTotalOffice + $rowRpt1['callCount'];
 	}
 	mysql_data_seek($resRpt1, 0);
+	if($numRpt1 > 0) {
+		mysql_data_seek($resRpt1, 0);
+	}
 	
 	$numTotalOnCall = 0;
 	$qryRpt2 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,50";
 	$resRpt2 = mysql_query($qryRpt2);
+	$numRpt2 = mysql_num_rows($resRpt2);
 	while($rowRpt2 = mysql_fetch_assoc($resRpt2)) {
 		$numTotalOnCall = $numTotalOnCall + $rowRpt2['callCount'];
 	}
-	mysql_data_seek($resRpt2, 0);
+	if($numRpt2 > 0) {
+		mysql_data_seek($resRpt2, 0);
+	}
 }
 ?>
 <table border="0" width="100%" cellspacing="1" cellpadding="0">
 	<tr>
 		<td class="cspTicketHeading" colspan="2">
-			<span style="float: left;">Report Details</span>
+			<span style="float: left;">Statistics Report</span>
 		</td>
 	</tr>
 		<td width="50%" align="center" valign="top" style="text-align: left;">
@@ -118,7 +126,9 @@ if(isset($_POST)) {
 					<tr>
 						<td class="statData">
 							<div id="callCount">
-								<?php echo $rowRpt1['CustomerNumber'] . " " . $rowRpt1['facilityName'] . " <i>(" . $rowRpt1['callCount'] . ")</i>"; ?>
+								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', '<?php echo $rowRpt1['CustomerNumber']; ?>');">
+									<?php echo $rowRpt1['facilityName'] . " <i>(" . $rowRpt1['callCount'] . ")</i>"; ?>
+								</a>
 							</div>
 							<div id="ticketList">
 
@@ -130,7 +140,7 @@ if(isset($_POST)) {
 				?>
 			</table>
 		</td>
-		<td width="50%" align="center" valign="top" style="text-align: left;">
+		<td width="50%" align="center" valign="top" style="text-align: left; border-left: 1px solid #999999;">
 			<table class="ticketStats" border="0" width="100%" cellspacing="0" cellpadding="0">
 				<tr>
 					<td class="statHeading">

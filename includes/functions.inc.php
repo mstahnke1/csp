@@ -85,8 +85,8 @@ function dateDiff($dateTimeBeginDateTime,$dateTimeEndDateTime) {
         $sec_lead .= '0';
        
   // difference/duration returned as Hours:Mins:Secs e.g. 01:29:32
-	//return $hours.$min_lead.$minutes.$sec_lead.$seconds;
-	return $days.' Days '.$hours.' Hours '.$minutes.' Minutes '.$seconds.' Seconds';    
+	return $hours.$min_lead.$minutes.$sec_lead.$seconds;
+	//return $days.' Days '.$hours.' Hrs '.$minutes.' Mins '.$seconds.' Secs';    
 }
 
 function findexts($filename)
