@@ -8,10 +8,10 @@ if(isset($_GET['catCode']) && $_GET['catAction'] == "expand") {
 	$resGetCatList1 = mysql_query($qryGetCatList1);
 
 	while($rowGetCatList1 = mysql_fetch_assoc($resGetCatList1)) {
-		$qrySubCatList = "SELECT COUNT(code) AS numSubCat FROM issueCategories WHERE parentCode = '$rowGetCatList1[code]'";
+		$qrySubCatList = "SELECT code FROM issueCategories WHERE parentCode = '$rowGetCatList1[code]'";
 		$resSubCatList = mysql_query($qrySubCatList);
 		$rowSubCatList = mysql_fetch_assoc($resSubCatList);
-		$numSubCatList = $rowSubCatList['numSubCat'];
+		$numSubCatList = mysql_num_rows($resSubCatList);
 		?>
 		<div id="<?php echo "div" . $rowGetCatList1['code']; ?>" style="padding-left: 10px;">
 			<?php
@@ -23,9 +23,15 @@ if(isset($_GET['catCode']) && $_GET['catAction'] == "expand") {
 				<span><?php echo $rowGetCatList1['description']; ?></span>
 				<?php
 			} else {
-				?>
-				<span><a href="Javascript:void(0);" class="leftArrow" onclick="window.location='scripts/categoryListMgmt.php?catCode=<?php echo $rowGetCatList1['code']; ?>&ticketID=<?php echo $ticketID; ?>&catAction=saveCat'"><span style="padding-left:12px"><?php echo $rowGetCatList1['description']; ?></span></span></a>
-				<?php
+				if($ticketID <> -1) {
+					?>
+					<span><a href="Javascript:void(0);" class="leftArrow" onclick="window.location='scripts/categoryListMgmt.php?catCode=<?php echo $rowGetCatList1['code']; ?>&ticketID=<?php echo $ticketID; ?>&catAction=saveCat'"><span style="padding-left:12px"><?php echo $rowGetCatList1['description']; ?></span></span></a>
+					<?php
+				} else {
+					?>
+					<a href="Javascript:void(0);" class="leftArrow" onclick="javascript:populateTxt('cspRprtParams', 'issueCat', '<?php echo $rowGetCatList1['code']; ?>')"><span style="padding-left:12px" ><?php echo $rowGetCatList1['description']; ?></span></a>
+					<?php
+				}
 			}
 			?>
 		</div>
