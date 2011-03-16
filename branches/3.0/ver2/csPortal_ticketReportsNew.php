@@ -47,7 +47,7 @@ else
 		$rmtDateTo = $_GET['dateto'];
 		$rmtfid = $_GET['f_id'];
 	}
-	
+	/*
 	include 'php-ofc-library/open-flash-chart.php';
 
 	$title = new title( date("D M d Y") );
@@ -85,6 +85,7 @@ else
 	//
 	$data_2 = $chart_2->toPrettyString();
 	//
+	*/
 }
 ?>
 
