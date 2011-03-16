@@ -27,6 +27,23 @@ if(isset($_GET['ticketID'])) {
 if(isset($_POST['saveNewCall'])) {
 	$ticketID = $_POST['ticketID'];
 	$callType = $_POST['callType'];
+	switch ($callType) {
+		case 0:
+			$callTypeDesc = "Office Hours Call Center";
+			break;
+		case 1:
+			$callTypeDesc = "After Hours Call Center";
+			break;
+		case 2:
+			$callTypeDesc = "Site Visit/Service Call";
+			break;
+		case 3:
+			$callTypeDesc = "Proactive Call";
+			break;
+		case 4:
+			$callTypeDesc = "Site Visit/Training";
+			break;
+	}
 	$reportedBy = nl2br(stripslashes(fix_apos("'", "''", $_POST['reportedBy'])));
 	$contactNumber = formatPhone($_POST['contactNumber']);
 	$date = date('Y-m-d H:i:s');
@@ -38,7 +55,7 @@ if(isset($_POST['saveNewCall'])) {
 		$resNewCall4 = mysql_query($qryNewCall4);
 		$rowNewCall4 = mysql_fetch_assoc($resNewCall4);
 		$callID = $rowNewCall4['callID'];
-		$callMsg = "Call ID: " . $callID . " -> Caller: " . $reportedBy; 
+		$callMsg = "Call ID: " . $callID . " | Call Type: " . $callTypeDesc . " | Caller: " . $reportedBy; 
 		if($contactNumber != "") {
 			$callMsg .= " - " . $contactNumber;
 		}
@@ -92,7 +109,7 @@ if(isset($_POST['saveNewCall'])) {
 										<option value="0" <?php if($callType == 0){ echo 'selected="selected"'; } ?>>Office Hours Call Center</option>
 										<option value="1" <?php if($callType == 1){ echo 'selected="selected"'; } ?>>After Hours Call Center</option>
 										<option value="2" <?php if($callType == 2){ echo 'selected="selected"'; } ?>>Site Visit/Service Call</option>
-										<option value="2" <?php if($callType == 4){ echo 'selected="selected"'; } ?>>Site Visit/Training</option>
+										<option value="4" <?php if($callType == 4){ echo 'selected="selected"'; } ?>>Site Visit/Training</option>
 										<option value="3" <?php if($callType == 3){ echo 'selected="selected"'; } ?>>Proactive Call</option>
 									</select>
 								</span>

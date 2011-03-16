@@ -46,7 +46,7 @@ function srchShipments(frmStr){
 	ajaxRequest.send(queryString); 
 }
 
-function buildRpt(frmStr){
+function buildRpt(frmStr, pageStr, refStr){
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
@@ -63,7 +63,11 @@ function buildRpt(frmStr){
 	
 	var dateFrom = document.forms[frmStr].dateFrom.value;
 	var dateTo = document.forms[frmStr].dateTo.value;
-	var custID = document.forms[frmStr].custID.value;
+	if(pageStr == "cspReport_callDetailed.php" && refStr != "") {
+		var custID = refStr;
+	} else {
+		var custID = document.forms[frmStr].custID.value;
+	}
 	var incRMA = document.forms[frmStr].incRMA.value;
 	var hfEmployee = document.forms[frmStr].hfEmployee.value;
 	var ticketStatus = document.forms[frmStr].ticketStatus.value;
@@ -73,7 +77,7 @@ function buildRpt(frmStr){
 	var queryString = "dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&custID=" + custID + "&incRMA=" + incRMA + 
 										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat;
 	
-	ajaxRequest.open("POST", "includes/reports/cspReport_callStatistics.php", true);
+	ajaxRequest.open("POST", "includes/reports/" + pageStr, true);
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajaxRequest.send(queryString); 
 }

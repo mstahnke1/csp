@@ -142,7 +142,7 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 											<?php include_once('includes/support/cspTicket_IssueCategories.php'); ?>
 										</div>
 										<div>
-											<input type="button" value="Build" onclick="buildRpt('cspRprtParams');" />
+											<input type="button" value="Build" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php');" />
 										</div>
 									</form>
 								</td>
