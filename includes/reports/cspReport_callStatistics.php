@@ -2,11 +2,11 @@
 include_once('../config.inc.php');
 include_once('../db_connect.inc.php');
 if(isset($_POST)) {
-	$qryRpt1 = "SELECT tblTickets.*, COUNT(tblTicketMessages.id) AS callCount, tblFacilities.FacilityName AS facilityName 
+	$qryRpt1 = "SELECT tblTickets.*, COUNT(tblTickets.ID) AS callCount, tblFacilities.FacilityName AS facilityName 
 							FROM tblTickets 
 							LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 							LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber ";
-	$qryRpt2 = "SELECT tblTickets.*, COUNT(tblTicketMessages.id) AS callCount, tblFacilities.FacilityName AS facilityName 
+	$qryRpt2 = "SELECT tblTickets.*, COUNT(tblTickets.ID) AS callCount, tblFacilities.FacilityName AS facilityName 
 							FROM tblTickets 
 							LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 							LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber ";
@@ -86,10 +86,10 @@ if(isset($_POST)) {
 	$numTotalOffice = 0;
 	$qryRpt1 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,50";
 	$resRpt1 = mysql_query($qryRpt1) or die(mysql_error());
+	$numRpt1 = mysql_num_rows($resRpt1);
 	while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
 		$numTotalOffice = $numTotalOffice + $rowRpt1['callCount'];
 	}
-	mysql_data_seek($resRpt1, 0);
 	if($numRpt1 > 0) {
 		mysql_data_seek($resRpt1, 0);
 	}
@@ -154,7 +154,9 @@ if(isset($_POST)) {
 					<tr>
 						<td class="statData">
 							<div id="callCount">
-								<?php echo $rowRpt2['CustomerNumber'] . " " . $rowRpt2['facilityName'] . " <i>(" . $rowRpt2['callCount'] . ")</i>"; ?>
+								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', '<?php echo $rowRpt2['CustomerNumber']; ?>');">
+									<?php echo $rowRpt2['facilityName'] . " <i>(" . $rowRpt2['callCount'] . ")</i>"; ?>
+								</a>
 							</div>
 							<div id="ticketList">
 

@@ -10,7 +10,7 @@ if(isset($_POST)) {
 	
 //	foreach($_POST as $val){
 //		if(!($val == "ALL" || $val == "")) {
-	  	$qryRpt1 .= "WHERE tblTicketMessages.callType != 1 AND ";
+	  	$qryRpt1 .= "WHERE tblTicketMessages.msgType = 2 AND ";
 //	  	break;
 //	  } else {
 //	  	$qryRpt1 .= "WHERE tblTicketMessages.callType != 1 ";
@@ -20,15 +20,18 @@ if(isset($_POST)) {
 //	}
 	
 	$where = array();
+	$where2 = array();
 	
 	$dateFrom = $_POST['dateFrom'];
 	if($dateFrom != "") {
 		$where[] = "tblTicketMessages.Date >= '$dateFrom' ";
+		$where2[] = "tblTicketMessages.Date >= '$dateFrom' ";
 	}
 	
 	$dateTo = $_POST['dateTo'];
 	if($dateTo != "") {
 		$where[] = "tblTicketMessages.Date <= '$dateTo' ";
+		$where2[] = "tblTicketMessages.Date <= '$dateTo' ";
 	}
 	
 	$custID = $_POST['custID'];
@@ -48,6 +51,7 @@ if(isset($_POST)) {
 	$hfEmployee = $_POST['hfEmployee'];
 	if($hfEmployee != "ALL"){
 	  $where[] = "tblTicketMessages.EnteredBy = '$hfEmployee' ";
+	  $where2[] = "tblTicketMessages.EnteredBy = '$hfEmployee' ";
 	}
 	
 	$ticketStatus = $_POST['ticketStatus'];
@@ -64,6 +68,7 @@ if(isset($_POST)) {
 	$callType = $_POST['callType'];
 	if($callType != "ALL"){
 	  $where[] = "tblTicketMessages.callType = '$callType' ";
+	  $where2[] = "tblTicketMessages.callType = '$callType' ";
 	}
 	
 	$issueCat = $_POST['issueCat'];
@@ -95,8 +100,6 @@ if(isset($_POST)) {
 			<table class="ticketStats" border="0" width="100%" cellspacing="0" cellpadding="0">
 				<tr>
 					<td class="statHeading">
-						<b>Office Hour Stats</b><br />
-						<?php echo $numTotalOffice; ?> Total Calls
 						<div>
 							<span style="display:inline-block; width:7%;">
 								<u>Ticket</u>
@@ -107,21 +110,40 @@ if(isset($_POST)) {
 							<span style="display:inline-block; width:18%;">
 								<u>Last Update</u>
 							</span>
-							<span style="display:inline-block; width:38%;">
+							<span style="display:inline-block; width:9%;">
+								<u>Status</u>
+							</span>
+							<span style="display:inline-block; width:35%;">
 								<u>Call Details</u>
 							</span>
 						</div>
 						<?php
 						while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
+							if($rowRpt1['Status']==0) {
+								$Status = "Open";
+							} elseif($rowRpt1['Status']==1) {
+								$Status = "Canceled";
+							}elseif($rowRpt1['Status']==2) {
+								$Status = "Escalated";
+							}else{
+								$Status = "Closed";
+							}
 							$qryCallDetail1 = "SELECT tblTicketMessages.*, employees.f_name AS fName, employees.l_name AS lName 
 																FROM tblTicketMessages 
 																LEFT JOIN employees ON tblTicketMessages.EnteredBy = employees.id 
-																WHERE tblTicketMessages.ticketID = '$rowRpt1[ID]' AND tblTicketMessages.callid IS NOT NULL";
+																WHERE tblTicketMessages.ticketID = '$rowRpt1[ID]' AND tblTicketMessages.msgType = 2 AND ";
+							if(!empty($where2)) {
+							  $qryCallDetail1 .= implode(" AND ", $where2);
+							} else {
+								$qryCallDetail1 = substr($qryCallDetail1, 0, -4);
+							}
 							$resCallDetail1 = mysql_query($qryCallDetail1) or die(mysql_error());
 							?>
 							<div style="clear:both;">
 								<span style="display:inline-block; width:7%; vertical-align:text-top;">
-									<?php echo $rowRpt1['ID']; ?>
+									<a href="cspUserSupport_TicketDetail.php?ticketID=<?php echo $rowRpt1['ID']; ?>" target="_blank">
+										<?php echo $rowRpt1['ID']; ?>
+									</a>
 								</span>
 								<span style="display:inline-block; width:18%; vertical-align:text-top;">
 									<?php echo $rowRpt1['DateOpened']; ?>
@@ -129,19 +151,43 @@ if(isset($_POST)) {
 								<span style="display:inline-block; width:18%; vertical-align:text-top;">
 									<?php echo $rowRpt1['lastUpdate']; ?>
 								</span>
-								<span style="display:inline-block; width:38%; vertical-align:text-top;">
+								<span style="display:inline-block; width:9%; vertical-align:text-top;">
+									<?php echo $Status; ?>
+								</span>
+								<span style="display:inline-block; width:35%; vertical-align:text-top;">
 									<?php
 									while($rowCallDetail1 = mysql_fetch_assoc($resCallDetail1)) {
-										if(!is_null($rowCallDetail1['callType'])) {
-											$callID = $rowCallDetail1['callid'];
-											$callBegin = $rowCallDetail1['Date'];
-											continue;
-										} elseif(is_null($rowCallDetail1['callType']) && $rowCallDetail1['callid'] == $callID) {
-											$callEnd = $rowCallDetail1['Date'];
-											echo "Call ID: " . $rowCallDetail1['callid'] . " | " . dateDiff($callBegin, $callEnd) . " | " . "Agent: " . $rowCallDetail1['fName'] . " " . $rowCallDetail1['lName'] . "<br />";
+										$callID = $rowCallDetail1['callid'];
+										$callType = $rowCallDetail1['callType'];
+										$callBegin = $rowCallDetail1['Date'];
+										switch ($callType) {
+											case 0:
+												$callTypeDesc = "Office Hours Call Center";
+												break;
+											case 1:
+												$callTypeDesc = "After Hours Call Center";
+												break;
+											case 2:
+												$callTypeDesc = "Site Visit/Service Call";
+												break;
+											case 3:
+												$callTypeDesc = "Proactive Call";
+												break;
+											case 4:
+												$callTypeDesc = "Site Visit/Training";
+												break;
+										}
+										$qryCallDetail2 = "SELECT Date 
+																			FROM tblTicketMessages 
+																			WHERE callid = '$callID' AND msgType = 3";
+										$resCallDetail2 = mysql_query($qryCallDetail2) or die(mysql_error());
+										$numCallDetail2 = mysql_num_rows($resCallDetail2);
+										$rowCallDetail2 = mysql_fetch_assoc($resCallDetail2);
+										if($numCallDetail2 > 0) {
+											$callEnd = $rowCallDetail2['Date'];
+											echo "<div>Call ID: " . $callID . " | " . "Agent: " . $rowCallDetail1['fName'] . " " . $rowCallDetail1['lName'] . " | " . dateDiff($callBegin, $callEnd) . " " . $callTypeDesc . "</div>";
 										}
 									}
-									mysql_data_seek($resCallDetail1, 0);
 									?>
 								</span>
 							</div>
