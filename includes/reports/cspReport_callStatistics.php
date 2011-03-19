@@ -32,7 +32,8 @@ if(isset($_POST)) {
 	
 	$dateTo = $_POST['dateTo'];
 	if($dateTo != "") {
-		$where[] = "tblTicketMessages.Date <= '$dateTo' ";
+		$dateTo = date('Y-m-d', strtotime('+1 day',strtotime($dateTo)));
+		$where[] = "tblTicketMessages.Date < '$dateTo' ";
 	}
 	
 	$custID = $_POST['custID'];
@@ -122,16 +123,39 @@ if(isset($_POST)) {
 				</tr>
 				<?php
 				while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc 
+											FROM tblTickets 
+											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
+											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
+											WHERE tblTickets.CustomerNumber = '$rowRpt1[CustomerNumber]' AND tblTicketMessages.callType != 1 AND ";
+					if(!empty($where)) {
+					  $qryRpt3 .= implode(" AND ", $where);
+					} else {
+						$qryRpt3 = substr($qryRpt3, 0, -4);
+					}
+					$qryRpt3 .= "GROUP BY tblTickets.categoryCode ORDER BY issueCount DESC LIMIT 0,50";
+					$resRpt3 = mysql_query($qryRpt3) or die(mysql_error());
 					?>
 					<tr>
 						<td class="statData">
 							<div id="callCount">
-								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', '<?php echo $rowRpt1['CustomerNumber']; ?>');">
+								<a id="link_<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours" href="javascript:void(0);" onclick="showDiv('issueList<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours', '<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours');">
+									<img id="img_<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours" src="theme/default/images/iconExpand.png" border="0" />
+								</a>
+								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', 'custID', '<?php echo $rowRpt1['CustomerNumber']; ?>');">
 									<?php echo $rowRpt1['facilityName'] . " <i>(" . $rowRpt1['callCount'] . ")</i>"; ?>
 								</a>
 							</div>
-							<div id="ticketList">
-
+							<div id="issueList<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours" style="margin-left:12px; display:none;">
+								<?php
+								while($rowRpt3 = mysql_fetch_assoc($resRpt3)) {
+									?>
+									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
+										<div><?php echo $rowRpt3['catDesc'] . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
+									</a>
+									<?php
+								}
+								?>
 							</div>
 						</td>
 					</tr>
@@ -145,21 +169,55 @@ if(isset($_POST)) {
 				<tr>
 					<td class="statHeading">
 						<b>After Hour Stats</b> <br />
-						<?php echo $numTotalOnCall; ?> Total Calls
+						<?php
+						if($numTotalOnCall > 0) {
+							?>
+							<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', 'callType', '1');">
+								<?php echo $numTotalOnCall; ?> Total Calls
+							</a>
+							<?php
+						} else {
+							echo $numTotalOnCall; ?> Total Calls
+							<?php
+						}
+						?>
 					</td>
 				</tr>
 				<?php
 				while($rowRpt2 = mysql_fetch_assoc($resRpt2)) {
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc 
+											FROM tblTickets 
+											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
+											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
+											WHERE tblTickets.CustomerNumber = '$rowRpt2[CustomerNumber]' AND tblTicketMessages.callType = 1 AND ";
+					if(!empty($where)) {
+					  $qryRpt3 .= implode(" AND ", $where);
+					} else {
+						$qryRpt3 = substr($qryRpt3, 0, -4);
+					}
+					$qryRpt3 .= "GROUP BY tblTickets.categoryCode ORDER BY issueCount DESC LIMIT 0,50";
+					$resRpt3 = mysql_query($qryRpt3) or die(mysql_error());
 					?>
 					<tr>
 						<td class="statData">
 							<div id="callCount">
-								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', '<?php echo $rowRpt2['CustomerNumber']; ?>');">
+								<a id="link_<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours" href="javascript:void(0);" onclick="showDiv('issueList<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours', '<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours');">
+									<img id="img_<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours" src="theme/default/images/iconExpand.png" border="0" />
+								</a>
+								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', 'custID', '<?php echo $rowRpt2['CustomerNumber']; ?>');">
 									<?php echo $rowRpt2['facilityName'] . " <i>(" . $rowRpt2['callCount'] . ")</i>"; ?>
 								</a>
 							</div>
-							<div id="ticketList">
-
+							<div id="issueList<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours" style="margin-left:12px; display:none;">
+								<?php
+								while($rowRpt3 = mysql_fetch_assoc($resRpt3)) {
+									?>
+									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
+										<div><?php echo $rowRpt3['catDesc'] . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
+									</a>
+									<?php
+								}
+								?>
 							</div>
 						</td>
 					</tr>

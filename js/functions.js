@@ -46,7 +46,7 @@ function srchShipments(frmStr){
 	ajaxRequest.send(queryString); 
 }
 
-function buildRpt(frmStr, pageStr, refStr){
+function buildRpt(frmStr, pageStr, frmEle, frmVal){
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
@@ -63,17 +63,24 @@ function buildRpt(frmStr, pageStr, refStr){
 	
 	var dateFrom = document.forms[frmStr].dateFrom.value;
 	var dateTo = document.forms[frmStr].dateTo.value;
-	if(pageStr == "cspReport_callDetailed.php" && refStr != "") {
-		var custID = refStr;
+	if(pageStr == "cspReport_callDetailed.php" && frmEle == "custID") {
+		var custID = frmVal;
 	} else {
 		var custID = document.forms[frmStr].custID.value;
 	}
 	var incRMA = document.forms[frmStr].incRMA.value;
 	var hfEmployee = document.forms[frmStr].hfEmployee.value;
 	var ticketStatus = document.forms[frmStr].ticketStatus.value;
-	var callType = document.forms[frmStr].callType.value;
-	var issueCat = document.forms[frmStr].issueCat.value;
-	
+	if(pageStr == "cspReport_callDetailed.php" && frmEle == "callType") {
+		var callType = frmVal;
+	} else {
+		var callType = document.forms[frmStr].callType.value;
+	}
+	if(pageStr == "cspReport_callStatistics.php" && frmEle == "issueCat") {
+		var issueCat = frmVal;
+	} else {
+		var issueCat = document.forms[frmStr].issueCat.value;
+	}
 	var queryString = "dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&custID=" + custID + "&incRMA=" + incRMA + 
 										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat;
 	
@@ -195,15 +202,27 @@ function populateTxt(frmStr, eleStr, valStr) {
 	hideDiv('issueCatMod');
 }
 
-function showDiv(str) { 
+function showDiv(divStr, imgID) {
 	if (document.getElementById) {
-		document.getElementById(str).style.display = 'block'; 
+		if(imgID != "") {
+			var linkElement = document.getElementById("link_"+imgID);
+			var imgElement = document.getElementById("img_"+imgID);
+			imgElement.src="theme/default/images/iconContract.png";
+			linkElement.setAttribute("onclick", "hideDiv('"+divStr+"','"+imgID+"');");
+		}
+		document.getElementById(divStr).style.display = 'block';
 	}
 }
 
-function hideDiv(str) { 
+function hideDiv(divStr, imgID) { 
 	if (document.getElementById) {
-		document.getElementById(str).style.display = 'none'; 
+		if(imgID != "") {
+			var linkElement = document.getElementById("link_"+imgID);
+			var imgElement = document.getElementById("img_"+imgID);
+			imgElement.src="theme/default/images/iconExpand.png";
+			linkElement.setAttribute("onclick", "showDiv('"+divStr+"','"+imgID+"');");
+		}
+		document.getElementById(divStr).style.display = 'none'; 
 	}
 } 
 

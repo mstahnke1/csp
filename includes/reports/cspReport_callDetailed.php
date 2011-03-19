@@ -30,8 +30,9 @@ if(isset($_POST)) {
 	
 	$dateTo = $_POST['dateTo'];
 	if($dateTo != "") {
-		$where[] = "tblTicketMessages.Date <= '$dateTo' ";
-		$where2[] = "tblTicketMessages.Date <= '$dateTo' ";
+		$dateTo = date('Y-m-d', strtotime('+1 day',strtotime($dateTo)));
+		$where[] = "tblTicketMessages.Date < '$dateTo' ";
+		$where2[] = "tblTicketMessages.Date < '$dateTo' ";
 	}
 	
 	$custID = $_POST['custID'];
@@ -86,14 +87,19 @@ if(isset($_POST)) {
 	$qryRpt1 .= "GROUP BY tblTickets.ID ORDER BY lastUpdate DESC LIMIT 0,50";
 	$resRpt1 = mysql_query($qryRpt1) or die(mysql_error());
 	$rowRpt1 = mysql_fetch_assoc($resRpt1);
-	$facilityName = $rowRpt1['facilityName'];
+	if($custID != "") {
+		$rptLabel = $rowRpt1['facilityName'];
+	}
+	if($callType != "ALL") {
+		$rptLabel = "Call Detail";
+	}
 	mysql_data_seek($resRpt1, 0);
 }
 ?>
 <table border="0" width="100%" cellspacing="1" cellpadding="0">
 	<tr>
 		<td class="cspTicketHeading" colspan="2">
-			<span style="float: left;">Ticket Detail Report - <?php echo $facilityName; ?></span>
+			<span style="float: left;">Ticket Report - <?php echo $rptLabel; ?></span>
 		</td>
 	</tr>
 		<td width="100%" align="center" valign="top" style="text-align: left;">
@@ -139,7 +145,7 @@ if(isset($_POST)) {
 							}
 							$resCallDetail1 = mysql_query($qryCallDetail1) or die(mysql_error());
 							?>
-							<div style="clear:both;">
+							<div style="clear:both;" class="cspMOHighlight">
 								<span style="display:inline-block; width:7%; vertical-align:text-top;">
 									<a href="cspUserSupport_TicketDetail.php?ticketID=<?php echo $rowRpt1['ID']; ?>" target="_blank">
 										<?php echo $rowRpt1['ID']; ?>
