@@ -14,7 +14,7 @@ if(isset($_GET['action']) && $_GET['action'] == "endCall") {
 	$date = date('Y-m-d H:i:s');
 	//Verify a comment has been added for this call before ending the call
 	$qryEndCall2 = "SELECT ID FROM tblTicketMessages WHERE TicketID = '$ticketID' AND msgType = 0 AND Date > (SELECT Date FROM tblTicketMessages WHERE callid = '$callID')";
-	$resEndCall2 = mysql_query($qryEndCall2);
+	$resEndCall2 = mysql_query($qryEndCall2) or die(mysql_error());
 	$numEndCall2 = mysql_num_rows($resEndCall2);
 	if($numEndCall2 == 0) {
 		die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=27"));
