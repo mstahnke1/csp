@@ -61,26 +61,18 @@ function buildRpt(frmStr, pageStr, frmEle, frmVal){
 		}
 	}
 	
+	if(frmEle != "" && frmVal != "") {
+		document.forms[frmStr].elements[frmEle].value = frmVal;
+	}
+	
 	var dateFrom = document.forms[frmStr].dateFrom.value;
 	var dateTo = document.forms[frmStr].dateTo.value;
-	if(pageStr == "cspReport_callDetailed.php" && frmEle == "custID") {
-		var custID = frmVal;
-	} else {
-		var custID = document.forms[frmStr].custID.value;
-	}
+	var custID = document.forms[frmStr].custID.value;
 	var incRMA = document.forms[frmStr].incRMA.value;
 	var hfEmployee = document.forms[frmStr].hfEmployee.value;
 	var ticketStatus = document.forms[frmStr].ticketStatus.value;
-	if(pageStr == "cspReport_callDetailed.php" && frmEle == "callType") {
-		var callType = frmVal;
-	} else {
-		var callType = document.forms[frmStr].callType.value;
-	}
-	if(pageStr == "cspReport_callStatistics.php" && frmEle == "issueCat") {
-		var issueCat = frmVal;
-	} else {
-		var issueCat = document.forms[frmStr].issueCat.value;
-	}
+	var callType = document.forms[frmStr].callType.value;
+	var issueCat = document.forms[frmStr].issueCat.value;
 	var queryString = "dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&custID=" + custID + "&incRMA=" + incRMA + 
 										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat;
 	
