@@ -1,0 +1,6 @@
+data1series1:   82000,348500
+data2series1:   70000,250420
+data3series1:   35000,240000
+data4series1:   20000,150000
+data5series1:   25000,98000
+data6series1:   26000,55000

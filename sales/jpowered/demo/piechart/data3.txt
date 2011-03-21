@@ -1,0 +1,16 @@
+data1series1:   82000
+data2series1:   60000
+data3series1:   34000
+data4series1:   15000
+
+data1series2:   21000
+data2series2:   30000
+data3series2:   17000
+data4series2:   8000
+
+data1series3:   103000
+data2series3:   90000
+data3series3:   51000
+data4series3:   10000
+
+
