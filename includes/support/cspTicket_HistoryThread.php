@@ -53,7 +53,7 @@ $rstTicketHistory1 = mysql_query($qryTicketHistory1) or die(mysql_error());
 						<?php
 						if($rowTicketHistory1['msgType'] == 0 || $rowTicketHistory1['msgType'] == 2 || $rowTicketHistory1['msgType'] == 3 || $rowTicketHistory1['msgType'] == 10) {
 							?>
-							<span style="display:inline-block; vertical-align:center; padding:1px 1px 1px 1px;"><a href="JavaScript:void(0);" onclick="showDiv('cspTicketComment_<?php echo $rowTicketHistory1['ID']; ?>');"><img src="theme/default/images/moreInfo.jpg" width="13px" height="13px" border="0" title="View Additional Information" /></a></span>
+							<span style="display:inline-block; vertical-align:center; padding:1px 1px 1px 1px;"><a href="JavaScript:void(0);" onclick="showDiv('cspTicketComment_<?php echo $rowTicketHistory1['ID']; ?>', '');"><img src="theme/default/images/moreInfo.jpg" width="13px" height="13px" border="0" title="View Additional Information" /></a></span>
 							<?php
 						}
 						?>
