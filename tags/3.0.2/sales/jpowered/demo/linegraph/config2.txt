@@ -1,0 +1,75 @@
+/* --------------------------------------------------------------------------------------------- */
+/*                                                                                               */
+/* For the full range of options and parameter meanings please see:-                             */
+/*                                                                                               */
+/* http://www.jpowered.com/php-scripts/adv-graph-chart/documentation/configurationOptions.htm    */
+/*                                                                                               */
+/* --------------------------------------------------------------------------------------------- */
+
+width:  700
+height: 400
+
+series1:             orange|Product X|left|8|box|false|dotted dashed|
+
+backgroundcolor:     white
+
+grid:                true
+axis:                true
+3d:                  true
+depth3d:             20
+vspace:              30
+nrows:               10
+ndecplaces:          0
+
+
+gridbgcolor:         #FFCC80
+axiscolor:           dark orange
+floorcolor:          light orange
+gridcolor:           dark orange
+gridstyle:           dotted
+
+titletext:           Total Score for the Season
+titleposition:       -1,50
+titlefont:           Arial
+titlefontsize:       12
+titlefontbold:       true
+titlefontitalic:     false
+titlecolor:          #555555
+
+xtitletext:          Player
+xtitlefont:          Arial
+xtitlefontsize:      11
+xtitlefontbold:      true
+xtitlefontitalic:    false
+xtitlecolor:         #993333
+
+ytitletext:          Score
+ytitlefont:          Arial
+ytitlefontsize:      11
+ytitlefontbold:      true
+ytitlefontitalic:    false
+ytitlecolor:         #555555
+
+xlabels:             John|Robert|Janice|Alf|Susan|
+xlabelorientation:   Down Angle
+xlabeloffset:        0
+xlabelfont:          Arial
+xlabelfontsize:      10
+xlabelfontbold:      false
+xlabelfontitalic:    false
+xlabelcolor:         #993333
+
+ylables:             true
+ylabelfont:          Arial
+ylabelfontsize:      9
+ylabelfontbold:      false
+ylabelfontitalic:    false
+ylabelcolor:         #0000FF
+y2labelcolor:        blue
+ylabelpost:          pts 
+
+legend:              false
+legendfont:          Arial
+legendfontsize:      10
+legendfontbold:      false
+legendfontitalic:    true

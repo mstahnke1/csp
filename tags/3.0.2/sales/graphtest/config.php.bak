@@ -1,0 +1,83 @@
+﻿width:             800
+height:            400
+
+quality:           very high
+
+backgroundcolor:   white
+grid:              true
+axis:              true
+3d:                true
+ndecplaces:        0
+thousandseparator: ,
+barspacing:        2
+barwidth:          16
+displaybarvalues:  false
+gradientfill:      true
+
+series1:           #BB0000|Product X|left|8|triangle|true|solid|
+series2:           #0000BB|Product Y|left|8|box|true|solid|
+series3:           #FF8800|Product Z|left|8|diamond|true|solid|
+
+gridbgcolor:       #FFFFCC
+axiscolor:         dark grey
+floorcolor:        light gray
+gridcolor:         grey
+gridstyle:         dotted
+
+ylables:           true
+yfont:             arial
+yfontsize:         11
+yfontbold:         bold
+yfontitalic:       false
+ylabelcolor:       black
+ylabelpre:         $
+ylabelpost:
+
+titletext:         Product Sales by Month for <?php print $_REQUEST["year"]."\n"; ?>
+titlefont:         arial
+titlefontsize:     14
+titlefontbold:     bold
+titlefontitalic:   false
+titlecolor:        #8080B0
+titleposition:     -1,55
+
+xtitletext:        <?php print $_REQUEST["year"]."\n"; ?>
+xtitlefont:        arial
+xtitlefontsize:    11
+xtitlefontbold:    bold
+xtitlefontitalic:  false
+xtitlecolor:       #8080B0
+xtitleposition:    -1,-1
+
+ytitletext:        Value
+ytitlefont:        arial
+ytitlefontsize:    11
+ytitlefontbold:    bold
+ytitlefontitalic:  false
+ytitlecolor:       #8080B0
+ytitleposition:    -1,230
+
+xlabels:           January|February|March|April|May|June|July|August|September|October|November|December
+xlabelorientation: Up angle
+xlabeloffset:      0
+xlabelcolor:       #8080B0
+xlabelfont:        arial
+xlabelfontsize:    10
+xlabelfontbold:    false
+xlabelfontitalic:  false
+
+legend:            true
+legendstyle:       horizontal
+legendbgcolor:     #EEEEEE
+legendbordercolor: #CCCCFF
+legendtextcolor:   #8080B0
+legendtitle:
+legendfont:        arial
+legendfontsize:    11
+legendfontbold:    false
+legendfontitalic:  false
+legendposition:    -1,64
+
+// for a full explanation of these parameters see:-
+// http://www.jpowered.com/php-scripts/adv-graph-chart/documentation/configurationOptions.htm
+

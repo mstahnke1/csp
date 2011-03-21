@@ -1,0 +1,85 @@
+/* --------------------------------------------------------------------------------------------- */
+/*                                                                                               */
+/* For the full range of options and parameter meanings please see:-                             */
+/*                                                                                               */
+/* http://www.jpowered.com/php-scripts/adv-graph-chart/documentation/configurationOptions.htm    */
+/*                                                                                               */
+/* --------------------------------------------------------------------------------------------- */
+
+width:  700
+height: 400
+
+quality:           medium
+
+series1:           orange|Product X
+
+outline:           true
+gradientfill:      true
+backgroundcolor:   white
+
+grid:              true
+axis:              true
+vspace:            25
+nrows:             10
+ndecplaces:        0
+barwidth:          50
+barspacing:        10
+
+chartscale:        100
+chartstarty:       0
+
+gridbgcolor:       #00CC80
+gridbgcolor2:      #00EEA0
+axiscolor:         #008F59
+floorcolor:        #008F59
+gridcolor:         #008F59
+gridstyle:         dotted
+
+titletext:         Total Score for the Season
+titlefont:         Arial
+titlefontsize:     12
+titlefontbold:     true
+titlefontitalic:   false
+titlecolor:        #444444
+titleposition:     -1,50
+
+
+xtitletext:        Player
+xtitlefont:        Arial
+xtitlefontsize:    11
+xtitlefontbold:    true
+xtitlefontitalic:  false
+xtitlecolor:       #444444
+
+xlabelfont:        Arial
+xlabelfontsize:    10
+xlabelfontbold:    false
+xlabelfontitalic:  false
+
+ytitletext:        Score
+ytitlefont:        Arial
+ytitlefontsize:    11
+ytitlefontbold:    true
+ytitlefontitalic:  false
+ytitlecolor:       #444444
+
+xlabels:           John|Robert|Janice|Alf|Susan|Gary|Julie|Gordon|Harold|Sheila
+xlabelorientation: Up Angle
+xlabeloffset:      0
+xfont:             medium
+xlabelcolor:       #444444
+
+ylables:           true
+ylabelfont:        Arial
+ylabelfontsize:    9
+ylabelfontbold:    false
+ylabelfontitalic:  false
+ylabelcolor:       #444444
+y2labelcolor:      blue
+ylabelpost:        pts 
+
+legend:            false
+legendfont:        Arial
+legendfontsize:    10
+legendfontbold:    false
+legendfontitalic:  true

@@ -1,0 +1,23 @@
+<html>
+<head>
+<script type="text/javascript">
+function preferedBrowser()
+{
+prefer=document.forms[0].browsers.value;
+alert("You prefer browsing internet with " + prefer);
+}
+</script>
+</head>
+
+<body>
+
+<form>
+Choose which browser you prefer:
+<select id="browsers" onchange="preferedBrowser()">
+<option value="Internet Explorer">Internet Explorer
+<option value="Netscape">Netscape
+</select>
+</form>
+
+</body>
+</html>
