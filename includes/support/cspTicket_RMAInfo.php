@@ -26,7 +26,7 @@ mysql_select_db($dbname);
 		<tr>
 			<td class="cspTicketHeading">
 				<span>RMA Information</span>
-				<span id="rmaReturnAuth" style="font-variant:normal; FONT-WEIGHT: normal; float:right;<?php if($numRMAInfo1 < 1 && $Status != "Closed") { echo ' display:none;'; } ?>"><a href="javascript:void(0);" onclick="showDiv('divRmaReturnNotes');">[return verification]</a></span>
+				<span id="rmaReturnAuth" style="font-variant:normal; FONT-WEIGHT: normal; float:right;<?php if($numRMAInfo1 < 1 && $Status != "Closed") { echo ' display:none;'; } ?>"><a href="javascript:void(0);" onclick="showDiv('divRmaReturnNotes', '');">[return verification]</a></span>
 			</td>
 		</tr>
 		<tr>

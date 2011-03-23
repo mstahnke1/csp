@@ -116,8 +116,8 @@ if(isset($_POST)) {
 							<span style="display:inline-block; width:18%;">
 								<u>Last Update</u>
 							</span>
-							<span style="display:inline-block; width:9%;">
-								<u>Status</u>
+							<span style="display:inline-block; width:20%;">
+								<u>Facility</u>
 							</span>
 							<span style="display:inline-block; width:35%;">
 								<u>Call Details</u>
@@ -125,6 +125,7 @@ if(isset($_POST)) {
 						</div>
 						<?php
 						while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
+							/*
 							if($rowRpt1['Status']==0) {
 								$Status = "Open";
 							} elseif($rowRpt1['Status']==1) {
@@ -134,6 +135,7 @@ if(isset($_POST)) {
 							}else{
 								$Status = "Closed";
 							}
+							*/
 							$qryCallDetail1 = "SELECT tblTicketMessages.*, employees.f_name AS fName, employees.l_name AS lName 
 																FROM tblTicketMessages 
 																LEFT JOIN employees ON tblTicketMessages.EnteredBy = employees.id 
@@ -157,8 +159,8 @@ if(isset($_POST)) {
 								<span style="display:inline-block; width:18%; vertical-align:text-top;">
 									<?php echo $rowRpt1['lastUpdate']; ?>
 								</span>
-								<span style="display:inline-block; width:9%; vertical-align:text-top;">
-									<?php echo $Status; ?>
+								<span style="display:inline-block; width:20%; vertical-align:text-top;">
+									<?php echo $rowRpt1['facilityName']; ?>
 								</span>
 								<span style="display:inline-block; width:35%; vertical-align:text-top;">
 									<?php

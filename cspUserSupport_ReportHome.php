@@ -133,7 +133,7 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 											<span style="display:inline-block;">
 												Issue Category:<br />
 												<input type="text" name="issueCat" id="issueCat" value="" SIZE="4" />
-												<input type="button" value="Find" onclick="showDiv('issueCatMod');" />
+												<input type="button" value="Find" onclick="showDiv('issueCatMod', '');" />
 											</span>
 											<span style="display:inline-block;">
 												Keyword Search:<br />
