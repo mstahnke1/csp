@@ -18,7 +18,7 @@ $numTicketNav2 = mysql_num_rows($resTicketNav2);
 			<?php
 			if($numTicketNav1 < 1) {
 				?>
-				<li><a href="JavaScript:void(0);" onclick="javascript:showDiv('rmaInfo')">Create RMA</a></li>
+				<li><a href="JavaScript:void(0);" onclick="javascript:showDiv('rmaInfo', '')">Create RMA</a></li>
 				<?php
 			}
 		}
@@ -29,7 +29,7 @@ $numTicketNav2 = mysql_num_rows($resTicketNav2);
 		}
 		if(!is_null($rowTicketDetail1['categoryCode'])) {
 			?>
-			<li><a href="JavaScript:void(0);" onclick="javascript:showDiv('issueCatMod')">Re-Categorize Issue</a></li>
+			<li><a href="JavaScript:void(0);" onclick="javascript:showDiv('issueCatMod', '')">Re-Categorize Issue</a></li>
 			<?php
 		}
 		if($numTicketDetail3 < 1) {
