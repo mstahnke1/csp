@@ -61,6 +61,9 @@ function buildRpt(frmStr, pageStr, frmEle, frmVal){
 		}
 	}
 	
+	var ajaxDisplay = document.getElementById("rptDetails");
+	ajaxDisplay.innerHTML = '<div style="text-align:center;"><img src="theme/default/images/loading.gif" /></div>';
+	
 	if(frmEle != "" && frmVal != "") {
 		document.forms[frmStr].elements[frmEle].value = frmVal;
 	}
