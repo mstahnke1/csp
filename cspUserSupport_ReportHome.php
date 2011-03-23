@@ -149,6 +149,7 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 							</tr>
 						</table>
 					</div>
+					<div id="loadingScreen" style="display:none; text-align:center;"><img src="theme/default/images/loading.gif" /></div>
 					<div id="rptDetails"></div>
 				</div>
 			</div>

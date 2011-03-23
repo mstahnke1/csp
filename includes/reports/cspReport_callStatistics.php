@@ -123,7 +123,7 @@ if(isset($_POST)) {
 				</tr>
 				<?php
 				while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
-					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc 
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
 											FROM tblTickets 
 											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
@@ -149,9 +149,22 @@ if(isset($_POST)) {
 							<div id="issueList<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours" style="margin-left:12px; display:none;">
 								<?php
 								while($rowRpt3 = mysql_fetch_assoc($resRpt3)) {
+									$catDesc = $rowRpt3['catDesc'];
+									$catCode = $rowRpt3['parentCode'];
+									$i = 1;
+									while($i > 0) {
+										$qryCatCode1 = "SELECT * FROM issueCategories WHERE code = '$catCode'";
+										$rstCatCode1 = mysql_query($qryCatCode1);
+										$i = mysql_num_rows($rstCatCode1);
+										$rowCatCode1 = mysql_fetch_assoc($rstCatCode1);
+										if($i > 0) {
+											$catDesc = $rowCatCode1['description'] . " &rarr; " . $catDesc;
+										}
+										$catCode = $rowCatCode1['parentCode'];
+									}
 									?>
 									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
-										<div><?php echo $rowRpt3['catDesc'] . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
+										<div style="text-indent:-7px; padding-left:7px;">&bull; <?php echo $catDesc . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
 									</a>
 									<?php
 								}
@@ -185,7 +198,7 @@ if(isset($_POST)) {
 				</tr>
 				<?php
 				while($rowRpt2 = mysql_fetch_assoc($resRpt2)) {
-					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc 
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
 											FROM tblTickets 
 											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
@@ -211,9 +224,22 @@ if(isset($_POST)) {
 							<div id="issueList<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours" style="margin-left:12px; display:none;">
 								<?php
 								while($rowRpt3 = mysql_fetch_assoc($resRpt3)) {
+									$catDesc = $rowRpt3['catDesc'];
+									$catCode = $rowRpt3['parentCode'];
+									$i = 1;
+									while($i > 0) {
+										$qryCatCode1 = "SELECT * FROM issueCategories WHERE code = '$catCode'";
+										$rstCatCode1 = mysql_query($qryCatCode1);
+										$i = mysql_num_rows($rstCatCode1);
+										$rowCatCode1 = mysql_fetch_assoc($rstCatCode1);
+										if($i > 0) {
+											$catDesc = $rowCatCode1['description'] . " &rarr; " . $catDesc;
+										}
+										$catCode = $rowCatCode1['parentCode'];
+									}
 									?>
 									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
-										<div><?php echo $rowRpt3['catDesc'] . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
+										<div style="text-indent:-7px; padding-left:7px;">&bull; <?php echo $catDesc . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
 									</a>
 									<?php
 								}

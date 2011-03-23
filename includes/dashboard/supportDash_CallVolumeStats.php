@@ -10,12 +10,12 @@ $qryDashCallVol1 = "SELECT COUNT(tblTickets.id) as ticketCount, tblTickets.id AS
 										FROM tblTickets 
 										LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 										LEFT JOIN tblFacilities ON tblFacilities.CustomerNumber = tblTickets.CustomerNumber 
-										WHERE ((tblTickets.DateOpened >= '$dateFrom' AND tblTickets.DateOpened <= '$dateTo') OR (tblTicketMessages.Date >= '$dateFrom' AND tblTicketMessages.Date <= '$dateTo'))  
+										WHERE ((tblTickets.DateOpened >= '$dateFrom' AND tblTickets.DateOpened <= '$dateTo') OR (tblTicketMessages.Date >= '$dateFrom' AND tblTicketMessages.Date <= '$dateTo')) 
 										AND tblTickets.Status NOT IN(1) 
 										AND tblTicketMessages.msgType = 2 
 										GROUP BY custNum 
 										ORDER BY ticketCount DESC, lastCall DESC 
-										LIMIT 25";
+										LIMIT 35";
 $rstDashCallVol1 = mysql_query($qryDashCallVol1) or die(mysql_error());
 $numDashCallVol1 = mysql_num_rows($rstDashCallVol1);
 ?>
@@ -43,7 +43,7 @@ $numDashCallVol1 = mysql_num_rows($rstDashCallVol1);
 						?>
 						<div class="cspMOHighlight">
 							<a href="JavaScript:void(0);" onclick="window.location='cspUserSupport_Customer.php?custID=<?php echo $rowDashCallVol1['custNum']; ?>'">
-								<span style="display:inline-block; width:77%;"><?php echo $rowDashCallVol1['facilityName'] . " (" . $rowDashCallVol1['ticketCount'] . ")"; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo $lastCall; ?></span>
+								<span style="display:inline-block; width:77%;">&bull; <?php echo $rowDashCallVol1['facilityName'] . " (" . $rowDashCallVol1['ticketCount'] . ")"; ?></span><span style="display:inline-block; width:23%; vertical-align:top;"><?php echo $lastCall; ?></span>
 							</a>
 						</div>
 						<?php
