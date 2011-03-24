@@ -8,5 +8,13 @@
 	}
 	?>
 	<li><a href="#">Add Contact</a></li>
-	<li><a href="#">Monitor</a></li></ul>
+	<li><a href="#">Monitor</a></li>
+	<?php
+	if($_SESSION['access'] > 7) {
+		?>
+		<li><a href="#">Remove Customer</a></li>
+		<?php
+	}
+	?>
+	</ul>
 </li>

@@ -149,9 +149,14 @@ if(isset($_POST)) {
 							<div id="issueList<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours" style="margin-left:12px; display:none;">
 								<?php
 								while($rowRpt3 = mysql_fetch_assoc($resRpt3)) {
-									$catDesc = $rowRpt3['catDesc'];
-									$catCode = $rowRpt3['parentCode'];
-									$i = 1;
+									if(is_null($rowRpt3['categoryCode'])) {
+										$catDesc = "Undefined";
+										$i = 0;
+									} else {
+										$catDesc = $rowRpt3['catDesc'];
+										$catCode = $rowRpt3['parentCode'];
+										$i = 1;
+									}
 									while($i > 0) {
 										$qryCatCode1 = "SELECT * FROM issueCategories WHERE code = '$catCode'";
 										$rstCatCode1 = mysql_query($qryCatCode1);
@@ -224,9 +229,14 @@ if(isset($_POST)) {
 							<div id="issueList<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours" style="margin-left:12px; display:none;">
 								<?php
 								while($rowRpt3 = mysql_fetch_assoc($resRpt3)) {
-									$catDesc = $rowRpt3['catDesc'];
-									$catCode = $rowRpt3['parentCode'];
-									$i = 1;
+									if(is_null($rowRpt3['categoryCode'])) {
+										$catDesc = "Undefined";
+										$i = 0;
+									} else {
+										$catDesc = $rowRpt3['catDesc'];
+										$catCode = $rowRpt3['parentCode'];
+										$i = 1;
+									}
 									while($i > 0) {
 										$qryCatCode1 = "SELECT * FROM issueCategories WHERE code = '$catCode'";
 										$rstCatCode1 = mysql_query($qryCatCode1);

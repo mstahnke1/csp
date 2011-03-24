@@ -31,7 +31,7 @@ if(isset($custID)) {
 			<td class="cspBodyHeading">
 				<span style="float: left;">Facility Information</span>
 				<span style="font-variant:normal; font-size:1em; FONT-WEIGHT: normal; float: right;">
-					<a href="javacript:void(0);" onclick="javascript:TINY.box.show('cspUserSupport_UpdateCustomer.php?<?php echo 'custID=' . $_GET['custID']; ?>',1,0,0,1,0);">[update]</a>
+					<a href="javacript:void(0);" onclick="javascript:window.open('cspUserSupport_UpdateCustomer.php?<?php echo 'custID=' . $_GET['custID']; ?>','updateCustomer','status=0,toolbar=0,location=0,menubar=0,resizable=0,scrollbars=0,height=400,width=525');">[update]</a>
 				</span>
 			</td>
 		</tr>
