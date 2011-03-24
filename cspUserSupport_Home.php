@@ -40,6 +40,15 @@ require_once('includes/cspSessionMgmt.php');
 					</ul>
 				</div>
 				<div class="cbb">
+					<?php
+					if(isset($sysMsg)) {
+						?>
+						<div class="cspSysMsg">
+							<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+						</div>
+						<?php
+					}
+					?>
 					<div class="dashLeftCol">
 						<?php require_once('includes/dashboard/supportDash_CommonIssues.php'); ?>
 					</div>

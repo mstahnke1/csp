@@ -29,7 +29,7 @@ require_once('includes/cspSessionMgmt.php');
 				<?php require_once('cspMenuBar.php'); ?>
 			</div>
 			<div class="cspRightPanel">
-				&nbsp;
+				<?php require_once('cspRightPanel.php'); ?>
 			</div>
 			<div id="cspContent" class="cspContent" align="left">
 				<div class="cspNavBar">
@@ -38,6 +38,15 @@ require_once('includes/cspSessionMgmt.php');
 					</ul>
 				</div>
 				<div class="cbb">
+					<?php
+					if(isset($sysMsg)) {
+						?>
+						<div class="cspSysMsg">
+							<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+						</div>
+						<?php
+					}
+					?>
 					<div class="dashLeftCol">
 						<?php require_once('includes/dashboard/homeDash_Tasks.php'); ?>
 						<?php require_once('includes/dashboard/homeDash_Tickets.php'); ?>

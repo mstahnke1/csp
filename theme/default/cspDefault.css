@@ -12,7 +12,7 @@ div.cspContainer
 {
 	width:1000px;
 	height:100%;
-	margin:5px;
+	/*margin:5px;*/
 	/*border:1px solid gray;*/
 	line-height:110%;
 	BACKGROUND-COLOR: #FFFFFF;
@@ -20,6 +20,7 @@ div.cspContainer
 
 div.cspHeader
 {
+	margin-top;20px;
 	height:60px;
 	/*border:1px solid gray;*/
 	clear:both;
@@ -68,11 +69,17 @@ div.cspRightPanel
 	font:10px arial;
 }
 
-div.box-option
+/*
+div.notificationBar
 {
-	background:url('images/indent1.gif') no-repeat 0% -50%;
-	padding-left:10px;
-}	
+	border-top:1px solid #E0E0E0;
+	background-color: #FFE87C;
+	position:fixed;
+ 	top:0;
+ 	width:1000px;
+ 	clear:both;
+}
+*/
 
 div.cspNavBar
 {

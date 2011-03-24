@@ -44,9 +44,15 @@ if(isset($_GET['custID'])) {
 					</ul>
 				</div>
 				<div class="cbb">
-					<div class="cspSysMsg">
-						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
-					</div>
+					<?php
+					if(isset($sysMsg)) {
+						?>
+						<div class="cspSysMsg">
+							<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+						</div>
+						<?php
+					}
+					?>
 					<div id="newContent">
 						<div class="dashLeftCol">
 							<?php require_once('includes/support/cspCustomer_Info.php'); ?>

@@ -14,7 +14,7 @@ if(is_null($rowTicketDetail1['categoryCode'])) {
 		$i = mysql_num_rows($rstCatCode1);
 		$rowCatCode1 = mysql_fetch_assoc($rstCatCode1);
 		if($i > 0) {
-			$catDesc = $rowCatCode1['description'] . " -> " . $catDesc;
+			$catDesc = $rowCatCode1['description'] . " &rarr; " . $catDesc;
 		}
 		$catCode = $rowCatCode1['parentCode'];
 	}
