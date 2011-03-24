@@ -177,9 +177,15 @@ if(!isset($_SESSION['uid'])) {
 			</div>
 			<div class="cspContent" align="left">
 				<div class="cbb">
-					<div class="cspSysMsg">
-						<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
-					</div>
+					<?php
+					if(isset($sysMsg)) {
+						?>
+						<div class="cspSysMsg">
+							<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+						</div>
+						<?php
+					}
+					?>
 					<div class="dashLeftCol">
 						<h3>Agent Login</h3>
 						<form id="cspLoginForm" name="cspLoginForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">

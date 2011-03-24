@@ -1,7 +1,7 @@
 <!-- START Task Dashboard Module -->
 <?php
-include 'includes/config.inc.php';
-include 'includes/db_connect.inc.php';
+include('includes/config.inc.php');
+include('includes/db_connect.inc.php');
 
 $agent = $_SESSION['uid'];
 $query8 = "SELECT id, f_name, l_name, dept, recFloorplan, recRmaEmail, manageRma, warr_prog FROM employees WHERE id = '$agent'";

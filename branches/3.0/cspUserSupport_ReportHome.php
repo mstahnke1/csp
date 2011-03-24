@@ -50,6 +50,15 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 					</ul>
 				</div>
 				<div class="cbb">
+					<?php
+					if(isset($sysMsg)) {
+						?>
+						<div class="cspSysMsg">
+							<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+						</div>
+						<?php
+					}
+					?>
 					<div id="newContent">
 						<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 							<tr>

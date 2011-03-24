@@ -35,7 +35,16 @@ require_once('includes/cspSessionMgmt.php');
 					</ul>
 				</div>
 				<div class="cbb">
-					Sales Home
+					<?php
+					if(isset($sysMsg)) {
+						?>
+						<div class="cspSysMsg">
+							<?php if(isset($sysMsg)) { echo $sysMsg; } ?>
+						</div>
+						<?php
+					}
+					?>
+					<div>Sales Home</div>
 				</div>
 			</div>
 			<div class="cspFooter">
