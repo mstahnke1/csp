@@ -141,15 +141,15 @@ if(isset($_GET['custID'])) {
 				</tr>
 				<tr>
 					<td>
-						<div style="font:12px arial;">
-							<form name="custInfo" method="post" target="_top" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:20px;  float:left; text-align:right; padding:1px;">Customer Number:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left;  float:right; padding:1px;"><input type="text" name="custNum" size="5" maxlength="6" value="<?php echo $custNum; ?>" <?php if(isset($_GET['custID'])) { echo 'READONLY'; } ?> /></span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:26px; float:left; text-align:right; padding:1px;">Corporate:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;">
+						<form name="custInfo" method="post" target="_top" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<table cellspacing="0" cellpadding="0" border="0" width="100%">
+								<tr>
+									<td style="text-align:right;">Customer Number:</td>
+									<td><input type="text" name="custNum" size="5" maxlength="6" value="<?php echo $custNum; ?>" <?php if(isset($_GET['custID'])) { echo 'READONLY'; } ?> /></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Corporate:</td>
+									<td>
 										<select name="cboCorporate" onchange="javascript:changeElem('txtNewCorpName',this.value);">
 											<option value="-1" <?php if($corpID == "" || is_null($corpID)){ echo 'selected="selected"'; } ?>>- None -</option>
 											<?php
@@ -164,27 +164,31 @@ if(isset($_GET['custID'])) {
 											}
 											?>
 										</select>
-									</span>
-								</div>
-								<div id="txtNewCorpName" style="display: none; margin-left: 28%;">
-									<span style="line-height:20px; float:left; padding:1px; font-weight: bold;">Enter Name:</span>
-									<span style="padding:1px; text-align:left;"><input type="text" name="corpName" value="" /></span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:22px; float:left; text-align:right; padding:1px;">Facility Name:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left;  float:right; padding:1px;"><input type="text" name="fName" value="<?php echo $facilityName; ?>" /></span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:24px; float:left; text-align:right; padding:1px;">Alternate Name:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="fNameOther" value="<?php echo $facilityNameOther; ?>" /></span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:24px; float:left; text-align:right; padding:1px;">Street Address:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="strAddress" value="<?php echo $strAddress; ?>" /></span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:24px; float:left; text-align:right; padding:1px;">City, State:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="city" value="<?php echo $city; ?>" />, 
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td id="txtNewCorpName" style="display: none;">
+										<font face="Arial" size="2"><b>Corporate Name</b></font>
+										<input type="text" name="corpName" value="" />
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Facility Name:</td>
+									<td><input type="text" name="fName" value="<?php echo $facilityName; ?>" /></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Alternate Name:</td>
+									<td><input type="text" name="fNameOther" value="<?php echo $facilityNameOther; ?>" /></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Street Address:</td>
+									<td><input type="text" name="strAddress" value="<?php echo $strAddress; ?>" /></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">City, State:</td>
+									<td>
+										<input type="text" name="city" value="<?php echo $city; ?>" />, 
 										<select name="state">
 											<?php
 											while($rowCustInfo3 = mysql_fetch_assoc($resCustInfo3)) {
@@ -194,15 +198,15 @@ if(isset($_GET['custID'])) {
 											}
 											?>
 										</select>
-									</span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:24px; float:left; text-align:right; padding:1px;">Postal Code:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="zip" size="9" value="<?php echo $zip; ?>" /></span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:22px; float:left; text-align:right; padding:1px;">Country:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;">
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Postal Code:</td>
+									<td><input type="text" name="zip" size="9" value="<?php echo $zip; ?>" /></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Country:</td>
+									<td>
 										<select name="country">
 											<?php
 											while($rowCustInfo4 = mysql_fetch_array($resCustInfo4)) {
@@ -212,11 +216,11 @@ if(isset($_GET['custID'])) {
 											}
 											?>
 										</select>
-									</span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:20px; float:left; text-align:right; padding:1px;">Source of Sale:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;">
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Source of Sale:</td>
+									<td>
 										<select name="saleType">
 											<option value="0" <?php if((is_null($saleSource)) OR ($saleSource == 0)){ echo 'selected="selected"'; } ?>>Unknown</option>
 											<?php
@@ -227,22 +231,25 @@ if(isset($_GET['custID'])) {
 											}
 											?>
 										</select>
-									</span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:24px; float:left; text-align:right; padding:1px;">Phone Number:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="phoneNum" value="<?php echo $phoneNum; ?>" maxlength="10" size="10" /></span>
-								</div>
-								<div>
-									<span style="display:inline-block; width:27%; vertical-align:top; line-height:24px; float:left; text-align:right; padding:1px;">Fax Number:</span>
-									<span style="display:inline-block; width:71%; vertical-align:top; text-align:left; float:right; padding:1px;"><input type="text" name="faxNum" value="<?php echo $faxNum; ?>" maxlength="10" size="10" /></span>
-								</div>
-								<div style="clear:both; float:right; margin-right:1px;">
-									<span><input type="hidden" name="transType" value="<?php echo $transType; ?>" /><input type="submit" name="saveCustInfo" value="Save" /></span>
-									<span><input type="button" name="cancel" value="Cancel" onClick="javascript:window.close();" /></span>
-								</div>
-							</form>
-						</div>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Phone Number:</td>
+									<td><input type="text" name="phoneNum" value="<?php echo $phoneNum; ?>" maxlength="10" size="10" /></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Fax Number:</td>
+									<td><input type="text" name="faxNum" value="<?php echo $faxNum; ?>" maxlength="10" size="10" /></td>
+								</tr>
+								<tr>
+									<td>
+										<input type="hidden" name="transType" value="<?php echo $transType; ?>" />
+										<input type="submit" name="saveCustInfo" value="Save" />
+										<input type="button" name="cancel" value="Cancel" onClick="javascript:window.close();" />
+									</td>
+								</tr>
+							</table>
+						</form>
 					</td>
 				</tr>
 			</table>
