@@ -1,4 +1,5 @@
 <?php
+require_once('../includes/cspSessionMgmt.php');
 include_once('../includes/config.inc.php');
 include_once('../includes/db_connect.inc.php');
 
@@ -11,8 +12,9 @@ if(isset($_GET) && $_GET['taskID']) {
 	$resAck1 = mysql_query($qryAck1);
 	if($resAck1) {
 		$sysMsg = urlencode("Notification successfully acknowledged.");
-	  die(header("Location: " . $_SERVER['HTTP_REFERER'] . "?sysMsg=" . $sysMsg));
+	  die(header("Location: " . $_SERVER['HTTP_REFERER'] . "?msgID=28"));
 	} else {
 		die(mysql_error());
 	}
 }
+?>
