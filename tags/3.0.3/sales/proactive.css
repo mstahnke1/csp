@@ -1,0 +1,79 @@
+﻿<style>
+
+div.indent
+{
+ 	position: relative;
+  width: 100%;
+  height:100%;
+  border:1px solid gray;
+  top:0;
+  left:0;
+}
+
+div.footer
+{
+	clear:both;
+}
+
+td.heading
+{
+	font: normal bold 14px arial
+}
+
+td.bigheading
+{
+	font: small-caps bold 20px arial
+}
+
+td.historyheader
+{
+	font: small-caps bold 24px arial
+}
+
+td.smallheading
+{
+	font: small-caps bold 12px arial
+}
+
+td.mediumheading
+{
+	font: small-caps bold 17px arial
+}
+
+td.namelabel
+{
+	font: italic small-caps 12px Verdana
+}
+
+td.body
+{
+	font:12px arial;
+}
+
+td.legend
+{
+	font:10px arial
+}
+
+td.border
+{
+	border: 1px solid gray;
+}
+
+p
+{
+	font:12px arial;
+	margin-left: 30px;
+}
+
+h3
+{
+	font-family: arial
+}
+
+.center
+{
+text-align: center
+}
+
+</style>

@@ -1,0 +1,116 @@
+<style>
+
+div.container
+{
+	width:100%;
+	height:1024px;
+	margin:0px;
+	border:1px solid gray;
+	line-height:110%;
+}
+
+div.ticketMon
+{
+	/*
+	background-image:url('images/bgrnd.jpg');
+	background-repeat:no-repeat;
+	background-position: 50% 50%;
+	*/
+	float:left;
+	width:50%;
+	height:525px;
+	overflow: auto;
+	margin:0;
+	padding:0.5em;
+}
+
+div.ticketStats
+{
+	/*
+	background-image:url('images/bgrnd.jpg');
+	background-repeat:no-repeat;
+	background-position: 50% 50%;
+	*/
+	float:left;
+	width:50%;
+	height:340px;
+	overflow: auto;
+	padding:0.5em;
+	border-top:1px solid gray;
+}
+
+div.taskMon
+{
+	/*
+	background-image:url('images/bgrnd.jpg');
+	background-repeat:no-repeat;
+	background-position: 50% 50%;
+	*/
+	height:525px;
+	overflow: auto;
+	border-left:1px solid gray;
+	margin-left:0px;
+	padding:0.5em;
+}
+
+div.taskStats
+{
+	/*
+	background-image:url('images/bgrnd.jpg');
+	background-repeat:no-repeat;
+	background-position: 50% 50%;
+	*/
+	height:340px;
+	overflow: auto;
+	border-left:1px solid gray;
+	margin-left:0px;
+	padding:0.5em;
+	border-top:1px solid gray;
+}
+
+div.footer
+{
+	clear:both;
+}
+
+td.heading
+{
+	font: small-caps bold 16px arial
+}
+
+td.smallheading
+{
+	font: small-caps bold 14px arial
+}
+
+td.namelabel
+{
+	font: italic small-caps 14px Verdana
+}
+
+td.body
+{
+	font:14px arial
+}
+
+td.border
+{
+	border: 1px solid gray;
+}
+
+p
+{
+	font:14px arial
+}
+
+h3
+{
+	font-family: arial
+}
+
+.center
+{
+text-align: center
+}
+
+</style>
