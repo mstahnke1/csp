@@ -118,7 +118,9 @@ if(isset($_POST)) {
 				<tr>
 					<td class="statHeading">
 						<b>Office Hour Stats</b><br />
-						<?php echo $numTotalOffice; ?> Total Calls
+						<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', '', '');">
+							<?php echo $numTotalOffice; ?> Total Calls
+						</a>
 					</td>
 				</tr>
 				<?php
