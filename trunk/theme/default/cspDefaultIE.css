@@ -1,0 +1,422 @@
+body {
+	MARGIN-TOP: 5px;
+	font:10px arial;
+	/*
+	background-image: url('images/bkg.gif');
+	background-repeat: repeat-x;
+	background-color: #00CC33;
+	*/
+}
+
+div.cspContainer
+{
+	width:1000px;
+	height:100%;
+	margin:5px;
+	/*border:1px solid gray;*/
+	line-height:110%;
+	BACKGROUND-COLOR: #FFFFFF;
+}
+
+div.cspHeader
+{
+	height:60px;
+	/*border:1px solid gray;*/
+	clear:both;
+}
+
+div.cspInfoPanel
+{
+	width:200px;
+	height:55px;
+	border:1px solid gray;
+	background:#E0E0E0;
+	float:right;
+	display:inline;
+	text-align:left;
+	font:10px arial;
+}
+
+div.cspInfoPanelMsg
+{
+	text-align:center;
+	font:bold 10px arial;
+}
+
+div.cspLeftPanel
+{
+	float:left;
+	width:52px;
+	height:100%;
+	margin-top:10px;
+	/*
+	//height:100%;
+	//overflow: auto;
+	//background:#E0E0E0;
+	//border-right:1px solid gray;
+	*/
+}
+
+div.cspRightPanel
+{
+	float:right;
+	width:200px;
+	height:300px;
+	overflow: auto;
+	margin:0px;
+	/*border-left:3px solid gray;*/
+	font:10px arial;
+}
+
+div.box-option
+{
+	background:url('images/indent1.gif') no-repeat 0% -50%;
+	padding-left:10px;
+}	
+
+div.cspNavBar
+{
+	/*
+	height:16px;
+	//border-top:1px solid #E0E0E0;
+	margin-left:5px;
+	margin-right:5px;
+	font:small-caps bold 12px arial;
+	margin-top:10px;
+	vertical-align:top;
+	*/
+}
+
+/*
+div.cspNavBarItem
+{
+	background:url('images/NavBarArrow.gif') no-repeat 0% 0%;
+	padding-left:18px;
+	display:inline
+}
+*/
+
+#navbar {
+	margin-left: 5px;
+	padding: 0;
+	height: 1em; }
+#navbar li {
+	list-style: none;
+	float: left; }
+#navbar li a {
+	display: block;
+	padding: 3px 3px;
+	/*background-color: #5e8ce9;*/
+	background:url('images/NavBarArrow.gif') no-repeat 0% 50%;
+	padding-left:18px;
+	color: #000000;
+	font:small-caps bold 12px arial;
+	text-decoration: none; }
+#navbar li ul {
+	display: none; 
+	/*width: 10em; /* Width to help Opera out */
+	background-color: #69f;}
+#navbar li:hover ul {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	margin: 0;
+	padding: 0; }
+#navbar li:hover li {
+	float: none; }
+#navbar li:hover li a {
+	/*background-color: #69f;*/
+	background-color: #87CEEB;
+	border-bottom: 1px solid #fff;
+	color: #000; }
+#navbar li li a:hover {
+	background-color: #BDEDFF;
+	/*background-color: #8db3ff;*/
+}
+
+div.cspContent {
+	height:100%;
+	/*border:1px solid gray;*/
+	margin-left:56px;
+	margin-right:198px;
+	font:12px arial;
+}
+
+div.posCenter {
+	margin-left:auto;
+	margin-right:auto;
+	width:30%;
+}
+
+div.dashLeftCol {
+	/*border:1px solid gray;*/
+	float:left;
+	width:49%;
+}
+
+div.dashRightCol {
+	/*border:1px solid gray;*/
+	float:right;
+	width:49%;
+}
+
+div.dashFullCol {
+	width:100%;
+	float:left;
+}
+
+div.cspDashModule {
+	/*
+	//display:inline-block;
+	//width:49%;
+	//vertical-align:top;
+	*/
+}
+
+div.rmaStatusInfo {
+	/*background-color: #C6E2FF;*/
+	padding: 1px;
+	margin: 1px;
+	border-bottom: dashed 1px #999999;
+}
+
+td.cspTicketHeading
+{
+	border-bottom: 1px solid #999999;
+	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
+}
+
+div.cspTicketComment {
+	display:none;
+	border: 1px solid #999999;
+	border-top: none;
+	padding: 4px;
+}
+
+div.cspSysMsg {
+	/*background:#C6DEFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;*/
+	/*background:#FFFFFF url('images/sysMsgIcon.jpg') no-repeat 0% 0%;*/
+	font:100% arial bold;
+	padding-left: 24px;
+	margin-bottom: 10px;
+	margin-left:auto;
+	margin-right:auto;
+	width:50%;
+}
+
+fieldset {
+	border: 1px solid green;
+}
+
+legend {
+	padding: 0.2em 0.5em;
+  border:1px solid green;
+  color:green;
+  font:90% arial bold;
+  text-align:center;
+}
+
+table.cspDashRow
+{
+	margin-bottom:10px;
+	width:100%;
+	/*
+	//margin-left:5px;
+	//vertical-align:top;
+	*/
+}
+
+div.cspMOHighlight:hover {
+	background-color:#F0F0F0;
+	/*background-color:#B7CEEC;*/
+}
+
+span.modListHeading {
+	display:inline-block;
+	padding:0px;
+	text-decoration:underline;
+}
+
+span.modList {
+	display:inline-block;
+	padding:0px;
+	vertical-align:top;
+}
+
+td.cspBodyHeading {
+	border-top: 1px solid #488AC7;
+	FONT-SIZE: 10pt; COLOR: #000000; font-variant:small-caps; FONT-WEIGHT: bold; FONT-FAMILY: verdana, arial, sans-serif;
+	BACKGROUND-COLOR: #BDEDFF;
+}
+
+div.cspFooter {
+	height:18px;
+	/*border:1px solid gray;*/
+	clear:both;
+}
+
+div.menuBox {
+	height:50px;
+	width:50px;
+	/*border:1px solid gray;*/
+	font: small-caps bold 13px arial;
+	line-height: 85px;
+}
+
+div.menuBox:hover {
+	/*border:2px solid #00CC66;*/
+	text-decoration:none;
+}
+
+div.menuBox.box1 {
+	background-image: url('images/home_icon.gif');
+}
+
+div.menuBox.box2 {
+	background-image: url('images/support_button.png');
+}
+
+div.menuBox.box3 {
+	background-image: url('images/Sales_Icon.jpg');
+}
+
+div.menuBox.box4 {
+	background-image: url('images/icon_admin.png');
+}
+
+a {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none;
+}
+
+a:link {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none;
+}
+
+a:visited {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none;
+}
+
+a:active {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none;
+}
+
+a:hover {
+	COLOR: #000000; FONT-SIZE: 12px; FONT-WEIGHT:normal; TEXT-DECORATION: none;
+}
+
+a.leftArrow:hover {
+	background:url('images/leftSideLinkArrow.gif') no-repeat 0px 0px;
+}
+
+/* Default CSS
+================================================*/
+/* Basic styling, used when JavaScript is unsupported */
+.cbb {
+	margin:1em 0;
+	padding:0 10px;
+	border:1px solid #666;
+	background:#fff;
+}
+.cbb h1 {
+	margin:0 -10px;
+	padding:0.3em 10px;
+	background:#efece6;
+	font:bold 1.2em/1 Arial, Helvetica, sans-serif;
+}
+/* Normal styling */
+.cb {margin:0.5em 0;}
+	/* Top corners and border */
+.bt {
+	height:17px;
+	margin:0 0 0 18px;
+	background:url(images/box.png) no-repeat 100% 0;
+}
+.bt div {
+	position:relative;
+	left:-18px;
+	width:18px;
+	height:17px;
+	background:url(images/box.png) no-repeat 0 0;
+	font-size:0;
+	line-height:0;
+}
+
+	/* Bottom corners and border */
+.bb {
+	height:14px;
+	margin:0 0 0 12px;
+	background:url(images/box.png) no-repeat 100% 100%;
+}
+.bb div {
+	position:relative;
+	left:-12px;
+	width:12px;
+	height:14px;
+	background:url(images/box.png) no-repeat 0 100%;
+	font-size:0;
+	line-height:0;
+}
+
+	/* Left border */
+.i1 {
+	padding:0 0 0 12px;
+	background:url(images/borders.png) repeat-y 0 0;
+}
+	/* Right border */
+.i2 {
+	padding:0 12px 0 0;
+	background:url(images/borders.png) repeat-y 100% 0;
+}
+	/* Wrapper for the content. Use it to set the background colour and insert some padding between the borders and the content. */
+.i3 {
+	display:block;
+	margin:0;
+	padding:1px 10px;
+	background:#fff;
+}
+	/* Make the content wrapper auto clearing so it will contain floats (see http://positioniseverything.net/easyclearing.html). */
+.i3:after {
+	content:"."; 
+	display:block; 
+	height:0; 
+	clear:both; 
+	visibility:hidden;
+}
+.i3 {display:inline-block;}
+.i3 {display:block;}
+/* Default CSS ends here */
+
+/* Show only to IE PC \*/
+* html .boxhead h2 {height: 1%;} /* For IE 5 PC */
+
+.sidebox {
+	margin: 0 auto; /* center for now */
+	width: 20em; /* ems so it will grow */
+	background: url(images/sbbody-r.gif) no-repeat bottom right;
+	font-size: 100%;
+}
+.boxhead {
+	background: url(images/sbhead-r.gif) no-repeat top right;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.boxhead h2 {
+	background: url(images/sbhead-l.gif) no-repeat top left;
+	margin: 0;
+	padding: 22px 30px 5px;
+	color: white; 
+	font-weight: bold; 
+	font-size: 1.4em;
+	font-variant:small-caps;
+	font-family: verdana, arial, sans-serif;
+	line-height: 1em;
+	text-shadow: rgba(0,0,0,.4) 0px 2px 5px; /* Safari-only, but cool */
+}
+.boxbody {
+	background: url(images/sbbody-l.gif) no-repeat bottom left;
+	margin: 0;
+	padding: 5px 22px 25px;
+	font-size: 1.0em;
+	text-align:left;
+}

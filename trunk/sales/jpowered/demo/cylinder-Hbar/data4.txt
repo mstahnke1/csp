@@ -1,0 +1,7 @@
+data1series1:   15
+
+data1series2:   82
+
+data1series3:   10
+
+
