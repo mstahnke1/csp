@@ -32,9 +32,14 @@ $numCommonIssues1 = mysql_num_rows($rstCommonIssues1);
 					</div>
 					<?php
 					while($rowCommonIssues1 = mysql_fetch_array($rstCommonIssues1)) {
-						$catDesc = $rowCommonIssues1['catDesc'];
-						$catCode = $rowCommonIssues1['parentCode'];
-						$i = 1;
+						if(is_null($rowCommonIssues1['categoryCode'])) {
+							$catDesc = "Undefined";
+							$i = 0;
+						} else {
+							$catDesc = $rowCommonIssues1['catDesc'];
+							$catCode = $rowCommonIssues1['parentCode'];
+							$i = 1;
+						}
 						while($i > 0) {
 							$qryCatCode1 = "SELECT * FROM issueCategories WHERE code = '$catCode'";
 							$rstCatCode1 = mysql_query($qryCatCode1);

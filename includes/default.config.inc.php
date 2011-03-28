@@ -92,4 +92,7 @@ $portalMsg[26]['es'] = 'No se ha podido conectar al servidor de autenticación. 
 $portalMsg[27]['en'] = 'Must enter a comment for the call before ending.';
 $portalMsg[27]['he'] = 'החיבור לשרת האימות נכשל, אנא צור קשר עם מנהל המערכת';
 $portalMsg[27]['es'] = 'No se ha podido conectar al servidor de autenticación. Por favor, póngase en contacto con el administrador del sistema.';
+$portalMsg[28]['en'] = 'Notification successfully acknowledged.';
+$portalMsg[28]['he'] = 'החיבור לשרת האימות נכשל, אנא צור קשר עם מנהל המערכת';
+$portalMsg[28]['es'] = 'No se ha podido conectar al servidor de autenticación. Por favor, póngase en contacto con el administrador del sistema.';
 ?>
