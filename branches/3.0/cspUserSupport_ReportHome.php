@@ -144,14 +144,24 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 												<input type="text" name="issueCat" id="issueCat" value="" SIZE="4" />
 												<input type="button" value="Find" onclick="showDiv('issueCatMod', '');" />
 											</span>
+										</div>
+										<div>
 											<span style="display:inline-block;">
 												Keyword Search:<br />
 												<input type="text" name="keyword" id="keyword" value="" size="47" />
 											</span>
+											<span style="display:inline-block;">
+												Report Type:<br />
+												<select name="rptType" id="rptType">
+							    				<option value="callStats">Call Statistics</option>
+							    				<option value="callDetail">Call Detailed</option>
+												</select>
+											</span>
+										</div>
 											<?php include_once('includes/support/cspTicket_IssueCategories.php'); ?>
 										</div>
 										<div>
-											<input type="button" value="Build" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php', '', '');" />
+											<input type="button" value="Build" onclick="buildRpt('cspRprtParams', '', '');" />
 										</div>
 									</form>
 								</td>

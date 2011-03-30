@@ -46,7 +46,7 @@ function srchShipments(frmStr){
 	ajaxRequest.send(queryString); 
 }
 
-function buildRpt(frmStr, pageStr, frmEle, frmVal){
+function buildRpt(frmStr, frmEle, frmVal){
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
@@ -68,6 +68,13 @@ function buildRpt(frmStr, pageStr, frmEle, frmVal){
 		document.forms[frmStr].elements[frmEle].value = frmVal;
 	}
 	
+	var rptType = document.forms[frmStr].rptType.value;
+	if(rptType == "callStats") {
+		var pageStr = "cspReport_callStatistics.php";
+	} else if(rptType == "callDetail") {
+		var pageStr = "cspReport_callDetailed.php";
+	}
+  
 	var dateFrom = document.forms[frmStr].dateFrom.value;
 	var dateTo = document.forms[frmStr].dateTo.value;
 	var custID = document.forms[frmStr].custID.value;
