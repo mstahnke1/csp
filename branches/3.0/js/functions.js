@@ -73,6 +73,8 @@ function buildRpt(frmStr, frmEle, frmVal){
 		var pageStr = "cspReport_callStatistics.php";
 	} else if(rptType == "callDetail") {
 		var pageStr = "cspReport_callDetailed.php";
+	} else if(rptType == "expData") {
+		var pageStr = "cspReport_callDataExport.php";
 	}
   
 	var dateFrom = document.forms[frmStr].dateFrom.value;

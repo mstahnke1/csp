@@ -93,12 +93,20 @@ if(isset($_POST)) {
 		$rptLabel = "Call Detail";
 	}
 	mysql_data_seek($resRpt1, 0);
+	
+	$urlQryStrg = "dateFrom=" . $dateFrom . "&dateTo=" . $dateTo . "&custID=" . $custID . "&incRMA=" . $incRMA . 
+								"&hfEmployee=" . $hfEmployee . "&ticketStatus=" . $ticketStatus . "&callType=" . $callType . "&issueCat=" . $issueCat;
 }
 ?>
 <table border="0" width="100%" cellspacing="1" cellpadding="0">
 	<tr>
 		<td class="cspTicketHeading" colspan="2">
 			<span style="float: left;">Ticket Report - <?php echo $rptLabel; ?></span>
+			<span style="float: right;">
+				<a href="javascript:void(0);" onclick="window.open('includes/reports/cspReport_callDataExport.php?<?php echo $urlQryStrg; ?>','_self','')">
+					<img src="theme/default/images/icons/XLSX.png" height="15" width="15" border="0" /> 
+				</a>
+			</span>
 		</td>
 	</tr>
 		<td width="100%" align="center" valign="top" style="text-align: left;">
