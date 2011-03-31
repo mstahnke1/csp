@@ -84,8 +84,14 @@ if(isset($_POST)) {
 		$qryRpt2 = substr($qryRpt2, 0, -4);
 	}
 	
+	if($_POST['recLimit'] > 0 && $_POST['recLimit'] < 51) {
+		$recLimit = $_POST['recLimit'];
+	} else {
+		$recLimit = 50;
+	}
+	
 	$numTotalOffice = 0;
-	$qryRpt1 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,50";
+	$qryRpt1 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,$recLimit";
 	$resRpt1 = mysql_query($qryRpt1) or die(mysql_error());
 	$numRpt1 = mysql_num_rows($resRpt1);
 	while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
@@ -96,7 +102,7 @@ if(isset($_POST)) {
 	}
 	
 	$numTotalOnCall = 0;
-	$qryRpt2 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,50";
+	$qryRpt2 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,$recLimit";
 	$resRpt2 = mysql_query($qryRpt2);
 	$numRpt2 = mysql_num_rows($resRpt2);
 	while($rowRpt2 = mysql_fetch_assoc($resRpt2)) {
@@ -125,7 +131,7 @@ if(isset($_POST)) {
 				</tr>
 				<?php
 				while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
-					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
 											FROM tblTickets 
 											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 

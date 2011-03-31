@@ -69,6 +69,19 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 									<form name="cspRprtParams" id="cspRprtParams" onSubmit="javascript:void(0);">
 										<div>
 											<span style="display:inline-block;">
+												Report Type:<br />
+												<select name="rptType" id="rptType" onChange="changeFrmEleState('cspRprtParams', 'recLimit', this.value);">
+							    				<option value="callStats">Call Statistics</option>
+							    				<option value="callDetail">Call Detailed</option>
+												</select>
+											</span>
+											<span style="display:inline-block;">
+												Analysis Limit:<br />
+												<input type="text" name="recLimit" id="recLimit" value="" size="2" />
+											</span>
+										</div>
+										<div>
+											<span style="display:inline-block;">
 												Date From:<br>
 												<input type="text" name="dateFrom" value="" SIZE="10" />
 											</span>
@@ -149,13 +162,6 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 											<span style="display:inline-block;">
 												Keyword Search:<br />
 												<input type="text" name="keyword" id="keyword" value="" size="47" />
-											</span>
-											<span style="display:inline-block;">
-												Report Type:<br />
-												<select name="rptType" id="rptType">
-							    				<option value="callStats">Call Statistics</option>
-							    				<option value="callDetail">Call Detailed</option>
-												</select>
 											</span>
 										</div>
 											<?php include_once('includes/support/cspTicket_IssueCategories.php'); ?>

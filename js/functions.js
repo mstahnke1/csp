@@ -83,8 +83,10 @@ function buildRpt(frmStr, frmEle, frmVal){
 	var ticketStatus = document.forms[frmStr].ticketStatus.value;
 	var callType = document.forms[frmStr].callType.value;
 	var issueCat = document.forms[frmStr].issueCat.value;
+	var recLimit = document.forms[frmStr].recLimit.value;
 	var queryString = "dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&custID=" + custID + "&incRMA=" + incRMA + 
-										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat;
+										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat + 
+										"&recLimit=" + recLimit;
 	
 	ajaxRequest.open("POST", "includes/reports/" + pageStr, true);
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -202,6 +204,14 @@ function sbmRmaDevice(frmStr, ticketID, deviceAction) {
 function populateTxt(frmStr, eleStr, valStr) {
 	document.forms[frmStr].elements[eleStr].value = valStr;
 	hideDiv('issueCatMod');
+}
+
+function changeFrmEleState(frmStr, eleStr, sbmVal) {
+	if(sbmVal == "callStats") {
+		document.forms[frmStr].elements[eleStr].disabled = false;
+	} else if(sbmVal == "callDetail") {
+		document.forms[frmStr].elements[eleStr].disabled = true;
+	}
 }
 
 function showDiv(divStr, imgID) {

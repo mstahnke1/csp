@@ -89,8 +89,7 @@ if(isset($_POST)) {
 	$rowRpt1 = mysql_fetch_assoc($resRpt1);
 	if($custID != "") {
 		$rptLabel = $rowRpt1['facilityName'];
-	}
-	if($callType != "ALL") {
+	} else {
 		$rptLabel = "Call Detail";
 	}
 	mysql_data_seek($resRpt1, 0);
@@ -194,6 +193,8 @@ if(isset($_POST)) {
 										if($numCallDetail2 > 0) {
 											$callEnd = $rowCallDetail2['Date'];
 											echo "<div>Call ID: " . $callID . " | " . "Agent: " . $rowCallDetail1['fName'] . " " . $rowCallDetail1['lName'] . " | " . dateDiff($callBegin, $callEnd) . " " . $callTypeDesc . "</div>";
+										} else {
+											echo "<div>Call ID: " . $callID . " | " . "Agent: " . $rowCallDetail1['fName'] . " " . $rowCallDetail1['lName'] . "</div>";
 										}
 									}
 									?>
