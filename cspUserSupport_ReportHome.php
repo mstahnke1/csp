@@ -164,8 +164,7 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 												<input type="text" name="keyword" id="keyword" value="" size="47" />
 											</span>
 										</div>
-											<?php include_once('includes/support/cspTicket_IssueCategories.php'); ?>
-										</div>
+										<?php include_once('includes/support/cspTicket_IssueCategories.php'); ?>
 										<div>
 											<input type="button" value="Build" onclick="buildRpt('cspRprtParams', '', '');" />
 										</div>
