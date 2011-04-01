@@ -211,7 +211,7 @@ if(isset($_POST)) {
 				</tr>
 				<?php
 				while($rowRpt2 = mysql_fetch_assoc($resRpt2)) {
-					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
 											FROM tblTickets 
 											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
