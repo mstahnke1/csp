@@ -159,6 +159,15 @@ function getSysDetails(pageURL, divID, sysID) {
 	ajaxRequest.send();
 }
 
+function updSysInfo(sysID, dbField, dbVal) {
+	alert("Double click detected");
+}
+
+function modSysInfo(eleID, eleVal) {
+	var editElement = document.getElementById(eleID);
+	editElement.innerHTML = '<input type="text" name="eleID" id="eleID" value="' + eleVal + '" />';
+}
+
 function fileDelConf() {
 	var auth = confirm("Are you sure you want to REMOVE the selected files?");
 	if(auth) {
