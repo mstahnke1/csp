@@ -1,0 +1,74 @@
+/* --------------------------------------------------------------------------------------------- */
+/*                                                                                               */
+/* For the full range of options and parameter meanings please see:-                             */
+/*                                                                                               */
+/* http://www.jpowered.com/php-scripts/adv-graph-chart/documentation/configurationOptions.htm    */
+/*                                                                                               */
+/* --------------------------------------------------------------------------------------------- */
+
+<!-- Chart Characteristics -->
+width:              700
+height:             400
+ndecplaces:         0
+pecentndecplaces:   0
+depth3d:            20
+3dangle:            40
+
+backgroundcolor:    #FFFFFF
+
+<!-- Chart Switches -->
+3d:                 false
+displayPercentages: true
+labellines:         true
+quality:            high
+
+<!-- Segment Value Pre & Post Symbols -->
+valuepresym: $
+
+<!-- thousand seperater -->
+thousandseparator: ,
+
+<!-- Segment Labels -->
+segmentlabels:            true
+segmentlabelfont:         Arial
+segmentlabelfontsize:     10
+segmentlabelfontbold:     false
+segmentlabelfontitalic:   false
+segmentlabelcolor:        #666666
+
+<!-- Pie Data --> 
+<!--  PieN   x,y|size|seperation -->
+pie1: 300,250|200|10
+
+<!-- segment Data --> 
+<!-- segmentN      series color|legend label| -->
+segment1:          #009999|N America|
+segment2:          #CC0099|Europe|
+segment3:          #FFCC00|Asia|
+segment4:          #1E14AD|Africa|
+segment5:          #FF3D00|Australia|
+segment6:          #88B300|S America|
+
+<!-- Title --> 
+titletext:         Sales by Region
+titlefont:         Arial
+titlefontsize:     12
+titlefontbold:     true
+titlefontitalic:   false
+titlecolor:        #444444
+titleposition:     100,60
+
+<!-- Legend Information -->
+legend:            true
+legendfont:        Arial
+legendfontsize:    10
+legendfontbold:    false
+legendfontitalic:  true
+legendposition:    520,60
+legendtitle:       Sales Region
+legendbgcolor:     #FFFFFF
+legendbordercolor: #DDDDDD
+legendtextcolor:   #202020
+legendstyle:       vertical
+
+
