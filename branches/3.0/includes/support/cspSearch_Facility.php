@@ -6,7 +6,7 @@
 		<form id="lookupFacilityName" name="lookupFacilityName" onSubmit="sbmPortalSearch('lookupFacilityName', 'facilityName'); return false;">
 			<td style="text-align: right;">Facility Name:</td>
 			<td>
-				<input type="text" name="srchString" />
+				<input type="text" name="srchString" onKeyup="sbmPortalSearch('lookupFacilityName', 'facilityName'); return false;" />
 				<input type="submit" value="Search" />
 			</td>
 		</form>
@@ -15,7 +15,7 @@
 		<form id="lookupCustNum" name="lookupCustNum" onSubmit="sbmPortalSearch('lookupCustNum', 'custNum'); return false;">
 			<td style="text-align: right;">Customer Number:</td>
 			<td>
-				<input type="text" name="srchString" />
+				<input type="text" name="srchString" onKeyup="sbmPortalSearch('lookupCustNum', 'custNum'); return false;" />
 				<input type="submit" value="Search" />
 			</td>
 		</form>
