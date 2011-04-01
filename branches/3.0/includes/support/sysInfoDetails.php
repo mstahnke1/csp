@@ -60,47 +60,47 @@ if (($rowSysDetails1['VpnClientType'] == 0) OR (is_null($rowSysDetails1['VpnClie
 	<tr>
 		<td>
 			<div>
-				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Physical Location:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemStationLocation']; ?>&nbsp;</span>
+				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right;">Physical Location:</span>
+				<span id="phyLoc" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('phyLoc', '<?php echo $rowSysDetails1['SystemStationLocation']; ?>');"><?php echo $rowSysDetails1['SystemStationLocation']; ?>&nbsp;</span>
 			</div>
 			<div>
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Manufacturer:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemManufacturer']; ?>&nbsp;</span>
+				<span id="manufacturer" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('manufacturer', '<?php echo $rowSysDetails1['SystemManufacturer']; ?>');"><?php echo $rowSysDetails1['SystemManufacturer']; ?>&nbsp;</span>
 			</div>
 			<div>
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Model Number:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemModelNumber']; ?>&nbsp;</span>
+				<span id="modelNum" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('modelNum', '<?php echo $rowSysDetails1['SystemModelNumber']; ?>');"><?php echo $rowSysDetails1['SystemModelNumber']; ?>&nbsp;</span>
 			</div>
 			<div>
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Serial Number:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemSerialNumber']; ?>&nbsp;</span>
+				<span id="serialNum" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('serialNum', '<?php echo $rowSysDetails1['SystemSerialNumber']; ?>');"><?php echo $rowSysDetails1['SystemSerialNumber']; ?>&nbsp;</span>
 			</div>
 			<div>
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">User Name:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemUserName']; ?>&nbsp;</span>
+				<span id="username" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('username', '<?php echo $rowSysDetails1['SystemUserName']; ?>');"><?php echo $rowSysDetails1['SystemUserName']; ?>&nbsp;</span>
 			</div>
 			<div>
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Password:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemPassword']; ?>&nbsp;</span>
+				<span id="password" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('password', '<?php echo $rowSysDetails1['SystemPassword']; ?>');"><?php echo $rowSysDetails1['SystemPassword']; ?>&nbsp;</span>
 			</div>
 			<div>
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">LAN IP Address:</span>
-				<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['SystemIPAddress']; ?>&nbsp;</span>
+				<span id="ipAddress" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('ipAddress', '<?php echo $rowSysDetails1['SystemIPAddress']; ?>');"><?php echo $rowSysDetails1['SystemIPAddress']; ?>&nbsp;</span>
 			</div>
 			<?php
 			if($rowSysDetails1['systemType'] != "pgTransmitter") {
 				?>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Operating System:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OperatingSystem']; ?>&nbsp;</span>
+					<span id="os" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('os', '<?php echo $rowSysDetails1['OperatingSystem']; ?>');"><?php echo $rowSysDetails1['OperatingSystem']; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">OS License Key:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OperatingSystemLicense']; ?>&nbsp;</span>
+					<span id="osLic" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('osLic', '<?php echo $rowSysDetails1['OperatingSystemLicense']; ?>');"><?php echo $rowSysDetails1['OperatingSystemLicense']; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Notes:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
+					<span id="otherInfo" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('otherInfo', '<?php echo $rowSysDetails1['OtherInfo']; ?>');"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
 				</div>
 				<?php
 			} else {
