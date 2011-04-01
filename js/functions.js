@@ -46,7 +46,7 @@ function srchShipments(frmStr){
 	ajaxRequest.send(queryString); 
 }
 
-function buildRpt(frmStr, pageStr, frmEle, frmVal){
+function buildRpt(frmStr, frmEle, frmVal){
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
@@ -68,6 +68,15 @@ function buildRpt(frmStr, pageStr, frmEle, frmVal){
 		document.forms[frmStr].elements[frmEle].value = frmVal;
 	}
 	
+	var rptType = document.forms[frmStr].rptType.value;
+	if(rptType == "callStats") {
+		var pageStr = "cspReport_callStatistics.php";
+	} else if(rptType == "callDetail") {
+		var pageStr = "cspReport_callDetailed.php";
+	} else if(rptType == "expData") {
+		var pageStr = "cspReport_callDataExport.php";
+	}
+  
 	var dateFrom = document.forms[frmStr].dateFrom.value;
 	var dateTo = document.forms[frmStr].dateTo.value;
 	var custID = document.forms[frmStr].custID.value;
@@ -76,8 +85,10 @@ function buildRpt(frmStr, pageStr, frmEle, frmVal){
 	var ticketStatus = document.forms[frmStr].ticketStatus.value;
 	var callType = document.forms[frmStr].callType.value;
 	var issueCat = document.forms[frmStr].issueCat.value;
+	var recLimit = document.forms[frmStr].recLimit.value;
 	var queryString = "dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&custID=" + custID + "&incRMA=" + incRMA + 
-										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat;
+										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat + 
+										"&recLimit=" + recLimit;
 	
 	ajaxRequest.open("POST", "includes/reports/" + pageStr, true);
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -194,7 +205,15 @@ function sbmRmaDevice(frmStr, ticketID, deviceAction) {
 
 function populateTxt(frmStr, eleStr, valStr) {
 	document.forms[frmStr].elements[eleStr].value = valStr;
-	hideDiv('issueCatMod');
+	document.getElementById("issueCatMod").style.display = 'none';
+}
+
+function changeFrmEleState(frmStr, eleStr, sbmVal) {
+	if(sbmVal == "callStats") {
+		document.forms[frmStr].elements[eleStr].disabled = false;
+	} else if(sbmVal == "callDetail") {
+		document.forms[frmStr].elements[eleStr].disabled = true;
+	}
 }
 
 function showDiv(divStr, imgID) {
