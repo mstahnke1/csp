@@ -84,7 +84,7 @@ if(!empty($where)) {
 }
 
 $numTotalOffice = 0;
-$qryRpt1 .= "GROUP BY tblTickets.ID ORDER BY lastUpdate DESC LIMIT 0,500";
+$qryRpt1 .= "GROUP BY tblTickets.ID ORDER BY lastUpdate DESC LIMIT 0,1000";
 $resRpt1 = mysql_query($qryRpt1) or die(mysql_error());
 $rowRpt1 = mysql_fetch_assoc($resRpt1);
 if($custID != "") {

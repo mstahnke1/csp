@@ -10,7 +10,8 @@ $qryCommonIssues1 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issue
 										FROM tblTickets 
 										LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 										LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
-										WHERE ((tblTickets.DateOpened >= '$dateFrom' AND tblTickets.DateOpened <= '$dateTo') OR (tblTicketMessages.Date >= '$dateFrom' AND tblTicketMessages.Date <= '$dateTo'))  
+										WHERE tblTicketMessages.Date > '$dateFrom' AND tblTicketMessages.Date < '$dateTo' 
+										AND tblTicketMessages.msgType = 2 
 										AND tblTickets.Status NOT IN(1) 
 										GROUP BY tblTickets.categoryCode ORDER BY issueCount DESC LIMIT 0,20";
 $rstCommonIssues1 = mysql_query($qryCommonIssues1);

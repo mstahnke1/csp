@@ -205,7 +205,7 @@ function sbmRmaDevice(frmStr, ticketID, deviceAction) {
 
 function populateTxt(frmStr, eleStr, valStr) {
 	document.forms[frmStr].elements[eleStr].value = valStr;
-	hideDiv('issueCatMod');
+	document.getElementById("issueCatMod").style.display = 'none';
 }
 
 function changeFrmEleState(frmStr, eleStr, sbmVal) {
