@@ -159,7 +159,7 @@ function getSysDetails(pageURL, divID, sysID) {
 	ajaxRequest.send();
 }
 
-function updSysInfo(eleID, recID) {
+function updSysInfo(eleID, dbField, recID) {
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
@@ -174,18 +174,17 @@ function updSysInfo(eleID, recID) {
 		}
 	}
 	
-	var dbVal = document.getElementById(eleID).value;
-	pageURL = "scripts/sysInfoMaint.php?dbVal=" + dbVal;
-	alert(dbVal);
+	var dbVal = document.getElementById(dbField).value;
+	pageURL = "scripts/sysInfoMaint.php?dbVal=" + dbVal + "&recID=" + recID + "&dbField=" + dbField;
 	
 	ajaxRequest.open("GET",pageURL,true);
 	ajaxRequest.send();
 }
 
-function modSysInfo(eleID, eleVal, recID, eleType) {
+function modSysInfo(eleID, eleVal, dbField, recID, eleType) {
 	var editElement = document.getElementById(eleID);
 	if(eleType == "text") {
-		editElement.innerHTML = '<input type="text" name="SystemStationLocation" id="SystemStationLocation" value="' + eleVal + '" onBlur="updSysInfo(\'SystemStationLocation\', \'' + recID + '\');" />';
+		editElement.innerHTML = '<input type="text" id="' + dbField + '" value="' + eleVal + '" onBlur="updSysInfo(\'' + eleID + '\', \'' + dbField + '\', \'' + recID + '\');" />';
 	} else if(eleType == "textarea") {
 		editElement.innerHTML = '<input type="textarea" name="eleID" id="eleID">' + eleVal + '</textarea>';
 	}
