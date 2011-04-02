@@ -159,13 +159,36 @@ function getSysDetails(pageURL, divID, sysID) {
 	ajaxRequest.send();
 }
 
-function updSysInfo(sysID, dbField, dbVal) {
-	alert("Double click detected");
+function updSysInfo(eleID, recID) {
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	// Create a function that will receive data sent from the server
+	ajaxRequest.onreadystatechange=function() {
+  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			var ajaxDisplay = document.getElementById(eleID);
+			ajaxDisplay.innerHTML = ajaxRequest.responseText;
+		}
+	}
+	
+	var dbVal = document.getElementById(eleID).value;
+	pageURL = "scripts/sysInfoMaint.php?dbVal=" + dbVal;
+	alert(dbVal);
+	
+	ajaxRequest.open("GET",pageURL,true);
+	ajaxRequest.send();
 }
 
-function modSysInfo(eleID, eleVal) {
+function modSysInfo(eleID, eleVal, recID, eleType) {
 	var editElement = document.getElementById(eleID);
-	editElement.innerHTML = '<input type="text" name="eleID" id="eleID" value="' + eleVal + '" />';
+	if(eleType == "text") {
+		editElement.innerHTML = '<input type="text" name="SystemStationLocation" id="SystemStationLocation" value="' + eleVal + '" onBlur="updSysInfo(\'SystemStationLocation\', \'' + recID + '\');" />';
+	} else if(eleType == "textarea") {
+		editElement.innerHTML = '<input type="textarea" name="eleID" id="eleID">' + eleVal + '</textarea>';
+	}
 }
 
 function fileDelConf() {
