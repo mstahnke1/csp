@@ -59,67 +59,67 @@ if (($rowSysDetails1['VpnClientType'] == 0) OR (is_null($rowSysDetails1['VpnClie
 	</tr>
 	<tr>
 		<td>
-			<div>
+			<div style="clear:both;">
 				<span style="display:block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Physical Location:</span>
-				<span id="SystemStationLocation" style="display:block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('SystemStationLocation', '<?php echo $rowSysDetails1['SystemStationLocation']; ?>', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemStationLocation']; ?>&nbsp;</span>
+				<span id="sysLoc<?php echo $rowSysDetails1['id']; ?>" style="display:block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysLoc<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['SystemStationLocation']; ?>', 'SystemStationLocation', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemStationLocation']; ?>&nbsp;</span>
 			</div>
-			<div>
+			<div style="clear:both;">
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Manufacturer:</span>
-				<span id="SystemManufacturer" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('SystemManufacturer', '<?php echo $rowSysDetails1['SystemManufacturer']; ?>', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemManufacturer']; ?>&nbsp;</span>
+				<span id="sysMan<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysMan<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['SystemManufacturer']; ?>', 'SystemManufacturer', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemManufacturer']; ?>&nbsp;</span>
 			</div>
-			<div>
+			<div style="clear:both;">
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Model Number:</span>
-				<span id="SystemModelNumber" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('SystemModelNumber', '<?php echo $rowSysDetails1['SystemModelNumber']; ?>', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemModelNumber']; ?>&nbsp;</span>
+				<span id="sysModNum<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysModNum<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['SystemModelNumber']; ?>', 'SystemModelNumber', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemModelNumber']; ?>&nbsp;</span>
 			</div>
-			<div>
+			<div style="clear:both;">
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Serial Number:</span>
-				<span id="SystemSerialNumber" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('SystemSerialNumber', '<?php echo $rowSysDetails1['SystemSerialNumber']; ?>', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemSerialNumber']; ?>&nbsp;</span>
+				<span id="sysSerNum<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysSerNum<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['SystemSerialNumber']; ?>', 'SystemSerialNumber', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemSerialNumber']; ?>&nbsp;</span>
 			</div>
-			<div>
+			<div style="clear:both;">
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">User Name:</span>
-				<span id="SystemUserName" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('SystemUserName', '<?php echo $rowSysDetails1['SystemUserName']; ?>', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemUserName']; ?>&nbsp;</span>
+				<span id="sysUser<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysUser<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['SystemUserName']; ?>', 'SystemUserName', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemUserName']; ?>&nbsp;</span>
 			</div>
-			<div>
+			<div style="clear:both;">
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Password:</span>
-				<span id="SystemPassword" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('SystemPassword', '<?php echo $rowSysDetails1['SystemPassword']; ?>', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemPassword']; ?>&nbsp;</span>
+				<span id="sysPass<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysPass<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['SystemPassword']; ?>', 'SystemPassword', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemPassword']; ?>&nbsp;</span>
 			</div>
-			<div>
+			<div style="clear:both;">
 				<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">LAN IP Address:</span>
-				<span id="SystemIPAddress" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('SystemIPAddress', '<?php echo $rowSysDetails1['SystemIPAddress']; ?>', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemIPAddress']; ?>&nbsp;</span>
+				<span id="sysIpAdd<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysIpAdd<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['SystemIPAddress']; ?>', 'SystemIPAddress', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['SystemIPAddress']; ?>&nbsp;</span>
 			</div>
 			<?php
 			if($rowSysDetails1['systemType'] != "pgTransmitter") {
 				?>
-				<div style="line-height: 16px;">
+				<div style="line-height: 16px; clear:both;">
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Operating System:</span>
-					<span id="OperatingSystem" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('OperatingSystem', '<?php echo $rowSysDetails1['OperatingSystem']; ?>', 'text');"><?php echo $rowSysDetails1['OperatingSystem']; ?>&nbsp;</span>
+					<span id="sysOS<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysOS<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['OperatingSystem']; ?>', 'OperatingSystem', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['OperatingSystem']; ?>&nbsp;</span>
 				</div>
-				<div>
+				<div style="clear:both;">
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">OS License Key:</span>
-					<span id="OperatingSystemLicense" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('OperatingSystemLicense', '<?php echo $rowSysDetails1['OperatingSystemLicense']; ?>', 'text');"><?php echo $rowSysDetails1['OperatingSystemLicense']; ?>&nbsp;</span>
+					<span id="sysOSLic<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysOSLic<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['OperatingSystemLicense']; ?>', 'OperatingSystemLicense', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['OperatingSystemLicense']; ?>&nbsp;</span>
 				</div>
-				<div>
+				<div style="clear:both;">
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Notes:</span>
-					<span id="OtherInfo" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('OtherInfo', '<?php echo $rowSysDetails1['OtherInfo']; ?>', 'textarea');"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
+					<span id="otherInfo<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('otherInfo<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['OtherInfo']; ?>', 'OtherInfo', '<?php echo $rowSysDetails1['id']; ?>', 'textarea');"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
 				</div>
 				<?php
 			} else {
 				?>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Protocol:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
+					<span id="sysProtocol<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysProtocol<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['OtherInfo']; ?>', 'OtherInfo', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['OtherInfo']; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Connection Type:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $connType; ?>&nbsp;</span>
+					<span id="sysConnType<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysConnType<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['ConnectionType']; ?>', 'ConnectionType', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $connType; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Comm. Port:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['commPort']; ?>&nbsp;</span>
+					<span id="sysComPort<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysComPort<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['commPort']; ?>', 'commPort', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['commPort']; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">RAS Port:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysDetails1['RasPort']; ?>&nbsp;</span>
+					<span id="sysRasPort<?php echo $rowSysDetails1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('sysRasPort<?php echo $rowSysDetails1['id']; ?>', '<?php echo $rowSysDetails1['RasPort']; ?>', 'RasPort', '<?php echo $rowSysDetails1['id']; ?>', 'text');"><?php echo $rowSysDetails1['RasPort']; ?>&nbsp;</span>
 				</div>
 				<?php
 			}
