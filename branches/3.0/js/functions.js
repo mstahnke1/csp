@@ -175,19 +175,32 @@ function updSysInfo(eleID, dbField, recID) {
 	}
 	
 	var dbVal = document.getElementById(dbField).value;
-	pageURL = "scripts/sysInfoMaint.php?dbVal=" + dbVal + "&recID=" + recID + "&dbField=" + dbField;
+	pageURL = "scripts/sysInfoMaint.php?saveFieldVal=true&dbVal=" + dbVal + "&recID=" + recID + "&dbField=" + dbField;
 	
 	ajaxRequest.open("GET",pageURL,true);
 	ajaxRequest.send();
 }
 
-function modSysInfo(eleID, eleVal, dbField, recID, eleType) {
+function modSysInfo(eleID, dbField, recID) {
 	var editElement = document.getElementById(eleID);
-	if(eleType == "text") {
-		editElement.innerHTML = '<input type="text" id="' + dbField + '" value="' + eleVal + '" onBlur="updSysInfo(\'' + eleID + '\', \'' + dbField + '\', \'' + recID + '\');" />';
-	} else if(eleType == "textarea") {
-		editElement.innerHTML = '<input type="textarea" name="eleID" id="eleID">' + eleVal + '</textarea>';
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
 	}
+	
+	// Create a function that will receive data sent from the server
+	ajaxRequest.onreadystatechange=function() {
+  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			var ajaxDisplay = document.getElementById(eleID);
+			ajaxDisplay.innerHTML = ajaxRequest.responseText;
+		}
+	}
+	
+	pageURL = "scripts/sysInfoMaint.php?getFieldVal=true&recID=" + recID + "&dbField=" + dbField + "&eleID=" + eleID;
+	
+	ajaxRequest.open("GET",pageURL,true);
+	ajaxRequest.send();
 }
 
 function fileDelConf() {
