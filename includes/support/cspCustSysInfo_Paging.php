@@ -26,7 +26,7 @@ switch ($rowSysInfo1['pagerType']) {
 			<td>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Pager Type:</span>
-					<span id="pagerType<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $pagerType; ?>&nbsp;</span>
+					<span id="pagerType<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('pagerType<?php echo $custID; ?>', 'pagerType', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $pagerType; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Frequency:</span>

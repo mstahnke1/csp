@@ -29,8 +29,8 @@ switch ($rowSysInfo1['SystemType']) {
 					<span id="amsVer<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;" onDblClick="modSysInfo('amsVer<?php echo $custID; ?>', 'SystemAMSVersion', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['SystemAMSVersion']; ?>&nbsp;</span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">License:</span>
-					<span id="amsLicType<?php echo $rowSysInfo1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $licType; ?>&nbsp;</span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">License Type:</span>
+					<span id="amsLicType<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;" onDblClick="modSysInfo('amsLicType<?php echo $custID; ?>', 'SystemType', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $licType; ?>&nbsp;</span>
 				</div>
 				<div>
 					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">User Licenses:</span>
@@ -38,7 +38,7 @@ switch ($rowSysInfo1['SystemType']) {
 				</div>
 				<div>
 					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Database Type:</span>
-					<span id="amsDbType<?php echo $rowSysInfo1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['dbType']; ?>&nbsp;</span>
+					<span id="amsDbType<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;" onDblClick="modSysInfo('amsDbType<?php echo $custID; ?>', 'dbType', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['dbType']; ?>&nbsp;</span>
 				</div>
 			</td>
 		</tr>
