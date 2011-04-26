@@ -3,15 +3,20 @@ include_once('../includes/config.inc.php');
 include_once('../includes/db_connect.inc.php');
 
 if(isset($_GET['saveFieldVal'])) {
-	$eleID = $_GET['eleID'];
 	$dbField = $_GET['dbField'];
 	$dbVal = nl2br($_GET['dbVal']);
 	$recID = $_GET['recID'];
+	$dbTable = $_GET['dbTable'];
+	if($dbTable == "tblCustSystemInfo") {
+		$filterField = 'id';
+	} else if($dbTable == "tblFacilities") {
+		$filterField = 'CustomerNumber';
+	}
 	
-	$qryUpdSysInfo1 = "UPDATE tblCustSystemInfo SET $dbField = '$dbVal' WHERE id = $recID LIMIT 1";
+	$qryUpdSysInfo1 = "UPDATE $dbTable SET $dbField = '$dbVal' WHERE $filterField = $recID LIMIT 1";
 	mysql_query($qryUpdSysInfo1) or die(mysql_error());
 	
-	$qryUpdSysInfo2 = "SELECT $dbField AS dbField FROM tblCustSystemInfo WHERE id = $recID";
+	$qryUpdSysInfo2 = "SELECT $dbField AS dbField FROM $dbTable WHERE $filterField = $recID";
 	$resUpdSysInfo2 = mysql_query($qryUpdSysInfo2) or die(mysql_error());
 	$rowUpdSysInfo2 = mysql_fetch_assoc($resUpdSysInfo2);
 	if($dbField == 'ConnectionType') {
@@ -58,16 +63,24 @@ if(isset($_GET['getFieldVal'])) {
 	$dbField = $_GET['dbField'];
 	$recID = $_GET['recID'];
 	$eleID = $_GET['eleID'];
-	$qryUpdSysInfo3 = "SELECT $dbField AS dbFieldVal, systemType FROM tblCustSystemInfo WHERE id = $recID";
+	$dbTable = $_GET['dbTable'];
+	
+	if($dbTable == "tblCustSystemInfo") {
+		$filterField = 'id';
+	} else if($dbTable == "tblFacilities") {
+		$filterField = 'CustomerNumber';
+	}
+	
+	$qryUpdSysInfo3 = "SELECT $dbField AS dbFieldVal, systemType FROM $dbTable WHERE $filterField = $recID";
 	$resUpdSysInfo3 = mysql_query($qryUpdSysInfo3) or die(mysql_error());
 	$rowUpdSysInfo3 = mysql_fetch_assoc($resUpdSysInfo3);
 	if($dbField == 'OtherInfo') {
 		?>
-		<textarea name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" rows="6" cols="24" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>');"><?php echo strip_tags($rowUpdSysInfo3['dbFieldVal']); ?></textarea>
+		<textarea name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" rows="6" cols="24" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');"><?php echo strip_tags($rowUpdSysInfo3['dbFieldVal']); ?></textarea>
 		<?php
 	} else if($dbField == 'ConnectionType' && $rowUpdSysInfo3['systemType'] != 'pgTransmitter') {
 		?>
-		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>');">
+		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');">
 			<option value="0" <?php if((is_null($rowUpdSysInfo3['dbFieldVal'])) OR ($rowUpdSysInfo3['dbFieldVal'] == 0)){ echo 'selected="selected"'; } ?>>None</option>
 			<option value="1" <?php if($rowUpdSysInfo3['dbFieldVal'] == 1){ echo 'selected="selected"'; } ?>>Modem - VNC</option>
 			<option value="2" <?php if($rowUpdSysInfo3['dbFieldVal'] == 2){ echo 'selected="selected"'; } ?>>Internet - VNC</option>
@@ -81,7 +94,7 @@ if(isset($_GET['getFieldVal'])) {
 		<?php
 	} else if($dbField == 'ConnectionType' && $rowUpdSysInfo3['systemType'] == 'pgTransmitter') {
 		?>
-		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>');">
+		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');">
 			<option value="7" <?php if($rowUpdSysInfo3['dbFieldVal'] == 7){ echo 'selected="selected"'; } ?>>Serial</option>
 			<option value="8" <?php if($rowUpdSysInfo3['dbFieldVal'] == 8){ echo 'selected="selected"'; } ?>>Network</option>
 		</select>
@@ -90,8 +103,8 @@ if(isset($_GET['getFieldVal'])) {
 		$qryUpdSysInfo4 = "SELECT * FROM tblvpnclients";
 		$resUpdSysInfo4 = mysql_query($qryUpdSysInfo4) or die (mysql_error());
 		?>
-		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>');">
-			<option value="0" <?php if((is_null($row13['VpnClientType'])) OR ($row13['VpnClientType'] == 0)){ echo 'selected="selected"'; } ?>>None</option>
+		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');">
+			<option value="0" <?php if((is_null($rowUpdSysInfo3['dbFieldVal'])) OR ($rowUpdSysInfo3['dbFieldVal'] == 0)){ echo 'selected="selected"'; } ?>>None</option>
 			<?php
 			while($rowUpdSysInfo4 = mysql_fetch_array($resUpdSysInfo4))
 			{
@@ -104,7 +117,7 @@ if(isset($_GET['getFieldVal'])) {
 		<?php
 	} else {
 		?>
-		<input type="text" id="<?php echo $dbField; ?>" value="<?php echo $rowUpdSysInfo3['dbFieldVal']; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>');" />
+		<input type="text" id="<?php echo $dbField; ?>" value="<?php echo $rowUpdSysInfo3['dbFieldVal']; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');" />
 		<?php
 	}
 }
