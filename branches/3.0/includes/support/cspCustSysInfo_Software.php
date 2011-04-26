@@ -25,20 +25,20 @@ switch ($rowSysInfo1['SystemType']) {
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">AMS Version:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['SystemAMSVersion']; ?>&nbsp;</span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">AMS Version:</span>
+					<span id="amsVer<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;" onDblClick="modSysInfo('amsVer<?php echo $custID; ?>', 'SystemAMSVersion', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['SystemAMSVersion']; ?>&nbsp;</span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">License:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $licType; ?>&nbsp;</span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">License:</span>
+					<span id="amsLicType<?php echo $rowSysInfo1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $licType; ?>&nbsp;</span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">User Licenses:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['clientLic']; ?>&nbsp;</span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">User Licenses:</span>
+					<span id="amsLicUsers<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;" onDblClick="modSysInfo('amsLicUsers<?php echo $custID; ?>', 'clientLic', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['clientLic']; ?>&nbsp;</span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px;">Database Type:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['dbType']; ?>&nbsp;</span>
+					<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Database Type:</span>
+					<span id="amsDbType<?php echo $rowSysInfo1['id']; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;"><?php echo $rowSysInfo1['dbType']; ?>&nbsp;</span>
 				</div>
 			</td>
 		</tr>

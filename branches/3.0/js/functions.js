@@ -159,7 +159,7 @@ function getSysDetails(pageURL, divID, sysID) {
 	ajaxRequest.send();
 }
 
-function updSysInfo(eleID, dbField, recID) {
+function updSysInfo(eleID, dbField, recID, dbTable) {
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5
@@ -175,13 +175,14 @@ function updSysInfo(eleID, dbField, recID) {
 	}
 	
 	var dbVal = document.getElementById(dbField).value;
-	pageURL = "scripts/sysInfoMaint.php?saveFieldVal=true&dbVal=" + dbVal + "&recID=" + recID + "&dbField=" + dbField;
+	var dbVal = escape(dbVal);
+	pageURL = "scripts/sysInfoMaint.php?saveFieldVal=true&dbVal=" + dbVal + "&recID=" + recID + "&dbField=" + dbField + "&dbTable=" + dbTable;
 	
 	ajaxRequest.open("GET",pageURL,true);
 	ajaxRequest.send();
 }
 
-function modSysInfo(eleID, dbField, recID) {
+function modSysInfo(eleID, dbField, recID, dbTable) {
 	var editElement = document.getElementById(eleID);
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
@@ -197,7 +198,10 @@ function modSysInfo(eleID, dbField, recID) {
 		}
 	}
 	
-	pageURL = "scripts/sysInfoMaint.php?getFieldVal=true&recID=" + recID + "&dbField=" + dbField + "&eleID=" + eleID;
+	var ajaxDisplay = document.getElementById(eleID);
+	ajaxDisplay.innerHTML = '<div style="text-align:left;"><img src="theme/default/images/ajax-loader.gif" /></div>';
+	
+	pageURL = "scripts/sysInfoMaint.php?getFieldVal=true&recID=" + recID + "&dbField=" + dbField + "&dbTable=" + dbTable + "&eleID=" + eleID;
 	
 	ajaxRequest.open("GET",pageURL,true);
 	ajaxRequest.send();
