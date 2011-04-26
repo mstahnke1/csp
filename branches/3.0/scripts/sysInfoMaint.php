@@ -52,6 +52,42 @@ if(isset($_GET['saveFieldVal'])) {
 			$rowUpdSysInfo4 = mysql_fetch_assoc($resUpdSysInfo4);
 			$dbFieldVal = $rowUpdSysInfo4['ClientName'];
 		}
+	} else if($dbField == 'pagerType') {
+		switch ($rowUpdSysInfo2['dbField']) {
+			case "HomeFree":
+				$dbFieldVal = "HomeFree";
+				break;
+			case "Commtech7900":
+				$dbFieldVal = "Commtech 7900";
+				break;
+			case "ApolloGold":
+				$dbFieldVal = "Apollo Gold";
+				break;
+			case "Genie":
+				$dbFieldVal = "Genie";
+				break;
+			default:
+				$dbFieldVal = "";
+				break;
+		}
+	} else if($dbField == 'SystemType') {
+		switch ($rowUpdSysInfo2['dbField']) {
+			case 0:
+				$dbFieldVal = "Elite";
+				break;
+			case 1:
+				$dbFieldVal = "On-Site";
+				break;
+			case 2:
+				$dbFieldVal = "On-Call";
+				break;
+			case 3:
+				$dbFieldVal = "On-Time";
+				break;
+			case 4:
+				$dbFieldVal = "On-Touch";
+				break;
+		}
 	} else {
 		$dbFieldVal = $rowUpdSysInfo2['dbField'];
 	}
@@ -74,6 +110,7 @@ if(isset($_GET['getFieldVal'])) {
 	$qryUpdSysInfo3 = "SELECT $dbField AS dbFieldVal, systemType FROM $dbTable WHERE $filterField = $recID";
 	$resUpdSysInfo3 = mysql_query($qryUpdSysInfo3) or die(mysql_error());
 	$rowUpdSysInfo3 = mysql_fetch_assoc($resUpdSysInfo3);
+	
 	if($dbField == 'OtherInfo') {
 		?>
 		<textarea name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" rows="6" cols="24" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');"><?php echo strip_tags($rowUpdSysInfo3['dbFieldVal']); ?></textarea>
@@ -113,6 +150,32 @@ if(isset($_GET['getFieldVal'])) {
 			<?php
 			}
 			?>
+		</select>
+		<?php
+	} else if($dbField == 'pagerType') {
+		?>
+		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');">
+			<option value="HomeFree" <?php if($rowUpdSysInfo3['dbFieldVal'] == "HomeFree"){ echo 'selected="selected"'; } ?>>HomeFree</option>
+			<option value="Commtech7900" <?php if($rowUpdSysInfo3['dbFieldVal'] == "Commtech7900"){ echo 'selected="selected"'; } ?>>Commtech 7900</option>
+			<option value="ApolloGold" <?php if($rowUpdSysInfo3['dbFieldVal'] == "ApolloGold"){ echo 'selected="selected"'; } ?>>Apollo Gold</option>
+			<option value="Genie" <?php if($rowUpdSysInfo3['dbFieldVal'] == "Genie"){ echo 'selected="selected"'; } ?>>Genie</option>
+		</select>
+		<?php
+	} else if($dbField == 'SystemType') {
+		?>
+		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');">
+			<option value="0" <?php if($rowUpdSysInfo3['dbFieldVal'] == 0){ echo 'selected="selected"'; } ?>>Elite</option>
+			<option value="1" <?php if($rowUpdSysInfo3['dbFieldVal'] == 1){ echo 'selected="selected"'; } ?>>On-Site</option>
+			<option value="2" <?php if($rowUpdSysInfo3['dbFieldVal'] == 2){ echo 'selected="selected"'; } ?>>On-Call</option>
+			<option value="3" <?php if($rowUpdSysInfo3['dbFieldVal'] == 3){ echo 'selected="selected"'; } ?>>On-Time</option>
+			<option value="4" <?php if($rowUpdSysInfo3['dbFieldVal'] == 4){ echo 'selected="selected"'; } ?>>On-Touch</option>
+		</select>
+		<?php
+	} else if($dbField == 'dbType') {
+		?>
+		<select name="<?php echo $dbField; ?>" id="<?php echo $dbField; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');">
+			<option value="MS Access" <?php if($rowUpdSysInfo3['dbFieldVal'] == "MS Access"){ echo 'selected="selected"'; } ?>>MS Access</option>
+			<option value="Sybase" <?php if($rowUpdSysInfo3['dbFieldVal'] == "Sybase"){ echo 'selected="selected"'; } ?>>Sybase</option>
 		</select>
 		<?php
 	} else {
