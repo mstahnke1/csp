@@ -1,7 +1,14 @@
 <div class="cspDashModule">
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td class="cspBodyHeading">Monitoring Stations</td>
+			<td class="cspBodyHeading">
+				<span style="float: left;">Monitoring Stations</span>
+				<span style="float: right;">
+					<a href="javascript:void(0);" onclick="getSysDetails('scripts/sysInfoMaint.php?getNewEquipForm=monStation&custID=<?php echo $custID; ?>', 'stationDetails', 'new');">
+						<img src="theme/default/images/icons/add_file_icon.gif" height="14" width="14" border="0" title="Add Station" />
+					</a>
+				</span>
+			</td>
 		</tr>
 		<tr>
 			<td>
