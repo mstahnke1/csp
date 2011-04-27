@@ -140,6 +140,13 @@ function getPage(pageURL, divID) {
 }
 
 function getSysDetails(pageURL, divID, sysID) {
+	if(sysID == "remove") {
+		var auth = confirm("Are you sure you would like to delete system information?");
+		if(!auth) {
+			return false;
+		}
+	}
+	
 	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
   	ajaxRequest=new XMLHttpRequest();
   } else {// code for IE6, IE5

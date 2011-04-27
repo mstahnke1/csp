@@ -185,6 +185,6 @@ if($rowSysDetails1['systemType'] != "pgTransmitter") {
 	<?php
 }
 ?>
-<div style="text-align:center;" >
-	<a href="javascript:void(0)" onclick="getSysDetails('scripts/sysInfoMaint.php?maintAction=remove&equipID=<?php echo $sysID; ?>', '<?php echo $divID; ?>', 'remove');">Remove</a>
+<div style="text-align:center;">
+	<a href="javascript:void(0)" onclick="getSysDetails('scripts/sysInfoMaint.php?maintAction=remove&equipID=<?php echo $sysID; ?>', '<?php echo $divID; ?>', 'remove');">[Remove]</a>
 </div>
