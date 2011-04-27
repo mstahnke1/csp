@@ -145,7 +145,7 @@ function getSysDetails(pageURL, divID, sysID) {
   } else {// code for IE6, IE5
 		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	
+
 	// Create a function that will receive data sent from the server
 	ajaxRequest.onreadystatechange=function() {
   	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
@@ -153,7 +153,9 @@ function getSysDetails(pageURL, divID, sysID) {
 			ajaxDisplay.innerHTML = ajaxRequest.responseText;
 		}
 	}
-	pageURL = pageURL+"?sysID="+sysID;
+	if(sysID != "new" && sysID != "remove") {
+		pageURL = pageURL+"?sysID="+sysID;
+	}
 	
 	ajaxRequest.open("GET",pageURL,true);
 	ajaxRequest.send();
@@ -212,6 +214,35 @@ function fileDelConf() {
 	if(auth) {
 		document.updFileList.submit();
 	}
+}
+
+function sbmEquip(frmStr, custID, maintAction) {
+	if(window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	ajaxRequest=new XMLHttpRequest();
+  } else {// code for IE6, IE5
+		ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	var frmName = document.forms[frmStr];
+	var equipLocation = document.forms[frmStr].equipLocation.value;
+	var equipType = document.forms[frmStr].equipType.value;
+	
+	// Create a function that will receive data sent from the server
+	ajaxRequest.onreadystatechange=function() {
+  	if(ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+  		if(equipType == "Server" || equipType == "Client") {
+				var ajaxDisplay = document.getElementById("stationDetails");
+			} else if(equipType == "pgTransmitter") {
+				var ajaxDisplay = document.getElementById("transmitterDetails");
+			}
+			ajaxDisplay.innerHTML = ajaxRequest.responseText;
+		}
+	}
+	
+	var pageURL = "scripts/sysInfoMaint.php?equipLocation=" + equipLocation + "&equipType=" + equipType + "&custID=" + custID + "&maintAction=" + maintAction;
+	
+	ajaxRequest.open("GET", pageURL, true);
+	ajaxRequest.send(); 
 }
 
 function sbmRmaDevice(frmStr, ticketID, deviceAction) {

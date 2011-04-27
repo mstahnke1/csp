@@ -1,7 +1,14 @@
 <div class="cspDashModule">
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td class="cspBodyHeading">Paging Transmitters</td>
+			<td class="cspBodyHeading">
+				<span style="float: left;">Paging Transmitters</span>
+				<span style="float: right;">
+					<a href="javascript:void(0);" onclick="getSysDetails('scripts/sysInfoMaint.php?getNewEquipForm=pgTransmitter&custID=<?php echo $custID; ?>', 'transmitterDetails', 'new');">
+						<img src="theme/default/images/icons/add_file_icon.gif" height="14" width="14" border="0" title="Add Transmitter" />
+					</a>
+				</span>
+			</td>
 		</tr>
 		<tr>
 			<td>

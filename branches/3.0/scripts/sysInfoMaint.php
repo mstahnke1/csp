@@ -1,6 +1,9 @@
 <?php
 include_once('../includes/config.inc.php');
 include_once('../includes/db_connect.inc.php');
+if(isset($_GET['custID'])) {
+	$custID = $_GET['custID'];
+}
 
 if(isset($_GET['saveFieldVal'])) {
 	$dbField = $_GET['dbField'];
@@ -182,6 +185,94 @@ if(isset($_GET['getFieldVal'])) {
 		?>
 		<input type="text" id="<?php echo $dbField; ?>" value="<?php echo $rowUpdSysInfo3['dbFieldVal']; ?>" onBlur="updSysInfo('<?php echo $eleID; ?>', '<?php echo $dbField; ?>', '<?php echo $recID; ?>', '<?php echo $dbTable; ?>');" />
 		<?php
+	}
+}
+
+if(isset($_GET['getNewEquipForm'])) {
+	?>
+	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td class="cspTicketHeading">Enter Equipment Details</td>
+		</tr>
+		<tr>
+			<td>
+				<form id="newEquipFrm" name="newEquipFrm">
+					<div style="clear:both;">
+						<span style="display:block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Physical Location:</span>
+						<span style="display:block; width:62%; vertical-align:top; float:right; padding:1px;">
+							<input type="text" name="equipLocation" id="equipLocation" />
+						</span>
+					</div>
+					<?php
+					if($_GET['getNewEquipForm'] == 'monStation') {
+						?>
+						<div style="clear:both;">
+							<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Equipment Type:</span>
+							<span style="display:block; width:62%; vertical-align:top; float:right; padding:1px;">
+								<select name="equipType" id="equipType">
+									<option value="Server">Server</option>
+									<option value="Client">Client</option>
+								</select>
+							</span>
+						</div>
+						<?php
+					}
+					if($_GET['getNewEquipForm'] == 'pgTransmitter') {
+					?>
+						<div style="clear:both;">
+							<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Equipment Type:</span>
+							<span style="display:block; width:62%; vertical-align:top; float:right; padding:1px;">
+								<select name="equipType" id="equipType">
+									<option value="pgTransmitter">Paging Trasmitter</option>
+								</select>
+							</span>
+						</div>
+						<?php
+					}
+					?>
+					<div style="text-align:right; clear:both;">
+						<input type="button" value="Save" onClick="sbmEquip('newEquipFrm', '<?php echo $custID; ?>', 'new');" />
+					</div>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<?php
+}
+
+if(isset($_GET['maintAction']) && $_GET['maintAction'] == 'new') {
+	$equipLocation = $_GET['equipLocation'];
+	$equipType = $_GET['equipType'];
+	$qryEquipAdd = "INSERT INTO tblCustSystemInfo (CustomerNumber, SystemStationLocation, systemType) 
+									VALUES ('$custID', '$equipLocation', '$equipType')";
+	$resEquipAdd = mysql_query($qryEquipAdd) or die(mysql_error());
+	if($equipType == 'Server' || $equipType == 'Client') {
+		$divID = 'stationDetails';
+	} else if($equipType == 'pgTransmitter') {
+		$divID = 'transmitterDetails';
+	}
+	
+	if($resEquipAdd) {
+		$qryEquipAdd2 = "SELECT MAX(id) AS id FROM tblCustSystemInfo WHERE CustomerNumber = '$custID'";
+		$resEquipAdd2 = mysql_query($qryEquipAdd2) or die(mysql_error());
+		$rowEquipAdd2 = mysql_fetch_assoc($resEquipAdd2);
+		$newRecID = $rowEquipAdd2['id'];
+		?>
+		Save successful, click <a href="javascript:void(0)" onclick="getSysDetails('includes/support/sysInfoDetails.php', '<?php echo $divID; ?>', '<?php echo $newRecID; ?>');"><strong>here</strong></a> to udpate record.
+		<?php
+	} else {
+		echo "Save not successful";
+	}
+}
+
+if(isset($_GET['maintAction']) && $_GET['maintAction'] == 'remove') {
+	$equipID = $_GET['equipID'];
+	$qryEquipRem1 = "DELETE FROM tblCustSystemInfo WHERE id = $equipID LIMIT 1";
+	$resEquipRem1 = mysql_query($qryEquipRem1) or die(mysql_error());
+	if($resEquipRem1) {
+		echo "Successfully removed equipment. Refresh page to update.";
+	} else {
+		echo "Update failed.";
 	}
 }
 ?>

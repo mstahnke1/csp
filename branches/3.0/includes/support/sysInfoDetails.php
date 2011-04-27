@@ -38,13 +38,16 @@ if (($rowSysDetails1['ConnectionType'] == 0) OR (is_null($rowSysDetails1['Connec
 } elseif ($rowSysDetails1['ConnectionType'] == 10) {
 	$connType = "TeamViewer";
 }
-	
+
 if($rowSysDetails1['systemType'] != "pgTransmitter") {
+	$divID = "stationDetails";
 	if($rowSysDetails1['Dedicated'] == -1) {
 		$dedicated = "Yes";
 	} else {
 		$dedicated = "No";
 	}
+} else {
+	$divID = "transmitterDetails";
 }
 
 if (($rowSysDetails1['VpnClientType'] == 0) OR (is_null($rowSysDetails1['VpnClientType']))) {
@@ -182,3 +185,6 @@ if($rowSysDetails1['systemType'] != "pgTransmitter") {
 	<?php
 }
 ?>
+<div style="text-align:center;" >
+	<a href="javascript:void(0)" onclick="getSysDetails('scripts/sysInfoMaint.php?maintAction=remove&equipID=<?php echo $sysID; ?>', '<?php echo $divID; ?>', 'remove');">Remove</a>
+</div>
