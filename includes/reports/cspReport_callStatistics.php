@@ -84,8 +84,14 @@ if(isset($_POST)) {
 		$qryRpt2 = substr($qryRpt2, 0, -4);
 	}
 	
+	if($_POST['recLimit'] > 0 && $_POST['recLimit'] < 51) {
+		$recLimit = $_POST['recLimit'];
+	} else {
+		$recLimit = 50;
+	}
+	
 	$numTotalOffice = 0;
-	$qryRpt1 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,50";
+	$qryRpt1 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,$recLimit";
 	$resRpt1 = mysql_query($qryRpt1) or die(mysql_error());
 	$numRpt1 = mysql_num_rows($resRpt1);
 	while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
@@ -96,7 +102,7 @@ if(isset($_POST)) {
 	}
 	
 	$numTotalOnCall = 0;
-	$qryRpt2 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,50";
+	$qryRpt2 .= "GROUP BY tblTickets.CustomerNumber ORDER BY callCount DESC LIMIT 0,$recLimit";
 	$resRpt2 = mysql_query($qryRpt2);
 	$numRpt2 = mysql_num_rows($resRpt2);
 	while($rowRpt2 = mysql_fetch_assoc($resRpt2)) {
@@ -125,7 +131,7 @@ if(isset($_POST)) {
 				</tr>
 				<?php
 				while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
-					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
 											FROM tblTickets 
 											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
@@ -144,7 +150,7 @@ if(isset($_POST)) {
 								<a id="link_<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours" href="javascript:void(0);" onclick="showDiv('issueList<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours', '<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours');">
 									<img id="img_<?php echo $rowRpt1['CustomerNumber']; ?>_OfficeHours" src="theme/default/images/iconExpand.png" border="0" />
 								</a>
-								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', 'custID', '<?php echo $rowRpt1['CustomerNumber']; ?>');">
+								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'custID', '<?php echo $rowRpt1['CustomerNumber']; ?>');">
 									<?php echo $rowRpt1['facilityName'] . " <i>(" . $rowRpt1['callCount'] . ")</i>"; ?>
 								</a>
 							</div>
@@ -170,7 +176,7 @@ if(isset($_POST)) {
 										$catCode = $rowCatCode1['parentCode'];
 									}
 									?>
-									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
+									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
 										<div style="text-indent:-7px; padding-left:7px;">&bull; <?php echo $catDesc . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
 									</a>
 									<?php
@@ -192,7 +198,7 @@ if(isset($_POST)) {
 						<?php
 						if($numTotalOnCall > 0) {
 							?>
-							<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', 'callType', '1');">
+							<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'callType', '1');">
 								<?php echo $numTotalOnCall; ?> Total Calls
 							</a>
 							<?php
@@ -205,7 +211,7 @@ if(isset($_POST)) {
 				</tr>
 				<?php
 				while($rowRpt2 = mysql_fetch_assoc($resRpt2)) {
-					$qryRpt3 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
+					$qryRpt3 = "SELECT tblTickets.*, COUNT(tblTickets.ID) AS issueCount, issueCategories.description AS catDesc, issueCategories.parentCode AS parentCode 
 											FROM tblTickets 
 											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
@@ -224,7 +230,7 @@ if(isset($_POST)) {
 								<a id="link_<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours" href="javascript:void(0);" onclick="showDiv('issueList<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours', '<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours');">
 									<img id="img_<?php echo $rowRpt2['CustomerNumber']; ?>_AfterHours" src="theme/default/images/iconExpand.png" border="0" />
 								</a>
-								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callDetailed.php', 'custID', '<?php echo $rowRpt2['CustomerNumber']; ?>');">
+								<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'custID', '<?php echo $rowRpt2['CustomerNumber']; ?>');">
 									<?php echo $rowRpt2['facilityName'] . " <i>(" . $rowRpt2['callCount'] . ")</i>"; ?>
 								</a>
 							</div>
@@ -250,7 +256,7 @@ if(isset($_POST)) {
 										$catCode = $rowCatCode1['parentCode'];
 									}
 									?>
-									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'cspReport_callStatistics.php', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
+									<a href="javascript:void(0);" onclick="buildRpt('cspRprtParams', 'issueCat', '<?php echo $rowRpt3['categoryCode']; ?>');">
 										<div style="text-indent:-7px; padding-left:7px;">&bull; <?php echo $catDesc . " (" . $rowRpt3['issueCount'] . ")"; ?></div>
 									</a>
 									<?php

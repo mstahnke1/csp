@@ -26,7 +26,7 @@ if(isset($_POST['srchString']) && $_POST['srchType'] == 'facilityName') {
 	<fieldset>
 	<legend>Search Results</legend>
 		<?php
-		if($numCustSearch > 0 && isset($_POST['srchType'])) {
+		if($numCustSearch > 0 && isset($_POST['srchType']) && $srchString != '') {
 			while($rowCustSearch = mysql_fetch_array($rstCustSearch)) {
 				?>
 				<div>

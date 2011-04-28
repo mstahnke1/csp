@@ -11,7 +11,9 @@ if(isset($_POST['action']) && $_POST['action'] == "add") {
 		|| ($_FILES["uploadFile"]["type"] == "image/pjpeg")
 		|| ($_FILES["uploadFile"]["type"] == "application/pdf")
 		|| ($_FILES["uploadFile"]["type"] == "application/msword")
+		|| ($_FILES["uploadFile"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
 		|| ($_FILES["uploadFile"]["type"] == "application/vnd.ms-excel")
+		|| ($_FILES["uploadFile"]["type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 		|| ($_FILES["uploadFile"]["type"] == "application/x-zip-compressed")
 		|| ($_FILES["uploadFile"]["type"] == "application/zip")
 		|| ($_FILES["uploadFile"]["type"] == "text/plain"))) {

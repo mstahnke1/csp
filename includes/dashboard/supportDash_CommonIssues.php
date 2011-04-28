@@ -10,7 +10,8 @@ $qryCommonIssues1 = "SELECT tblTickets.*, COUNT(DISTINCT tblTickets.ID) AS issue
 										FROM tblTickets 
 										LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 										LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
-										WHERE ((tblTickets.DateOpened >= '$dateFrom' AND tblTickets.DateOpened <= '$dateTo') OR (tblTicketMessages.Date >= '$dateFrom' AND tblTicketMessages.Date <= '$dateTo'))  
+										WHERE tblTicketMessages.Date > '$dateFrom' AND tblTicketMessages.Date < '$dateTo' 
+										AND tblTicketMessages.msgType = 2 
 										AND tblTickets.Status NOT IN(1) 
 										GROUP BY tblTickets.categoryCode ORDER BY issueCount DESC LIMIT 0,20";
 $rstCommonIssues1 = mysql_query($qryCommonIssues1);
@@ -32,9 +33,14 @@ $numCommonIssues1 = mysql_num_rows($rstCommonIssues1);
 					</div>
 					<?php
 					while($rowCommonIssues1 = mysql_fetch_array($rstCommonIssues1)) {
-						$catDesc = $rowCommonIssues1['catDesc'];
-						$catCode = $rowCommonIssues1['parentCode'];
-						$i = 1;
+						if(is_null($rowCommonIssues1['categoryCode'])) {
+							$catDesc = "Undefined";
+							$i = 0;
+						} else {
+							$catDesc = $rowCommonIssues1['catDesc'];
+							$catCode = $rowCommonIssues1['parentCode'];
+							$i = 1;
+						}
 						while($i > 0) {
 							$qryCatCode1 = "SELECT * FROM issueCategories WHERE code = '$catCode'";
 							$rstCatCode1 = mysql_query($qryCatCode1);

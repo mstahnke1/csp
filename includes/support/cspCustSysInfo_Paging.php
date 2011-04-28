@@ -25,16 +25,16 @@ switch ($rowSysInfo1['pagerType']) {
 		<tr>
 			<td>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Pager Type:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $pagerType; ?>&nbsp;</span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Pager Type:</span>
+					<span id="pagerType<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('pagerType<?php echo $custID; ?>', 'pagerType', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $pagerType; ?>&nbsp;</span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Frequency:</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysInfo1['pagingFrequency']; ?>&nbsp;</span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">Frequency:</span>
+					<span id="pagerFreq<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('pagerFreq<?php echo $custID; ?>', 'pagingFrequency', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['pagingFrequency']; ?>&nbsp;</span>
 				</div>
 				<div>
-					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">FCC (FRN):</span>
-					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowSysInfo1['FRN']; ?>&nbsp;</span>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">FCC (FRN):</span>
+					<span id="fccFrn<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;" onDblClick="modSysInfo('fccFrn<?php echo $custID; ?>', 'FRN', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['FRN']; ?>&nbsp;</span>
 				</div>
 			</td>
 		</tr>

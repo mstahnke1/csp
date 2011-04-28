@@ -41,7 +41,7 @@ mysql_select_db($dbname);
 					?>
 					<a href="scripts/notificationAck.php?taskID=<?php echo $row3['ID'];?>" style="font-size: 1.0em;">
 						<div>
-							<span style="display:inline-block; width:98%; text-indent:-10px; padding-left:8px;"><img src="theme/default/images/indent1.gif" /><?php echo "Task " . $row3['ID'] . " | " . $row3['Subject']; ?></span>
+							<span style="display:inline-block; width:98%; text-indent:-10px; padding-left:8px;"><img src="theme/default/images/indent1.gif" border="0" /><?php echo "Task " . $row3['ID'] . " | " . $row3['Subject']; ?></span>
 						</div>
 					</a>
 					<?php
