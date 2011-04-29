@@ -84,10 +84,10 @@ if(isset($_POST)) {
 		$qryRpt2 = substr($qryRpt2, 0, -4);
 	}
 	
-	if($_POST['recLimit'] > 0 && $_POST['recLimit'] < 51) {
+	if($_POST['recLimit'] > 0 && $_POST['recLimit'] < 501) {
 		$recLimit = $_POST['recLimit'];
 	} else {
-		$recLimit = 50;
+		$recLimit = 500;
 	}
 	
 	$numTotalOffice = 0;
