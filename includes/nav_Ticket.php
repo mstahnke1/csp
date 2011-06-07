@@ -1,5 +1,5 @@
 <?php
-$qryTicketDetail3 = "SELECT id FROM activeCallList WHERE agent = '$agentID' AND ticket = '$ticketID'";
+$qryTicketDetail3 = "SELECT id FROM activeCallList WHERE agent = '$agentID' AND ticket = '$ticketID' AND active = 1";
 $rstTicketDetail3 = mysql_query($qryTicketDetail3);
 $numTicketDetail3 = mysql_num_rows($rstTicketDetail3);
 $qryTicketNav1 = "SELECT ID FROM rmaDevices WHERE TicketID = '$ticketID'";

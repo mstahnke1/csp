@@ -19,7 +19,7 @@ if(isset($_GET['action']) && $_GET['action'] == "endCall") {
 	if($numEndCall2 == 0) {
 		die(header("Location: ../cspUserSupport_TicketDetail.php?ticketID=" . $ticketID . "&msgID=27"));
 	}
-	$qryEndCall1 = "DELETE FROM activeCallList WHERE id = '$callID'";
+	$qryEndCall1 = "UPDATE activeCallList SET active = 0 WHERE id = '$callID'";
 	if(mysql_query($qryEndCall1)) {
 		$callMsg = "Call ID: " . $callID;
 		$qryEndCall2 = "INSERT INTO tblTicketMessages (TicketID, Message, EnteredBy, Date, msgType, callID)
