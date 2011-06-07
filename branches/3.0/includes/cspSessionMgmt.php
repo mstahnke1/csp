@@ -13,7 +13,7 @@ if(file_exists('includes/functions.inc.php')) {
 }
 
 $alertSessionInfo1 = "FALSE";
-$qrySessionInfo1 = "SELECT ticket FROM activeCallList WHERE agent = '$_SESSION[uid]'";
+$qrySessionInfo1 = "SELECT ticket FROM activeCallList WHERE agent = '$_SESSION[uid]' AND active = 1";
 $resSessionInfo1 = mysql_query($qrySessionInfo1) or die(mysql_error());
 while($rowSessionInfo1 = mysql_fetch_assoc($resSessionInfo1)) {
 	if(isset($_GET['ticketID']) && $_GET['ticketID'] == $rowSessionInfo1['ticket']) {

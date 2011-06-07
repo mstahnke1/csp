@@ -1,5 +1,5 @@
 <?php
-$qryActiveCall1 = "SELECT * FROM activeCallList WHERE ticket = '$ticketID'";
+$qryActiveCall1 = "SELECT * FROM activeCallList WHERE ticket = '$ticketID' AND active = 1";
 $rstActiveCall1 = mysql_query($qryActiveCall1);
 $numActiveCall = mysql_num_rows($rstActiveCall1);
 
