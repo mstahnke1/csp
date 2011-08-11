@@ -161,12 +161,12 @@ if(isset($_POST['editNewCall'])) {
 					<td>
 						<form name="newTicket" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<div>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px;">Ticket:</span>
-								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $ticketID; ?></span>
+								<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">AMS Version:</span>
+								<span id="amsVer<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;" onDblClick="modSysInfo('amsVer<?php echo $custID; ?>', 'SystemAMSVersion', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['SystemAMSVersion']; ?>&nbsp;</span>
 							</div>
 							<div>
-								<span style="display:inline-block; width:26%; vertical-align:top; text-align:right; float:left; padding:1px;">Facility:</span>
-								<span style="display:inline-block; width:72%; vertical-align:top; text-align:left; float:right; padding:1px;"><?php echo $rowNewCall1['facilityName']; ?></span>
+								<span style="display:inline-block; width:33%; vertical-align:top; float:left; text-align:right; padding:1px; clear:both;">AMS Version:</span>
+								<span id="amsVer<?php echo $custID; ?>" style="display:inline-block; width:62%; vertical-align:top; float:right; text-align:left; padding:1px;" onDblClick="modSysInfo('amsVer<?php echo $custID; ?>', 'SystemAMSVersion', '<?php echo $custID; ?>', 'tblFacilities');" title="Double click to edit"><?php echo $rowSysInfo1['SystemAMSVersion']; ?>&nbsp;</span>
 							</div>
 							<div>
 								<span style="display:inline-block; width:26%; line-height:20px; vertical-align:top; text-align:right; float:left; padding:1px;">Call Type:</span>

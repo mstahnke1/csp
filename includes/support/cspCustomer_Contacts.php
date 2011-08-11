@@ -3,6 +3,7 @@
 include('includes/config.inc.php');
 include('includes/db_connect.inc.php');
 include_once('includes/functions.inc.php');
+$custID = $_GET['custID'];
 if(isset($custID)) {
 	$qryCustContacts1 = "SELECT * FROM clients WHERE custRef = '$custID' AND active = 0";
 	$rstCustContacts1 = mysql_query($qryCustContacts1) or die(mysql_error());
@@ -12,7 +13,14 @@ if(isset($custID)) {
 <div class="cspDashModule">
 	<table class="cspDashRow" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td class="cspBodyHeading">Facility Contacts</td>
+			<td class="cspBodyHeading">
+				<span style="float: left;">Facility Contacts</span>
+				<span style="float: right;">
+					<a href="javascript:void(0);" onclick="TINY.box.show('cspUserSupport_NewContact.php',1,0,0,1,0);">
+						<img src="theme/default/images/icons/add_file_icon.gif" height="14" width="14" border="0" title="Add contact" />
+					</a>
+				</span>
+			</td>
 		</tr>
 		<tr>
 			<td>
