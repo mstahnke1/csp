@@ -7,12 +7,11 @@
 		<?php
 	}
 	?>
-	<li><a href="#">Add Contact</a></li>
 	<li><a href="#">Monitor</a></li>
 	<?php
 	if($_SESSION['access'] > 7) {
 		?>
-		<li><a href="#">Remove Customer</a></li>
+		<li><a href="JavaScript:void(0);" onclick="window.location='scripts/customerMgmt.php?action=removeCust&custID=<?php echo $custID; ?>'">Remove Customer</a></li>
 		<?php
 	}
 	?>
