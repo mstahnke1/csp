@@ -41,6 +41,7 @@ if(!isset($_SESSION['uid'])) {
 		$ldap['pass'] = $_POST['pass'];
 		$ldap['host'] = cspSettingValue('7');
 		$ldap['port'] = cspSettingValue('8');
+		$ldap['dn'] = cspSettingValue('9');
 		$ldap['bind_dn'] = cspSettingValue('10');
 		$ldap['attributes'] = explode(", ", cspSettingValue('11'));
 		$ldap['base'] = '';
