@@ -164,7 +164,8 @@ if(isset($_GET['returnAuth'])) {
 			while($row8 = mysql_fetch_array($result8)) {
 				$to[] = $row8['f_name'] . " " . $row8['l_name'] . "<" . $row8['email'] . ">";
 			}
-			$from = $_SESSION['displayname'] . " <" . $_SESSION['mail'] . ">";
+			//$from = $_SESSION['displayname'] . " <" . $_SESSION['mail'] . ">";
+			$from = $_SESSION['mail'];
 			$to = implode(', ', $to);
 			$subject = "Repair ticket request " . $ticketID . " (" . $facility . ")";
 			$body = '<p>Customer repair requested for ticket <a href="' . $ticketUrl . '?ticketID=' . $ticketID . '&by_ticket=ticket&submit=Lookup">' . $ticketID . '</a></p>
@@ -179,7 +180,7 @@ if(isset($_GET['returnAuth'])) {
 				'Content-type' => $type);
 			$smtp = Mail::factory('smtp',
 				array ('host' => $SmtpHost,
-				'auth' => true,
+				'auth' => false,
 				'username' => $SmtpUsername,
 				'password' => $SmtpPassword));
 	
