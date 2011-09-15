@@ -126,7 +126,8 @@ function statusChangeTasks($ticketID, $newStatus) {
 									$rmaBody .= '</p><p><u><strong>Device Details</strong></u><br />';
 									$rmaBody .= $rmaDevices;
 									$rmaBody .= '</p>';
-			$rmaFrom = $_SESSION['displayname'] . " <" . $_SESSION['mail'] . ">";
+			//$rmaFrom = $_SESSION['displayname'] . " <" . $_SESSION['mail'] . ">";
+			$rmaFrom = $_SESSION['mail'];
 			$rmaSubject = "Customer repair/return request " . $ticketID . " (" . $rowRma4['facilityName'] . ")";
 			$createDate = date('Y-m-d H:i:s');
 			$dueDate = (date('Y-m-d H:i:s', mktime(date("H"), date("i"), date("s"), date("m"), date("d")+1, date("Y"))));
@@ -247,7 +248,7 @@ function statusChangeTasks($ticketID, $newStatus) {
 					'Content-type' => $type);
 				$smtp = Mail::factory('smtp',
 					array ('host' => $SmtpHost,
-					'auth' => true,
+					'auth' => false,
 					'username' => $SmtpUsername,
 					'password' => $SmtpPassword));
 		
