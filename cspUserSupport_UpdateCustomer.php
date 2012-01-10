@@ -29,6 +29,8 @@ $qryCustInfo4 = "SELECT * FROM tblcountries";
 $resCustInfo4 = mysql_query($qryCustInfo4) or die(mysql_error());
 $qryCustInfo6 = "SELECT * FROM distributors";
 $resCustInfo6 = mysql_query($qryCustInfo6) or die(mysql_error());
+$qryCustInfo8 = "SELECT * FROM servicePlans";
+$resCustInfo8 = mysql_query($qryCustInfo8) or die(mysql_error());
 
 if(isset($_POST['saveCustInfo'])) {
 	$custNum = $_POST['custNum'];
@@ -42,6 +44,7 @@ if(isset($_POST['saveCustInfo'])) {
 	$phoneNum = $_POST['phoneNum'];
 	$faxNum = $_POST['faxNum'];
 	$saleType = $_POST['saleType'];
+	$servicePlan = $_POST['servicePlan'];
 	$date = date('Y-m-d H:i:s');
 	if($_POST['cboCorporate'] == -1) {
 		$corpID = "NULL";
@@ -62,8 +65,8 @@ if(isset($_POST['saveCustInfo'])) {
 		$corpID = $_POST['cboCorporate'];
 	}
 	if($_POST['transType'] == "new") {
-		$qryCustInfo5 = "INSERT INTO tblfacilities (CustomerNumber, corpID, FacilityName, FacilityNameOther, StreetAddress, City, StateOrProvinceCode, PostalCode, CountryCode, PhoneNumber, FaxNumber, TypeOfSale, DateModified) 
-										VALUES ('$custNum', $corpID, '$facilityName', '$facilityNameOther', '$strAddress', '$city', '$state', '$zip', '$country', '$phoneNum', '$faxNum', '$saleType', '$date')";
+		$qryCustInfo5 = "INSERT INTO tblfacilities (CustomerNumber, corpID, FacilityName, FacilityNameOther, StreetAddress, City, StateOrProvinceCode, PostalCode, CountryCode, PhoneNumber, FaxNumber, TypeOfSale, servicePlan, DateModified) 
+										VALUES ('$custNum', $corpID, '$facilityName', '$facilityNameOther', '$strAddress', '$city', '$state', '$zip', '$country', '$phoneNum', '$faxNum', '$saleType', '$servicePlan', '$date')";
 		$resCustInfo5 = mysql_query($qryCustInfo5);
 		if($resCustInfo5) {
 			die(header("Location: cspUserSupport_Customer.php?custID=" . $custNum));
@@ -72,7 +75,7 @@ if(isset($_POST['saveCustInfo'])) {
 			die(header("Location: " . $_SERVER['HTTP_REFERER'] . "&sysMsg=" . $sysMsg));
 		}
 	} elseif($_POST['transType'] == "upd") {
-		$qryCustInfo5 = "UPDATE tblfacilities SET corpID = $corpID, FacilityName = '$facilityName', FacilityNameOther = '$facilityNameOther', StreetAddress = '$strAddress', City = '$city', StateOrProvinceCode = '$state', PostalCode = '$zip', CountryCode = '$country', PhoneNumber = '$phoneNum', FaxNumber = '$faxNum', TypeOfSale = '$saleType', DateModified = '$date' 
+		$qryCustInfo5 = "UPDATE tblfacilities SET corpID = $corpID, FacilityName = '$facilityName', FacilityNameOther = '$facilityNameOther', StreetAddress = '$strAddress', City = '$city', StateOrProvinceCode = '$state', PostalCode = '$zip', CountryCode = '$country', PhoneNumber = '$phoneNum', FaxNumber = '$faxNum', TypeOfSale = '$saleType', servicePlan = '$servicePlan', DateModified = '$date' 
 										WHERE CustomerNumber = '$custNum' LIMIT 1";
 		$resCustInfo5 = mysql_query($qryCustInfo5);
 		if($resCustInfo5) {
@@ -101,6 +104,7 @@ if(isset($_GET['custID'])) {
 	$faxNum = $rowCustInfo7['FaxNumber'];
 	$corpID = $rowCustInfo7['corpID'];
 	$saleSource = $rowCustInfo7['TypeOfSale'];
+	$servicePlan = $rowCustInfo7['servicePlan'];
 }
 ?>
 
@@ -219,6 +223,14 @@ if(isset($_GET['custID'])) {
 									</td>
 								</tr>
 								<tr>
+									<td style="text-align:right;">Phone Number:</td>
+									<td><input type="text" name="phoneNum" value="<?php echo $phoneNum; ?>" maxlength="10" size="10" /></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;">Fax Number:</td>
+									<td><input type="text" name="faxNum" value="<?php echo $faxNum; ?>" maxlength="10" size="10" /></td>
+								</tr>
+								<tr>
 									<td style="text-align:right;">Source of Sale:</td>
 									<td>
 										<select name="saleType">
@@ -234,12 +246,19 @@ if(isset($_GET['custID'])) {
 									</td>
 								</tr>
 								<tr>
-									<td style="text-align:right;">Phone Number:</td>
-									<td><input type="text" name="phoneNum" value="<?php echo $phoneNum; ?>" maxlength="10" size="10" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;">Fax Number:</td>
-									<td><input type="text" name="faxNum" value="<?php echo $faxNum; ?>" maxlength="10" size="10" /></td>
+									<td style="text-align:right;">Source of Sale:</td>
+									<td>
+										<select name="servicePlan">
+											<option value="0" <?php if((is_null($servicePlan)) OR ($servicePlan == 0)){ echo 'selected="selected"'; } ?>>Unknown</option>
+											<?php
+											while($rowCustInfo8 = mysql_fetch_array($resCustInfo8)) {
+												?>
+												<option value="<?php echo $rowCustInfo8['ID']; ?>" <?php if($servicePlan == $rowCustInfo8['ID']){ echo 'selected="selected"'; } ?>><?php echo $rowCustInfo8['Desc']; ?></option>
+												<?php
+											}
+											?>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<td>
