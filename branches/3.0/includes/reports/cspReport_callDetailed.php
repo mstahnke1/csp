@@ -3,7 +3,7 @@ include_once('../config.inc.php');
 include_once('../db_connect.inc.php');
 require_once('../functions.inc.php');
 if(isset($_POST)) {
-	$qryRpt1 = "SELECT tblTickets.*, MAX(tblTicketMessages.Date) AS lastUpdate, tblFacilities.FacilityName AS facilityName 
+	$qryRpt1 = "SELECT tblTickets.*, MAX(tblTicketMessages.Date) AS lastUpdate, tblFacilities.FacilityName AS facilityName, tblFacilities.servicePlan AS servicePlan 
 							FROM tblTickets 
 							LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 							LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber ";
@@ -72,6 +72,11 @@ if(isset($_POST)) {
 	  $where2[] = "tblTicketMessages.callType = '$callType' ";
 	}
 	
+	$spType = $_POST['spType'];
+	if($spType != "ALL"){
+	  $where[] = "tblFacilities.servicePlan = '$spType' ";
+	}
+	
 	$issueCat = $_POST['issueCat'];
 	if($issueCat != "") {
 	  $where[] = "tblTickets.categoryCode = '$issueCat' ";
@@ -95,7 +100,7 @@ if(isset($_POST)) {
 	mysql_data_seek($resRpt1, 0);
 	
 	$urlQryStrg = "dateFrom=" . $dateFrom . "&dateTo=" . $dateTo . "&custID=" . $custID . "&incRMA=" . $incRMA . 
-								"&hfEmployee=" . $hfEmployee . "&ticketStatus=" . $ticketStatus . "&callType=" . $callType . "&issueCat=" . $issueCat;
+								"&hfEmployee=" . $hfEmployee . "&ticketStatus=" . $ticketStatus . "&callType=" . $callType . "&spType=" . $spType ."&issueCat=" . $issueCat;
 }
 ?>
 <table border="0" width="100%" cellspacing="1" cellpadding="0">
