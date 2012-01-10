@@ -4,10 +4,11 @@ include('includes/config.inc.php');
 include('includes/db_connect.inc.php');
 include_once('includes/functions.inc.php');
 if(isset($custID)) {
-	$qryCustInfo1 = "SELECT tblFacilities.*, employees.f_name AS repFirstName, employees.l_name AS repLastName 
+	$qryCustInfo1 = "SELECT tblFacilities.*, employees.f_name AS repFirstName, employees.l_name AS repLastName, servicePlans.Desc AS servicePlan 
 									FROM tblFacilities 
 									LEFT JOIN tblSalesRepByTerritories ON tblFacilities.CountryCode = tblSalesRepByTerritories.CountryCode 
 									LEFT JOIN employees ON tblSalesRepByTerritories.SalesRepID = employees.id 
+									LEFT JOIN servicePlans ON tblFacilities.servicePlan = servicePlans.ID 
 									WHERE tblFacilities.CustomerNumber = '$custID' 
 									AND tblSalesRepByTerritories.CountryCode = (SELECT CountryCode FROM tblFacilities WHERE CustomerNumber = '$custID') 
 									AND tblSalesRepByTerritories.StateOrProvinceCode = (SELECT StateOrProvinceCode FROM tblFacilities WHERE CustomerNumber = '$custID')";
@@ -91,6 +92,10 @@ if(isset($custID)) {
 				<div>
 					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Source of Sale:</span>
 					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $saleSource; ?></span>
+				</div>
+				<div>
+					<span style="display:inline-block; width:35%; vertical-align:top; float:left; text-align:right; padding:1px;">Service Plan:</span>
+					<span style="display:inline-block; width:62%; vertical-align:top; float:right; padding:1px;"><?php echo $rowCustInfo1['servicePlan']; ?></span>
 				</div>
 			</td>
 		</tr>
