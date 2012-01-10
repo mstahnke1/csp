@@ -84,11 +84,12 @@ function buildRpt(frmStr, frmEle, frmVal){
 	var hfEmployee = document.forms[frmStr].hfEmployee.value;
 	var ticketStatus = document.forms[frmStr].ticketStatus.value;
 	var callType = document.forms[frmStr].callType.value;
+	var spType = document.forms[frmStr].spType.value;
 	var issueCat = document.forms[frmStr].issueCat.value;
 	var recLimit = document.forms[frmStr].recLimit.value;
 	var queryString = "dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&custID=" + custID + "&incRMA=" + incRMA + 
 										"&hfEmployee=" + hfEmployee + "&ticketStatus=" + ticketStatus + "&callType=" + callType + "&issueCat=" + issueCat + 
-										"&recLimit=" + recLimit;
+										"&recLimit=" + recLimit + "&spType=" + spType;
 	
 	ajaxRequest.open("POST", "includes/reports/" + pageStr, true);
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
