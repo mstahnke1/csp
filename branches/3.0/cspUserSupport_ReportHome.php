@@ -70,7 +70,7 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 										<div>
 											<span style="display:inline-block;">
 												Report Type:<br />
-												<select name="rptType" id="rptType" onChange="changeFrmEleState('cspRprtParams', 'recLimit', this.value);">
+												<select name="rptType" id="rptType" onChange="changeFrmEleState('cspRprtParams', this.value);">
 							    				<option value="callStats">Call Statistics</option>
 							    				<option value="callDetail">Call Detailed</option>
 												</select>
@@ -148,7 +148,7 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 										<div>
 											<span style="display:inline-block;">
 												Service Plan Type:<br />
-												<select name="spType" id="spType">
+												<select name="spType" id="spType" disabled>
 							    				<option value="ALL">ALL</option>
 													<option value="1">Existing Cust 6.30.12</option>
 													<option value="2">Time & Material</option>
