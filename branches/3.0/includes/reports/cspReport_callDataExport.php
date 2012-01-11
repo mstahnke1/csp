@@ -1,4 +1,6 @@
 <?php
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=csp_Report_" . date('Ymd') . "-" . date('His') . ".xls");
 include_once('../config.inc.php');
 include_once('../db_connect.inc.php');
 require_once('../functions.inc.php');
@@ -72,7 +74,7 @@ if($callType != "ALL"){
   $where2[] = "tblTicketMessages.callType = '$callType' ";
 }
 
-$spType = $_POST['spType'];
+$spType = $_GET['spType'];
 if($spType != "ALL"){
   $where[] = "tblFacilities.servicePlan = '$spType' ";
 }
@@ -99,37 +101,28 @@ if($custID != "") {
 }
 mysql_data_seek($resRpt1, 0);
 
-require_once 'Spreadsheet/Excel/Writer.php';
+?>
+<table border="1">
+	<tr>
+		<td><strong>Ticket Number</strong></td>
+		<td><strong>Status</strong></td>
+		<td><strong>Created Tasks</strong></td>
+		<td><strong>Sale Source</strong></td>
+		<td><strong>Customer</strong></td>
+		<td><strong>Corporate</strong></td>
+		<td><strong>Contact</strong></td>
+		<td><strong>Summary</strong></td>
+		<td><strong>Date Opened</strong></td>
+		<td><strong>Follow Up Date</strong></td>
+		<td><strong>Technician Comments</strong></td>
+	</tr>
+<?php
 
-// Creating a workbook
-$workbook = new Spreadsheet_Excel_Writer();
-
-// sending HTTP headers
-$workbook->send('csp_Report_'.date('Ymd').'T'.date('His').'.xls');
-
-// Creating a worksheet
-$worksheet =& $workbook->addWorksheet('Report Details');
-
-$x = 1;
-$y = 0;
-
-// The actual data
-$worksheet->write(0, 0, 'Ticket Number');
-$worksheet->write(0, 1, 'Status');
-$worksheet->write(0, 2, 'Created Tasks');
-$worksheet->write(0, 3, 'Sale Source');
-$worksheet->write(0, 4, 'Customer');
-$worksheet->write(0, 5, 'Corporate');
-$worksheet->write(0, 6, 'Contact');
-$worksheet->write(0, 7, 'Summary');
-$worksheet->write(0, 8, 'Date Opened');
-$worksheet->write(0, 9, 'Follow Up Date');
-$worksheet->write(0, 10, 'Technician Remark');
-
-while($rowRpt1 = mysql_fetch_array($resRpt1)) {
+while($rowRpt1 = mysql_fetch_assoc($resRpt1)) {
 	// connect to work db and get task information 
+	$ticketID = $rowRpt1['ID'];
 	mysql_select_db($dbname2);
-	$query5 = "SELECT * FROM taskinfo WHERE ticketNum = '$rowRpt1[ID]'";
+	$query5 = "SELECT * FROM taskinfo WHERE ticketNum = '$ticketID'";
 	$result5 = mysql_query($query5, $conn);
 	$taskList = "";
 	$taskCount = mysql_num_rows($result5);
@@ -149,6 +142,12 @@ while($rowRpt1 = mysql_fetch_array($resRpt1)) {
 		}
 		$taskList = substr($taskList, 0, -2);
 	}
+	$techRemarks = "";
+	$qryTechRmk1 = "SELECT Message FROM tblTicketMessages WHERE TicketID = $ticketID AND msgType = 0";
+	$resTechRmk1 = mysql_query($qryTechRmk1) or die(mysql_error());
+	while($rowTechRmk1 = mysql_fetch_assoc($resTechRmk1)) {
+		$techRemarks = $techRemarks . "&bull;" . $rowTechRmk1['Message'] . "<br />";
+	}
 	if($rowRpt1['Status']==0) {
 		$Status = 'OPEN';
 	}elseif($rowRpt1['Status']==1) {
@@ -167,27 +166,24 @@ while($rowRpt1 = mysql_fetch_array($resRpt1)) {
 	} else {
 		$srcLead = "Unknown";
 	}
-	
-
-	$worksheet->write($x, 0, $rowRpt1['ID']);
-	$worksheet->writeString($x, 1, $Status);
-	$worksheet->writeString($x, 2, $taskList);
-	$worksheet->writeString($x, 3, $srcLead);
-	$worksheet->writeString($x, 4, $custName." (".$rowRpt1['CustomerNumber'].")");
-	$worksheet->writeString($x, 5, $custCorp);
-	$worksheet->writeString($x, 6, $rowRpt1['Contact']);
-	$worksheet->writeString($x, 7, $rowRpt1['Summary']);
-	$worksheet->writeString($x, 8, $rowRpt1['DateOpened']);
-	$worksheet->writeString($x, 9, $rowRpt1['DateFollowUp']);
-	$worksheet->writeString($x, 10, strip_tags($rowRpt1['Message']));
-	$x++;
+	?>
+	<tr>
+		<td><?php echo $rowRpt1['ID']; ?></td>
+		<td><?php echo $Status; ?></td>
+		<td><?php echo $taskList; ?></td>
+		<td><?php echo $srcLead; ?></td>
+		<td><?php echo $custName." (".$rowRpt1['CustomerNumber'].")"; ?></td>
+		<td><?php echo $custCorp; ?></td>
+		<td><?php echo $rowRpt1['Contact']; ?></td>
+		<td><?php echo $rowRpt1['Summary']; ?></td>
+		<td><?php echo $rowRpt1['DateOpened']; ?></td>
+		<td><?php echo $rowRpt1['DateFollowUp']; ?></td>
+		<td><?php echo strip_tags($techRemarks); ?></td>
+	</tr>
+	<?php
 }
-
-
-// Let's send the file
-$workbook->close();
-
-//include '../db_close.inc.php';
-
-exit();
+?>
+</table>
+<?php
+include '../db_close.inc.php';
 ?>
