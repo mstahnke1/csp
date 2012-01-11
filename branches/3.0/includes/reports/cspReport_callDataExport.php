@@ -3,14 +3,14 @@ include_once('../config.inc.php');
 include_once('../db_connect.inc.php');
 require_once('../functions.inc.php');
 
-$qryRpt1 = "SELECT tblTickets.*, MAX(tblTicketMessages.Date) AS lastUpdate, tblFacilities.FacilityName AS facilityName, tblTicketMessages.Message AS Message 
-						FROM tblTickets 
-						LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
-						LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber ";
+$qryRpt1 = "SELECT tblTickets.*, MAX(tblTicketMessages.Date) AS lastUpdate, tblFacilities.FacilityName AS facilityName, tblFacilities.servicePlan AS servicePlan 
+							FROM tblTickets 
+							LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
+							LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber ";
 
 //	foreach($_GET as $val){
 //		if(!($val == "ALL" || $val == "")) {
-  	$qryRpt1 .= "WHERE tblTicketMessages.msgType = 0 AND ";
+  	$qryRpt1 .= "WHERE tblTicketMessages.msgType = 2 AND ";
 //	  	break;
 //	  } else {
 //	  	$qryRpt1 .= "WHERE tblTicketMessages.callType != 1 ";
@@ -70,6 +70,11 @@ $callType = $_GET['callType'];
 if($callType != "ALL"){
   $where[] = "tblTicketMessages.callType = '$callType' ";
   $where2[] = "tblTicketMessages.callType = '$callType' ";
+}
+
+$spType = $_POST['spType'];
+if($spType != "ALL"){
+  $where[] = "tblFacilities.servicePlan = '$spType' ";
 }
 
 $issueCat = $_GET['issueCat'];
@@ -182,7 +187,7 @@ while($rowRpt1 = mysql_fetch_array($resRpt1)) {
 // Let's send the file
 $workbook->close();
 
-include '../db_close.inc.php';
+//include '../db_close.inc.php';
 
 exit();
 ?>
