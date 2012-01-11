@@ -1,2 +1,2 @@
 <font face="Arial" size="1" style="float:left;">CSP Version 3.1.0</font>
-<font face="Arial" size="1" style="float:right;">Copyright &copy; 2011 3M Resident Monitoring</font>
+<font face="Arial" size="1" style="float:right;">Copyright &copy; 2012 3M Resident Monitoring</font>
