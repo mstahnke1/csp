@@ -295,11 +295,14 @@ function populateTxt(frmStr, eleStr, valStr) {
 	document.getElementById("issueCatMod").style.display = 'none';
 }
 
-function changeFrmEleState(frmStr, eleStr, sbmVal) {
-	if(sbmVal == "callStats") {
-		document.forms[frmStr].elements[eleStr].disabled = false;
-	} else if(sbmVal == "callDetail") {
-		document.forms[frmStr].elements[eleStr].disabled = true;
+function changeFrmEleState(frmStr, eleVal) {
+	if(eleVal == "callStats") {
+		document.forms[frmStr].elements["recLimit"].disabled = false;
+		document.forms[frmStr].elements["spType"].disabled = true;
+	}
+	if(eleVal == "callDetail") {
+		document.forms[frmStr].elements["recLimit"].disabled = true;
+		document.forms[frmStr].elements["spType"].disabled = false;
 	}
 }
 
