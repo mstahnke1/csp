@@ -246,7 +246,7 @@ if(isset($_GET['custID'])) {
 									</td>
 								</tr>
 								<tr>
-									<td style="text-align:right;">Source of Sale:</td>
+									<td style="text-align:right;">Service Plan:</td>
 									<td>
 										<select name="servicePlan">
 											<option value="0" <?php if((is_null($servicePlan)) OR ($servicePlan == 0)){ echo 'selected="selected"'; } ?>>Unknown</option>
