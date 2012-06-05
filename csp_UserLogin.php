@@ -36,13 +36,20 @@ if(!isset($_SESSION['uid'])) {
 	// Check for login form submission and verify no fields are blank
 	if((isset($_POST['user']) && $_POST['user'] != "") && (isset($_POST['pass']) && $_POST['pass'] != "")) 
 	{
+		if($_POST['domain'] == "euro") {
+			$ldap['host'] = "ADEURO-05.euro.mmm.com";
+			$ldap['dn'] = "DC=euro,DC=mmm,DC=com";
+			$ldap['bind_dn'] = "@EURO.MMM.COM";
+		} elseif($_POST['domain'] == "usac") {
+			$ldap['host'] = cspSettingValue('7');
+			$ldap['dn'] = cspSettingValue('9');
+			$ldap['bind_dn'] = cspSettingValue('10');
+		}
+		
 		// LDAP variables
 		$ldap['user'] = $_POST['user'];
 		$ldap['pass'] = $_POST['pass'];
-		$ldap['host'] = cspSettingValue('7');
 		$ldap['port'] = cspSettingValue('8');
-		$ldap['dn'] = cspSettingValue('9');
-		$ldap['bind_dn'] = cspSettingValue('10');
 		$ldap['attributes'] = explode(", ", cspSettingValue('11'));
 		$ldap['base'] = '';
 		
@@ -200,6 +207,14 @@ if(!isset($_SESSION['uid'])) {
 									<td align="left"><input name="pass" type="password" /></td>
 								</tr>
 								<tr>
+									<td align="right">Domain:</td>
+									<td align="left">
+										<select name="domain">
+											<option value="usac">USAC</option>
+											<option value="euro">EURO</option>
+										</select>
+									</td>
+								</tr>
 									<td colspan="2"><input name="Login" type="submit" value="Login"></td>
 								</tr>
 							</table>
