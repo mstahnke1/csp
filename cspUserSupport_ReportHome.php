@@ -150,12 +150,14 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 												Service Plan Type:<br />
 												<select name="spType" id="spType" disabled>
 							    				<option value="ALL">ALL</option>
-													<option value="1">Existing Cust 6.30.12</option>
+													<option value="1">No Plan</option>
 													<option value="2">Time & Material</option>
-													<option value="3">Silver</option>
-													<option value="4">Gold</option>
-													<option value="5">Platinum</option>
-													<option value="6">Credit Hold / No Service</option>
+													<option value="3">Bronze</option>
+													<option value="4">Silver</option>
+													<option value="5">Gold</option>
+													<option value="6">Platinum</option>
+													<option value="7">Credit Hold / No Service</option>
+													<option value="8">Free Service</option>
 												</select>
 											</span>
 											<span style="display:inline-block;">
