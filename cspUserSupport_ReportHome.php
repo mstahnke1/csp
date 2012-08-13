@@ -148,7 +148,7 @@ $rstCallReport1 = mysql_query($qryCallReport1) or die(mysql_error());
 										<div>
 											<span style="display:inline-block;">
 												Service Plan Type:<br />
-												<select name="spType" id="spType" disabled>
+												<select name="spType" id="spType">
 							    				<option value="ALL">ALL</option>
 													<option value="1">No Plan</option>
 													<option value="2">Time & Material</option>
