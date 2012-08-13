@@ -71,6 +71,12 @@ if(isset($_POST)) {
 	  $where[] = "tblTicketMessages.callType = '$callType' ";
 	}
 	
+	$spType = "ALL";
+	$spType = $_POST['spType'];
+	if($spType != "ALL"){
+	  $where[] = "tblFacilities.servicePlan = '$spType' ";
+	}
+	
 	$issueCat = $_POST['issueCat'];
 	if($issueCat != "") {
 	  $where[] = "tblTickets.categoryCode = '$issueCat' ";

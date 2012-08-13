@@ -298,11 +298,11 @@ function populateTxt(frmStr, eleStr, valStr) {
 function changeFrmEleState(frmStr, eleVal) {
 	if(eleVal == "callStats") {
 		document.forms[frmStr].elements["recLimit"].disabled = false;
-		document.forms[frmStr].elements["spType"].disabled = true;
+		/*document.forms[frmStr].elements["spType"].disabled = true;*/
 	}
 	if(eleVal == "callDetail") {
 		document.forms[frmStr].elements["recLimit"].disabled = true;
-		document.forms[frmStr].elements["spType"].disabled = false;
+		/*document.forms[frmStr].elements["spType"].disabled = false;*/
 	}
 }
 
