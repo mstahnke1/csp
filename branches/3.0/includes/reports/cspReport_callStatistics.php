@@ -222,6 +222,7 @@ if(isset($_POST)) {
 											FROM tblTickets 
 											LEFT JOIN tblTicketMessages ON tblTickets.ID = tblTicketMessages.TicketID 
 											LEFT JOIN issueCategories ON tblTickets.categoryCode = issueCategories.code 
+											LEFT JOIN tblFacilities ON tblTickets.CustomerNumber = tblFacilities.CustomerNumber 
 											WHERE tblTickets.CustomerNumber = '$rowRpt2[CustomerNumber]' AND tblTicketMessages.callType = 1 AND ";
 					if(!empty($where)) {
 					  $qryRpt3 .= implode(" AND ", $where);
